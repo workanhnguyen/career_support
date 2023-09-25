@@ -1,5 +1,6 @@
 package com.nva.server;
 
+import com.nva.server.pojos.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

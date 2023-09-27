@@ -33,7 +33,7 @@ public class Survey {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @ManyToMany(mappedBy = "surveys", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonBackReference
-    private Set<User> users;
+//    @ManyToMany(mappedBy = "surveys", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JsonBackReference
+//    private Set<User> users;
 }

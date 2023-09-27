@@ -1,6 +1,7 @@
 package com.nva.server.pojos;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.nva.server.enums.Role;
 import jakarta.persistence.*;
@@ -11,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,11 +34,9 @@ public class User implements UserDetails {
     private Long id;
 
     @NotNull
-    @Size(max = 20)
     private String firstName;
 
     @NotNull
-    @Size(max = 40)
     private String lastName;
 
     @Column(unique = true)
@@ -44,26 +44,28 @@ public class User implements UserDetails {
     @NotNull
     private String email;
 
+    @NotNull
     private String password;
 
     private String avatar;
 
-    private Boolean isActive;
+    private boolean isActive;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
     @Transient
+    @JsonIgnore
     private MultipartFile avatarFile;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "users_surveys", joinColumns = {
-            @JoinColumn(name = "user_id", referencedColumnName = "id")
-    }, inverseJoinColumns = {
-            @JoinColumn(name = "survey_id", referencedColumnName = "id")
-    })
-    @JsonManagedReference
-    private Set<Survey> surveys;
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinTable(name = "users_surveys", joinColumns = {
+//            @JoinColumn(name = "user_id", referencedColumnName = "id")
+//    }, inverseJoinColumns = {
+//            @JoinColumn(name = "survey_id", referencedColumnName = "id")
+//    })
+//    @JsonManagedReference
+//    private Set<Survey> surveys;
 
     // ------------------- UserDetails implements -----------------------
     @Override

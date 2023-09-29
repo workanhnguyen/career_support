@@ -4,6 +4,7 @@ import com.nva.server.dtos.UserForAdminDTO;
 import com.nva.server.dtos.UserForClientDTO;
 import com.nva.server.pojos.User;
 import com.nva.server.repositories.UserRepository;
+import com.nva.server.services.ConfirmationTokenService;
 import com.nva.server.services.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ import java.util.Optional;
 @Slf4j // Create Logger
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final ConfirmationTokenService confirmationService;
     private final BCryptPasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
 
@@ -53,5 +55,16 @@ public class UserServiceImpl implements UserService {
             throw new IllegalStateException("Email taken");
 
         userRepository.save(user);
+
+//        // TODO: Create confirmation token
+//         String token = UUID.randomUUID().toString();
+//        ConfirmationToken confirmationToken = ConfirmationToken.builder()
+//                .token(token)
+//                .createdAt(LocalDateTime.now())
+//                .expiredAt(LocalDateTime.now().plusMinutes(15))
+//                .user(user).build();
+//        confirmationService.saveConfirmationToken(confirmationToken);
+
+//         TODO: Send email
     }
 }

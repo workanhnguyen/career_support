@@ -22,4 +22,9 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
+
+    @PostMapping("/confirm")
+    public String confirm(@RequestParam(name = "token") String token) {
+        return authenticationService.confirmToken(token);
+    }
 }

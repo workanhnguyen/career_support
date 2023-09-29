@@ -27,6 +27,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+        http.formLogin();
+
+        http.logout().logoutSuccessUrl("/login");
+        http.exceptionHandling().accessDeniedPage("/login?accessDenied");
+        http.authorizeRequests().requestMatchers("/").access("isAuthenticated() and hasRole('ROLE_ADMIN')");
+
         http
                 .csrf().disable()
                 .authorizeRequests()
@@ -49,19 +55,21 @@ public class SecurityConfig {
 //    @Bean
 //    public CommandLineRunner run(UserService userService) {
 //        User user1 = User.builder()
-//                .firstName("Anh")
-//                .lastName("Nguyen Van")
-//                .email("anh@gmail.com")
+//                .firstName("Đạt")
+//                .lastName("Lương Tấn")
+//                .email("dat@ou.edu.vn")
 //                .password("1234")
 //                .role(Role.ROLE_ADMIN)
-//                .isActive(true).build();
+//                .enabled(true)
+//                .locked(false).build();
 //        User user2 = User.builder()
-//                .firstName("Anh")
-//                .lastName("Nguyen Van")
-//                .email("anh1@gmail.com")
+//                .firstName("Duy")
+//                .lastName("Lê Trần Nhật")
+//                .email("duy@gmail.com")
 //                .password("1234")
 //                .role(Role.ROLE_USER)
-//                .isActive(true).build();
+//                .enabled(true)
+//                .locked(false).build();
 //        return args -> {
 //            userService.addNewUser(user1);
 //            userService.addNewUser(user2);

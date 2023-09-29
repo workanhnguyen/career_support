@@ -27,9 +27,6 @@ public class Major {
     @ManyToOne(cascade = CascadeType.ALL)
     private Falcuty falcuty;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Field field;
-
 //    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    @JoinTable(name = "majors_combinations", joinColumns = {
 //            @JoinColumn(name = "major_id", referencedColumnName = "id")

@@ -1,5 +1,6 @@
 package com.nva.server.pojos;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -7,21 +8,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Entity
-@Table(name = "options")
+@Table(name = "subjects")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Builder
-public class Option {
+@Data
+public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Lob
     @NotNull
-    private String content;
+    private String name;
 
-    @ManyToOne
-    private Question question;
+    @ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference
+    private Set<Combination> combinations;
 }

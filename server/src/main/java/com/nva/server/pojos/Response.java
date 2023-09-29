@@ -6,11 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "responses")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Builder
 public class Response {
     @Id
@@ -21,11 +23,8 @@ public class Response {
     private User user;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Question question;
+    private Survey survey;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Option selectedOption;
-
-    @Lob
-    private String textResponse;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 }

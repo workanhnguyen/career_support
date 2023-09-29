@@ -46,27 +46,27 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public CommandLineRunner run(UserService userService) {
-        User user1 = User.builder()
-                .firstName("Anh")
-                .lastName("Nguyen Van")
-                .email("anh@gmail.com")
-                .password("1234")
-                .role(Role.ROLE_ADMIN)
-                .isActive(true).build();
-        User user2 = User.builder()
-                .firstName("Anh")
-                .lastName("Nguyen Van")
-                .email("anh1@gmail.com")
-                .password("1234")
-                .role(Role.ROLE_USER)
-                .isActive(true).build();
-        return args -> {
-            userService.addNewUser(user1);
-            userService.addNewUser(user2);
-        };
-    }
+//    @Bean
+//    public CommandLineRunner run(UserService userService) {
+//        User user1 = User.builder()
+//                .firstName("Anh")
+//                .lastName("Nguyen Van")
+//                .email("anh@gmail.com")
+//                .password("1234")
+//                .role(Role.ROLE_ADMIN)
+//                .isActive(true).build();
+//        User user2 = User.builder()
+//                .firstName("Anh")
+//                .lastName("Nguyen Van")
+//                .email("anh1@gmail.com")
+//                .password("1234")
+//                .role(Role.ROLE_USER)
+//                .isActive(true).build();
+//        return args -> {
+//            userService.addNewUser(user1);
+//            userService.addNewUser(user2);
+//        };
+//    }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 

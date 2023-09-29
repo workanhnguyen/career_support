@@ -8,20 +8,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "options")
+@Table(name = "falcuties")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Builder
-public class Option {
+public class Falcuty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Lob
     @NotNull
-    private String content;
-
-    @ManyToOne
-    private Question question;
+    private String name;
 }

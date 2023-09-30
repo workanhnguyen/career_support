@@ -1,5 +1,6 @@
 package com.nva.server.controllers;
 
+import com.nva.server.dtos.HollandDTO;
 import com.nva.server.pojos.Holland;
 import com.nva.server.services.HollandService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class HollandController {
     @Autowired
     private HollandService hollandService;
     @GetMapping
-    public ResponseEntity<List<Holland>> getAll() {
+    public ResponseEntity<List<HollandDTO>> getAll() {
         return new ResponseEntity<>(hollandService.findAll(), HttpStatus.OK);
     }
 }

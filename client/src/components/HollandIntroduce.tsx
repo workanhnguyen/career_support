@@ -1,12 +1,13 @@
+import { memo } from "react";
+
 import { Box } from "@mui/material";
 import React from "react";
+import { Title } from "../components";
 
 const HollandIntroduce: React.FC = () => {
   return (
     <Box>
-      <p className="text-2xl font-bold text-primary mb-5">
-        Trắc nghiệm Holland là gì?
-      </p>
+      <Title text="Trắc nghiệm Holland là gì?" />
       <div className="w-full flex max-sm:flex-col justify-between">
         <p className="max-sm:mb-5 text-justify sm:pr-10">
           John L.Holland (1919 – 2008) là tiến sỹ tâm lý học người Mỹ. John
@@ -39,4 +40,4 @@ const HollandIntroduce: React.FC = () => {
   );
 };
 
-export default HollandIntroduce;
+export default memo(HollandIntroduce);

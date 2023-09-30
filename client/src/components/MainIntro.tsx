@@ -10,8 +10,6 @@ const paperStyle: object = {
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
-  marginTop: "20px",
-  marginBottom: "32px",
   color: "black",
 };
 

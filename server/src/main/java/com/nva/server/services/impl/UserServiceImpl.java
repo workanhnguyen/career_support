@@ -38,13 +38,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserForAdminDTO> getUsers() {
         List<User> users = userRepository.findAll();
-        List<UserForAdminDTO> userForAdminDTOS = new ArrayList<>();
+        List<UserForAdminDTO> userForAdminDTOs = new ArrayList<>();
 
-        users.forEach(u -> {
-            UserForAdminDTO user = modelMapper.map(u, UserForAdminDTO.class);
-            userForAdminDTOS.add(user);
-        });
-        return userForAdminDTOS;
+        users.forEach(u -> userForAdminDTOs.add(modelMapper.map(u, UserForAdminDTO.class)));
+        return userForAdminDTOs;
     }
 
     @Override

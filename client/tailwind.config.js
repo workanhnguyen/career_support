@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'primary': '#1876D2'
+      },
+      backgroundImage: {
+        'main-intro': "url(https://res.cloudinary.com/dduhlnft3/image/upload/v1696045750/frontend/set-bright-school-stationery-orange-wall_y8ozka.jpg)",
+      }
+    },
   },
   plugins: [],
 }

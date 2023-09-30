@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -27,4 +28,10 @@ public class Subject {
     @ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonBackReference
     private Set<Combination> combinations;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime updatedAt;
 }

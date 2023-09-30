@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -45,7 +46,10 @@ public class User implements UserDetails, Serializable {
     private String avatar;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    private LocalDateTime createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime updatedAt;
 
     private Boolean locked = false;
     private Boolean enabled = false;

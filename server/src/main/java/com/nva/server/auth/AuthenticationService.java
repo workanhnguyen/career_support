@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -48,6 +49,7 @@ public class AuthenticationService {
                         .role(Role.ROLE_USER)
                         .locked(false)
                         .enabled(false)
+                        .createdAt(LocalDateTime.now())
                         .build();
             } else {
                 user = modelMapper.map(userRepository.findByEmail(request.getEmail()), User.class);

@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -32,6 +33,12 @@ public class Combination {
     })
     @JsonManagedReference
     private Set<Subject> subjects;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime updatedAt;
 
 //    @ManyToMany(mappedBy = "combinations", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    @JsonBackReference

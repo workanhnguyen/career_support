@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "questions")
 @NoArgsConstructor
@@ -22,4 +24,10 @@ public class Question {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Survey survey;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime updatedAt;
 }

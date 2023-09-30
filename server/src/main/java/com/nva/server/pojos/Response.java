@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -26,5 +27,8 @@ public class Response {
     private Survey survey;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    private LocalDateTime createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime updatedAt;
 }

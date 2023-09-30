@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "majors")
 @NoArgsConstructor
@@ -23,6 +25,12 @@ public class Major {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Falcuty falcuty;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime updatedAt;
 
 //    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    @JoinTable(name = "majors_combinations", joinColumns = {

@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -27,12 +28,8 @@ public class Survey {
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-
-//    @ManyToMany(mappedBy = "surveys", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JsonBackReference
-//    private Set<User> users;
 }

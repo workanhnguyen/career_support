@@ -1,7 +1,6 @@
-import { memo } from "react";
-
-import { Box } from "@mui/material";
 import React from "react";
+import { Box } from "@mui/material";
+
 import { Title } from "../components";
 
 const HollandIntroduce: React.FC = () => {
@@ -40,4 +39,4 @@ const HollandIntroduce: React.FC = () => {
   );
 };
 
-export default memo(HollandIntroduce);
+export default HollandIntroduce;

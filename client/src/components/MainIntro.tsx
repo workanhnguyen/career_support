@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { Button, Paper } from "@mui/material";
 
 const paperStyle: object = {
@@ -40,4 +40,4 @@ const MainIntro: React.FC = () => {
   );
 };
 
-export default memo(MainIntro);
+export default MainIntro;

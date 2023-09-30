@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import { useHollands } from '../hooks'
 import { CircularProgress, Grid } from '@mui/material';
 import { ItemHolland, Title } from '../components';
@@ -25,4 +25,4 @@ const ListHolland: React.FC = () => {
   )
 }
 
-export default memo(ListHolland);
+export default ListHolland;

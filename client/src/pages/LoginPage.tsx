@@ -1,5 +1,5 @@
-import { Container } from "@mui/material"
 import React from "react"
+import { Container } from "@mui/material"
 
 const LoginPage: React.FC = () => {
   return (
@@ -11,4 +11,4 @@ const LoginPage: React.FC = () => {
   )
 }
 
-export default LoginPage
+export default LoginPage;

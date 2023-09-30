@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { Box, Button, Divider } from "@mui/material";
 
 const Header: React.FC = () => {
@@ -18,4 +18,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default memo(Header);
+export default Header;

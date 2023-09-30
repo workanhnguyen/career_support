@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body>
+    <p th:text=${name}></p>
+    <p> Chúng tôi gửi thông tin truy cập hệ thống SCOSS của bạn. </p>
+    <p th:text>Vui lòng nhấn vào link bên dưới để kích hoạt tài khoản.</p>
+    <blockquote style="margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px">
+        <p style="margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c">
+            <a th:href="${activateLink}">Kích hoạt ngay</a>
+        </p>
+    </blockquote>
+
+    <p>Lưu ý: Vui lòng kích hoạt tài khoản trong vòng 15 phút.</p>
+    <p>Đây là email tự động vui lòng không trả lời.</p>
+</body>
+</html>

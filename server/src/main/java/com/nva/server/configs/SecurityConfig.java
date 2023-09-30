@@ -28,20 +28,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 
-        http.formLogin()
-                .usernameParameter("email")
-                .passwordParameter("password");
-
-        http.formLogin().defaultSuccessUrl("/")
-                .failureUrl("/login?error");
-
-        http.logout().logoutSuccessUrl("/login");
-        http.exceptionHandling()
-                .accessDeniedPage("/login?accessDenied");
-
-        http.authorizeRequests().requestMatchers("/")
-                .access("hasRole('ROLE_ADMIN')");
-        http.csrf().disable();
+//        http.formLogin()
+//                .usernameParameter("email")
+//                .passwordParameter("password");
+//
+//        http.formLogin().defaultSuccessUrl("/")
+//                .failureUrl("/login?error");
+//
+//        http.logout().logoutSuccessUrl("/login");
+//        http.exceptionHandling()
+//                .accessDeniedPage("/login?accessDenied");
+//
+//        http.authorizeRequests().requestMatchers("/")
+//                .access("hasRole('ROLE_ADMIN')");
+//        http.csrf().disable();
 
         http
                 .csrf().disable()

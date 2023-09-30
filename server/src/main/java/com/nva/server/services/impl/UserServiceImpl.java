@@ -55,16 +55,5 @@ public class UserServiceImpl implements UserService {
             throw new IllegalStateException("Email taken");
 
         userRepository.save(user);
-
-//        // TODO: Create confirmation token
-//         String token = UUID.randomUUID().toString();
-//        ConfirmationToken confirmationToken = ConfirmationToken.builder()
-//                .token(token)
-//                .createdAt(LocalDateTime.now())
-//                .expiredAt(LocalDateTime.now().plusMinutes(15))
-//                .user(user).build();
-//        confirmationService.saveConfirmationToken(confirmationToken);
-
-//         TODO: Send email
     }
 }

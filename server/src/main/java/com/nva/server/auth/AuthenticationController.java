@@ -15,15 +15,24 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
-        AuthenticationResponse response = authenticationService.register(request);
-        return response != null ? ResponseEntity.ok(response) : new ResponseEntity("Email taken", HttpStatus.NOT_ACCEPTABLE);
+        int response = authenticationService.register(request);
+        switch (response) {
+            case -1:
+                return new ResponseEntity("Unknown error", HttpStatus.INTERNAL_SERVER_ERROR);
+            case 0:
+                return new ResponseEntity("Email taken", HttpStatus.NOT_ACCEPTABLE);
+            case 1:
+                return new ResponseEntity("Register successfully!", HttpStatus.CREATED);
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
-    @PostMapping("/confirm")
+    @CrossOrigin
+    @GetMapping("/confirm")
     public String confirm(@RequestParam(name = "token") String token) {
         return authenticationService.confirmToken(token);
     }

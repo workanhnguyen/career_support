@@ -1,5 +1,6 @@
 package com.nva.server.auth;
 
+import com.nva.server.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
@@ -27,8 +30,10 @@ public class AuthenticationController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
-        return ResponseEntity.ok(authenticationService.authenticate(request));
+    public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest request) {
+        if (userService.findByEmail(request.getEmail()) != null)
+            return ResponseEntity.ok(authenticationService.authenticate(request));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
     }
 
     @CrossOrigin

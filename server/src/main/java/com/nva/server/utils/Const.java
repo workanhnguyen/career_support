@@ -1,7 +1,5 @@
 package com.nva.server.utils;
 
-import lombok.Getter;
-
 public class Const {
     public final static class SEND_MAIL_SUBJECT {
         public final static String CLIENT_REGISTER = "KÍCH HOẠT TÀI KHOẢN SCOSS";

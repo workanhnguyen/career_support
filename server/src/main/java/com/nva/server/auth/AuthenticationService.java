@@ -2,12 +2,12 @@ package com.nva.server.auth;
 
 import com.nva.server.configs.JwtService;
 import com.nva.server.dtos.DataMailDTO;
-import com.nva.server.services.MailService;
 import com.nva.server.enums.Role;
 import com.nva.server.pojos.ConfirmationToken;
 import com.nva.server.pojos.User;
 import com.nva.server.repositories.UserRepository;
 import com.nva.server.services.ConfirmationTokenService;
+import com.nva.server.services.MailService;
 import com.nva.server.utils.Const;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
@@ -113,8 +113,6 @@ public class AuthenticationService {
         } else if (expiredAt.isBefore(LocalDateTime.now())) {
             return "Token expired";
         } else {
-//
-//            userRepository.save(confirmationToken.getUser());
             confirmationTokenService.setConfirmedAt(token);
             userRepository.enableUser(confirmationToken.getUser().getEmail());
 

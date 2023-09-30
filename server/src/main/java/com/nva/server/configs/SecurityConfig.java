@@ -1,15 +1,9 @@
 package com.nva.server.configs;
 
-import com.nva.server.enums.Role;
 import com.nva.server.filters.JwtAuthenticationFilter;
-import com.nva.server.pojos.User;
-import com.nva.server.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

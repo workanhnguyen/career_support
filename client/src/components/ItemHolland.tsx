@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Holland } from '../interfaces/Holland'
 import { Paper } from '@mui/material'
 
@@ -25,4 +25,4 @@ const ItemHolland: React.FC<ItemHollandProps> = ({ data }) => {
   )
 }
 
-export default ItemHolland
+export default memo(ItemHolland);

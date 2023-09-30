@@ -1,4 +1,4 @@
-package com.nva.server.email;
+package com.nva.server.services;
 
 import com.nva.server.dtos.DataMailDTO;
 import jakarta.mail.MessagingException;

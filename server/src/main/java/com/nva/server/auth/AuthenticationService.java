@@ -2,7 +2,7 @@ package com.nva.server.auth;
 
 import com.nva.server.configs.JwtService;
 import com.nva.server.dtos.DataMailDTO;
-import com.nva.server.email.MailService;
+import com.nva.server.services.MailService;
 import com.nva.server.enums.Role;
 import com.nva.server.pojos.ConfirmationToken;
 import com.nva.server.pojos.User;

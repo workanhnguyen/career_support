@@ -8,7 +8,7 @@ type ItemHollandProps = {
 
 const ItemHolland: React.FC<ItemHollandProps> = ({ data }) => {
   return (
-    <Paper key={data.id} elevation={2}>
+    <Paper elevation={2}>
         <div className='w-full h-fit rounded-md overflow-hidden'>
             <div className='group relative w-full h-fit'>
                 <img className='w-full h-full' src={data.image} alt="holland-img" />

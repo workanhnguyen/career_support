@@ -14,7 +14,7 @@ const ListHolland: React.FC = () => {
             <Title text='Các nhóm ngành nghề theo mật mã Holland' />
                 <Grid container spacing={3}>
                     {hollands.map(holland => (
-                        <Grid item xs={12} sm={6} md={4}>
+                        <Grid item xs={12} sm={6} md={4} key={holland.id}>
                             <ItemHolland data={holland} />
                         </Grid>
                     ))}      

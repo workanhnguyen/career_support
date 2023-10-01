@@ -85,7 +85,7 @@ CREATE TABLE `confirmation_tokens` (
   PRIMARY KEY (`id`),
   KEY `FKhpuw37a1pqxfb6ya1nv5lm4ga` (`user_id`),
   CONSTRAINT `FKhpuw37a1pqxfb6ya1nv5lm4ga` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `confirmation_tokens` (
 
 LOCK TABLES `confirmation_tokens` WRITE;
 /*!40000 ALTER TABLE `confirmation_tokens` DISABLE KEYS */;
-INSERT INTO `confirmation_tokens` VALUES (24,'2023-09-30 10:10:31.745598','2023-09-30 10:10:00.632208','2023-09-30 10:25:00.632208','32690cf9-841e-47a9-a84b-b5d999ede990',23);
+INSERT INTO `confirmation_tokens` VALUES (31,NULL,'2023-10-01 11:30:50.946568','2023-10-01 11:45:50.946568','2430e72e-e51b-4f96-a691-7d70f129f488',8),(42,'2023-10-01 15:05:18.866785','2023-10-01 15:04:34.041379','2023-10-01 15:19:34.041379','64722248-6a6e-47a8-8cd1-60688a893549',32);
 /*!40000 ALTER TABLE `confirmation_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +134,7 @@ DROP TABLE IF EXISTS `hollands`;
 CREATE TABLE `hollands` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `abbreviation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime(6) DEFAULT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `suitable_career` longtext COLLATE utf8mb4_unicode_ci,
@@ -150,7 +150,7 @@ CREATE TABLE `hollands` (
 
 LOCK TABLES `hollands` WRITE;
 /*!40000 ALTER TABLE `hollands` DISABLE KEYS */;
-INSERT INTO `hollands` VALUES (1,'R','2023-09-30 07:50:34','Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: kỹ thuật, công nghệ, hệ thống, ưa thích làm việc với đồ vật. máy móc, động thực vật, thích làm các công việc ngoài trời.','https://res.cloudinary.com/dduhlnft3/image/upload/v1696059441/backend/kythuat_e8rza1.png','Ngành nghề phù hợp với nhóm này bao gồm: Các nghề về kiến trúc, an toàn lao động, nghề mộc, xây dựng, thủy sản, kỹ thuật, máy tàu thủy, lái xe, huấn luyện viên, nông - lâm nghiệp (quản lý trang trại, nhân giống cá, lâm nghiệp,...), cơ khí (chế tạo máy, bảo trì, sửa chữa thiết bị, luyện kim, cơ khí ứng dụng, tự động,...), điện - điện tử, địa lý - địa chất (đo đạc, vẽ bản đồ địa chính), dầu khí, hải dương học, quản lý công nghiệp...','Realistic - Người thực tế',NULL),(2,'I','2023-09-30 07:52:42','Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: quan sát, khám phá, phân tích đánh giá và giải quyết các vấn đề.','https://res.cloudinary.com/dduhlnft3/image/upload/v1696059442/backend/nghiencuu_bnkgap.png','Ngành nghề phù hợp với nhóm này bao gồm: Các ngành thuộc lĩnh vực khoa học tự nhiên (toán, lý, hóa, sinh, địa lý, địa chất, thống kê,...); khoa học xã hội (nhân học, tâm lý, địa lý,...); y - dược (bác sĩ gây mê, hồi sức, bác sĩ phẫu thuật, nha sĩ,...); khoa học công nghệ (công nghệ thông tin, môi trường, điện, vật lý kỹ thuật, xây dựng,...); nông lâm (nông học, thú y,...).','Investigative - Người nghiên cứu',NULL),(3,'A','2023-09-30 07:52:42','Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: nghệ thuật, khả năng về trực giác, khả năng tưởng tượng cao, thích làm việc trong các môi trường mang tính ngẫu hứng, không khuôn mẫu.','https://res.cloudinary.com/dduhlnft3/image/upload/v1696059441/backend/nghethuat_rwabl0.png','Ngành nghề phù hợp với nhóm này bao gồm: Các ngành về văn chương: báo chí (bình luận viên, dẫn chương trình,...); điện ảnh, sân khấu, mỹ thuật, ca nhạc, múa, kiến trúc, thời trang, hội họa, giáo viên dạy sử / Anh văn, bảo tàng, bảo tồn,...','Artistic - Người có tính nghệ sĩ',NULL),(4,'S','2023-09-30 07:52:42','Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: ngôn ngữ, giảng giải, thích làm những việc như giảng dạy, cung cấp thông tin, sự chăm sóc, giúp đỡ, hoặc huấn luyện cho người khác.','https://res.cloudinary.com/dduhlnft3/image/upload/v1696059441/backend/xahoi_r3e6bf.png','Ngành nghề phù hợp với nhóm này bao gồm: sư phạm, giảng viên; huấn luyện viên điền kinh; tư vấn - hướng nghiệp; công tác xã hội, sức khỏe cộng đồng, thuyền trưởng, thầy tu, thư viện, bác sĩ, chuyên khoa, thẩm định giá, nghiên cứu quy hoạch đô thị, kinh tế gia đình, tuyển dụng nhân sự, cảnh sát, xã hội học, bà đỡ, chuyên gia về X - quang, chuyên gia dinh dưỡng,...','Social - Người có tính xã hội',NULL),(5,'E','2023-09-30 07:52:42','Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: ngôn ngữ, giảng giải, thích làm những việc như giảng dạy, cung cấp thông tin, sự chăm sóc, giúp đỡ, hoặc huấn luyện cho người khác.','https://res.cloudinary.com/dduhlnft3/image/upload/v1696059441/backend/quanly_nk9rff.png','Ngành nghề phù hợp với nhóm này bao gồm: Các ngành về quản trị kinh doanh (quản lý khách sạn, quản trị nhân sự,…), thương mại, marketing, kế toán – tài chính, luật sư, dịch vụ khách hàng, tiếp viên hàng không, thông dịch viên, pha chế rượu, kỹ sư công nghiệp (ngành kỹ thuật hệ thống công nghiệp), bác sĩ cấp cứu, quy hoạch đô thị, bếp trưởng (nấu ăn), báo chí (phóng viên, biên tập viên…).','Enterprising - Dám nghĩ, dám làm',NULL),(6,'C','2023-09-30 07:52:42','Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: số học, thích thực hiện những công việc chi tiết, thích làm việc với những số liệu, công việc chi tiết, thích làm việc với những số liệu, theo chỉ dẫn của người khác hoặc các công việc văn phòng.','https://res.cloudinary.com/dduhlnft3/image/upload/v1696059441/backend/nghiepvu_snp4np.png','Ngành nghề phù hợp với nhóm này bao gồm: Các ngành nghề về hành chính, thống kê, thanh tra ngành, người giữ trẻ, điện thoại viên...','Conventional - Người công chức',NULL);
+INSERT INTO `hollands` VALUES (1,'R','2023-09-30 14:50:34.000000','Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: kỹ thuật, công nghệ, hệ thống, ưa thích làm việc với đồ vật. máy móc, động thực vật, thích làm các công việc ngoài trời.','https://res.cloudinary.com/dduhlnft3/image/upload/v1696059441/backend/kythuat_e8rza1.png','Ngành nghề phù hợp với nhóm này bao gồm: Các nghề về kiến trúc, an toàn lao động, nghề mộc, xây dựng, thủy sản, kỹ thuật, máy tàu thủy, lái xe, huấn luyện viên, nông - lâm nghiệp (quản lý trang trại, nhân giống cá, lâm nghiệp,...), cơ khí (chế tạo máy, bảo trì, sửa chữa thiết bị, luyện kim, cơ khí ứng dụng, tự động,...), điện - điện tử, địa lý - địa chất (đo đạc, vẽ bản đồ địa chính), dầu khí, hải dương học, quản lý công nghiệp...','Realistic - Người thực tế',NULL),(2,'I','2023-09-30 14:52:42.000000','Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: quan sát, khám phá, phân tích đánh giá và giải quyết các vấn đề.','https://res.cloudinary.com/dduhlnft3/image/upload/v1696059442/backend/nghiencuu_bnkgap.png','Ngành nghề phù hợp với nhóm này bao gồm: Các ngành thuộc lĩnh vực khoa học tự nhiên (toán, lý, hóa, sinh, địa lý, địa chất, thống kê,...); khoa học xã hội (nhân học, tâm lý, địa lý,...); y - dược (bác sĩ gây mê, hồi sức, bác sĩ phẫu thuật, nha sĩ,...); khoa học công nghệ (công nghệ thông tin, môi trường, điện, vật lý kỹ thuật, xây dựng,...); nông lâm (nông học, thú y,...).','Investigative - Người nghiên cứu',NULL),(3,'A','2023-09-30 14:52:42.000000','Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: nghệ thuật, khả năng về trực giác, khả năng tưởng tượng cao, thích làm việc trong các môi trường mang tính ngẫu hứng, không khuôn mẫu.','https://res.cloudinary.com/dduhlnft3/image/upload/v1696059441/backend/nghethuat_rwabl0.png','Ngành nghề phù hợp với nhóm này bao gồm: Các ngành về văn chương: báo chí (bình luận viên, dẫn chương trình,...); điện ảnh, sân khấu, mỹ thuật, ca nhạc, múa, kiến trúc, thời trang, hội họa, giáo viên dạy sử / Anh văn, bảo tàng, bảo tồn,...','Artistic - Người có tính nghệ sĩ',NULL),(4,'S','2023-09-30 14:52:42.000000','Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: ngôn ngữ, giảng giải, thích làm những việc như giảng dạy, cung cấp thông tin, sự chăm sóc, giúp đỡ, hoặc huấn luyện cho người khác.','https://res.cloudinary.com/dduhlnft3/image/upload/v1696059441/backend/xahoi_r3e6bf.png','Ngành nghề phù hợp với nhóm này bao gồm: sư phạm, giảng viên; huấn luyện viên điền kinh; tư vấn - hướng nghiệp; công tác xã hội, sức khỏe cộng đồng, thuyền trưởng, thầy tu, thư viện, bác sĩ, chuyên khoa, thẩm định giá, nghiên cứu quy hoạch đô thị, kinh tế gia đình, tuyển dụng nhân sự, cảnh sát, xã hội học, bà đỡ, chuyên gia về X - quang, chuyên gia dinh dưỡng,...','Social - Người có tính xã hội',NULL),(5,'E','2023-09-30 14:52:42.000000','Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: ngôn ngữ, giảng giải, thích làm những việc như giảng dạy, cung cấp thông tin, sự chăm sóc, giúp đỡ, hoặc huấn luyện cho người khác.','https://res.cloudinary.com/dduhlnft3/image/upload/v1696059441/backend/quanly_nk9rff.png','Ngành nghề phù hợp với nhóm này bao gồm: Các ngành về quản trị kinh doanh (quản lý khách sạn, quản trị nhân sự,…), thương mại, marketing, kế toán – tài chính, luật sư, dịch vụ khách hàng, tiếp viên hàng không, thông dịch viên, pha chế rượu, kỹ sư công nghiệp (ngành kỹ thuật hệ thống công nghiệp), bác sĩ cấp cứu, quy hoạch đô thị, bếp trưởng (nấu ăn), báo chí (phóng viên, biên tập viên…).','Enterprising - Dám nghĩ, dám làm',NULL),(6,'C','2023-09-30 14:52:42.000000','Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: số học, thích thực hiện những công việc chi tiết, thích làm việc với những số liệu, công việc chi tiết, thích làm việc với những số liệu, theo chỉ dẫn của người khác hoặc các công việc văn phòng.','https://res.cloudinary.com/dduhlnft3/image/upload/v1696059441/backend/nghiepvu_snp4np.png','Ngành nghề phù hợp với nhóm này bao gồm: Các ngành nghề về hành chính, thống kê, thanh tra ngành, người giữ trẻ, điện thoại viên...','Conventional - Người công chức',NULL);
 /*!40000 ALTER TABLE `hollands` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -430,14 +430,14 @@ CREATE TABLE `users` (
   `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` enum('ROLE_ADMIN','ROLE_USER') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` enum('ROLE_ADMIN','ROLE_USER') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` datetime(6) DEFAULT NULL,
   `enabled` bit(1) DEFAULT NULL,
   `locked` bit(1) DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_6dotkott2kjsp8vw4d0m25fb7` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -446,7 +446,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (5,NULL,'admin@gmail.com','viên','Quản trị','$2a$10$tZhElB4CQ7.A6GkJ9Xhple1Naak4ATawisFaoh7SBYk8gmoPld9UG','ROLE_ADMIN',NULL,_binary '',_binary '\0',NULL),(6,NULL,'anh@gmail.com','Anh','Nguyen Van','$2a$10$BkaUNE08KXE.Oweqo2lal.OyBUuPVxfpWdSQO7hMVKRQZlZAKaVQy','ROLE_USER',NULL,_binary '',_binary '\0',NULL),(8,NULL,'duy@gmail.com','Duy','Lê Trần Nhật','$2a$10$bQA.liUDWarrJkj.zppNRe5Rav8O5YL1u1HTlAIKMc8jWR7A1zPgy','ROLE_USER',NULL,_binary '\0',_binary '\0',NULL),(23,NULL,'anhnguyen.per@gmail.com','Anh','Nguyen','$2a$10$1k9XcXRmZPh616nBddUI.eZg9FrzeLO7bCaoReoyR2c3em9xAqzyq','ROLE_USER','2023-09-30 10:10:00.632208',_binary '',_binary '\0',NULL);
+INSERT INTO `users` VALUES (5,NULL,'admin@gmail.com','viên','Quản trị','$2a$10$tZhElB4CQ7.A6GkJ9Xhple1Naak4ATawisFaoh7SBYk8gmoPld9UG','ROLE_ADMIN',NULL,_binary '',_binary '\0',NULL),(6,NULL,'anh@gmail.com','Anh','Nguyen Van','$2a$10$BkaUNE08KXE.Oweqo2lal.OyBUuPVxfpWdSQO7hMVKRQZlZAKaVQy','ROLE_USER',NULL,_binary '',_binary '\0',NULL),(8,NULL,'duy@gmail.com','Duy','Lê Trần Nhật','$2a$10$bQA.liUDWarrJkj.zppNRe5Rav8O5YL1u1HTlAIKMc8jWR7A1zPgy','ROLE_USER',NULL,_binary '\0',_binary '\0',NULL),(32,NULL,'anhnguyen.per@gmail.com','Anh','Nguyễn Vân','$2a$10$Ex0DIKwKyDjVdOTbmtzcc.JY766RRGaxHn17fsXiIxZUGkauB9r1O','ROLE_USER','2023-10-01 15:04:34.041379',_binary '',_binary '\0',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -485,4 +485,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-30 14:54:32
+-- Dump completed on 2023-10-01 18:40:39

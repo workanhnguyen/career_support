@@ -4,28 +4,37 @@ import { register } from '../apis/AuthApi';
 
 function useUserRegistration() {
   const [isRegistering, setIsRegistering] = useState<boolean>(false);
-  const [registrationError, setRegistrationError] = useState<string | unknown>(null);
+  const [registrationMessage, setRegistrationMessage] = useState<string | unknown>('');
+  const [registrationType, setRegistrationType] = useState<boolean>(false);
+
 
   const registerUser = async (userData: UserRegisterForm) => {
     
 
     try {
       setIsRegistering(true);
-      setRegistrationError(null);
+      setRegistrationMessage('');
 
       await register(userData); 
-
+      setRegistrationType(true);
+      setRegistrationMessage("Đăng ký thành công! Vui lòng kiểm tra email để kích hoạt tài khoản!");
     } catch (error: any) {
-      setRegistrationError(error.message);
+      setRegistrationType(false);
+      switch(error.response.status) {
+        case 406:
+          setRegistrationMessage("Email đã được sử dụng");
+      }
     } finally {
       setIsRegistering(false);
+      setTimeout(() => setRegistrationMessage(''), 2000);
     }
   };
 
   return {
     isRegistering,
-    registrationError,
+    registrationMessage,
     registerUser,
+    registrationType
   };
 }
 

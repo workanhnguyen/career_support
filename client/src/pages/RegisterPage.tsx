@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
@@ -15,10 +15,10 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { PASSWORD_REGEX } from "../constants/constants";
+import { PASSWORD_REGEX } from "../constants/regexes";
 import { UserRegisterForm } from "../interfaces/UserRegisterForm";
 import { useUserRegistration } from "../hooks";
-import { CircularProgress } from "@mui/material";
+import { Alert, CircularProgress, Snackbar } from "@mui/material";
 
 const defaultTheme = createTheme();
 
@@ -51,7 +51,7 @@ const RegisterPage: React.FC = () => {
         .max(20, { message: "Mật khẩu không vượt quá 20 ký tự" })
         .regex(PASSWORD_REGEX, {
           message:
-            "Mật khẩu phải chứa ít nhất 1 ký tự viết thường, 1 ký tự viết hoa, 1 chữ số, 1 ký tự đặc biệt",
+            "Mật khẩu không được chứa khoảng trắng, phải chứa ít nhất 1 ký tự viết thường, 1 ký tự viết hoa, 1 chữ số, 1 ký tự đặc biệt",
         }),
       confirmPassword: z.string(),
     })
@@ -62,10 +62,11 @@ const RegisterPage: React.FC = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<UserFormData>({ resolver: zodResolver(UserSchema) });
 
-  const { isRegistering, registrationError, registerUser } =
+  const { isRegistering, registrationMessage, registerUser, registrationType } =
     useUserRegistration();
 
   const onSubmit = (data: UserFormData) => {
@@ -176,7 +177,7 @@ const RegisterPage: React.FC = () => {
                 disableElevation
                 sx={{ mt: 3, mb: 2 }}
               >
-                Đăng ký {registrationError === null ? 'Thành công' : 'Thất bại'}
+                Đăng ký
               </Button>
               <Grid container>
                 <Grid
@@ -205,6 +206,23 @@ const RegisterPage: React.FC = () => {
           <CircularProgress sx={{ color: "white" }} size={50} />
         </div>
       )}
+
+      {/* Snackbar alert */}
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        open={registrationMessage !== ""}
+        autoHideDuration={2000}
+      >
+        {registrationType ? (
+          <Alert severity="success" variant="filled">
+            {registrationMessage as string}
+          </Alert>
+        ) : (
+          <Alert severity="error" variant="filled">
+            {registrationMessage as string}
+          </Alert>
+        )}
+      </Snackbar>
     </div>
   );
 };

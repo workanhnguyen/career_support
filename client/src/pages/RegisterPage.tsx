@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
@@ -79,6 +79,10 @@ const RegisterPage: React.FC = () => {
 
     registerUser(registerData);
   };
+
+  useEffect(() => {
+    registrationType && reset();
+  }, [registrationType]);
 
   return (
     <div className="relative">

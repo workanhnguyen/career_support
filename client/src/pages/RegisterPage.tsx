@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
@@ -18,7 +18,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { PASSWORD_REGEX } from "../constants/regexes";
 import { UserRegisterForm } from "../interfaces/UserRegisterForm";
 import { useUserRegistration } from "../hooks";
-import { Alert, CircularProgress, Snackbar } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
+import { LoadingOverlay } from "../components";
 
 const defaultTheme = createTheme();
 
@@ -205,11 +206,7 @@ const RegisterPage: React.FC = () => {
       </ThemeProvider>
 
       {/* Overlay registering */}
-      {isRegistering && (
-        <div className="fixed top-0 bottom-0 left-0 right-0 w-full h-screen flex justify-center items-center bg-black/20">
-          <CircularProgress sx={{ color: "white" }} size={50} />
-        </div>
-      )}
+      {isRegistering && <LoadingOverlay />}
 
       {/* Snackbar alert */}
       <Snackbar

@@ -36,7 +36,6 @@ public class AuthenticationController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
     }
 
-    @CrossOrigin
     @GetMapping("/confirm")
     public String confirm(@RequestParam(name = "token") String token) {
         return authenticationService.confirmToken(token);

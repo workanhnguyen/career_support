@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import {
+  Avatar,
   Box,
   Button,
   Container,
@@ -12,6 +13,7 @@ import {
   Typography,
   createTheme,
 } from "@mui/material";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 const defaultTheme = createTheme();
 
@@ -36,11 +38,9 @@ const LoginPage: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <img
-            className="w-24 mb-4"
-            src="https://res.cloudinary.com/dduhlnft3/image/upload/v1696069111/frontend/logo-header-removebg-preview_dgsyuy.png"
-            alt="logo"
-          />
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
           <Typography component="h1" variant="h5">
             Đăng nhập
           </Typography>

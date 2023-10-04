@@ -1,10 +1,13 @@
 package com.nva.server.configs;
 
+import com.nva.server.filters.CustomAccessDeniedHandler;
 import com.nva.server.filters.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -34,25 +37,6 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-
-//        http.formLogin()
-//                .usernameParameter("email")
-//                .passwordParameter("password");
-//
-//        http.formLogin().defaultSuccessUrl("/")
-//                .failureUrl("/login?error");
-//
-//        http.logout().logoutSuccessUrl("/login");
-//        http.exceptionHandling()
-//                .accessDeniedPage("/login?accessDenied");
-//
-//        http.authorizeRequests().requestMatchers("/")
-//                .access("hasRole('ROLE_ADMIN')");
-//        http.csrf().disable();
-
-//        return http.authorizeRequests(auth -> auth.anyRequest().permitAll())
-//                .cors(Customizer.withDefaults()).build();
-
         http
                 .csrf().disable()
                 .cors(Customizer.withDefaults())
@@ -60,11 +44,18 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/auth/**").permitAll()
                 .requestMatchers("/api/v1/users").access("isAuthenticated() and hasRole('ROLE_ADMIN')")
                 .requestMatchers(HttpMethod.GET, "/api/v1/hollands").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().access("isAuthenticated() and hasRole('ROLE_ADMIN')")
+                .and()
+                .httpBasic()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/login?accessDenied")
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .and()
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler());
 
         return http.build();
     }

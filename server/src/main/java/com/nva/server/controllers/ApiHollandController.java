@@ -1,7 +1,6 @@
 package com.nva.server.controllers;
 
 import com.nva.server.dtos.HollandDTO;
-import com.nva.server.pojos.Holland;
 import com.nva.server.services.HollandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/hollands")
 @CrossOrigin
-public class HollandController {
+public class ApiHollandController {
     @Autowired
     private HollandService hollandService;
     @GetMapping

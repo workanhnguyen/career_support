@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -18,6 +19,12 @@ import java.util.List;
 public class SurveyServiceImpl implements SurveyService {
     @Autowired
     private SurveyRepository surveyRepository;
+
+    @Override
+    public Optional<Survey> findById(Long surveyId) {
+        return surveyRepository.findById(surveyId);
+    }
+
     @Override
     public List<Survey> findAll() {
         return surveyRepository.findAll();
@@ -26,5 +33,10 @@ public class SurveyServiceImpl implements SurveyService {
     @Override
     public Page<Survey> findByKeyword(String keyword, Pageable pageable) {
         return surveyRepository.findByKeyword(keyword, pageable);
+    }
+
+    @Override
+    public Survey save(Survey survey) {
+        return surveyRepository.save(survey);
     }
 }

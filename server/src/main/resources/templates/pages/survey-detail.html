@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{../layouts/base}">
 <head>
     <title>Chi tiết bài khảo sát</title>
@@ -13,9 +13,56 @@
     </header>
     <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-            hihihi
+            <div class="isolate bg-white px-6 lg:px-8">
+                <form th:action="@{/surveys/{surveyId}(surveyId=${survey.id})}" th:object="${survey}" method="POST" class="mx-auto max-w-xl">
+                    <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                        <input type="hidden" name="id" th:field="*{id}" />
+                        <div class="sm:col-span-2">
+                            <label for="survey-title" class="block text-sm font-semibold leading-6 text-gray-900">Tiêu đề khảo sát</label>
+                            <div class="mt-2.5">
+                                <input type="text" name="title" id="survey-title" th:field="*{title}" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-sm text-red-500"></span>
+                            </div>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="survey-description" class="block text-sm font-semibold leading-6 text-gray-900">Mô tả khảo sát</label>
+                            <div class="mt-2.5">
+                                <textarea name="description" id="survey-description" th:field="*{description}" rows="4" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-sm text-red-500"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="survey-created-at" class="block text-sm font-semibold leading-6 text-gray-900">Ngày tạo</label>
+                            <div class="mt-2.5">
+                                <input readonly type="text" name="createdAt" th:field="*{createdAt}" id="survey-created-at" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="survey-updated-at" class="block text-sm font-semibold leading-6 text-gray-900">Ngày cập nhật</label>
+                            <div class="mt-2.5">
+                                <input readonly type="text" name="createdAt" th:field="*{updatedAt}" id="survey-updated-at" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <div id="questions">
+                                <!-- Dynamic question fields go here -->
+                            </div>
+
+                            <div class="mt-2.5">
+                                <button type="button" id="add-question-btn" class="block w-fit rounded-md bg-green-600 hover:bg-green-700 px-2 py-1 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">&plus; Thêm câu hỏi</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <button type="submit" class="block w-full rounded-md bg-orange-600 hover:bg-orange-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cập nhật</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </main>
+    <script src="/server/js/surveyDetail.js"></script>
 </section>
 </body>
 </html>

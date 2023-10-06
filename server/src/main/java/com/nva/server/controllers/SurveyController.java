@@ -2,7 +2,9 @@ package com.nva.server.controllers;
 
 import com.nva.server.pojos.Question;
 import com.nva.server.pojos.Survey;
+import com.nva.server.services.QuestionService;
 import com.nva.server.services.SurveyService;
+import com.nva.server.utils.DateFormat;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -24,6 +27,8 @@ import java.util.Optional;
 public class SurveyController {
     @Autowired
     private SurveyService surveyService;
+    @Autowired
+    private QuestionService questionService;
     @Autowired
     private Environment env;
     @GetMapping
@@ -68,5 +73,12 @@ public class SurveyController {
         } else {
             return "error";
         }
+    }
+
+    @PostMapping("/{surveyId}")
+    public String updateSurvey(@ModelAttribute("survey") Survey survey) {
+        survey.setUpdatedAt(new Date());
+        surveyService.save(survey);
+        return "redirect:/surveys";
     }
 }

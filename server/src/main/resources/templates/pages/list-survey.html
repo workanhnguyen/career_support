@@ -28,7 +28,7 @@
           <tr th:each="survey: ${surveys}">
             <td th:text="${survey.id}" class="border-2 border-solid border-gray-800 p-2 text-center" />
             <td th:text="${survey.title}" class="border-2 border-solid border-gray-800 p-2 text-left" />
-            <td th:text="${survey.description}" class="border-2 border-solid border-gray-800 p-2 text-left" />
+            <td th:text="${survey.description}" class="border-2 border-solid border-gray-800 p-2 text-left break-all" />
             <td th:text="${#dates.format(survey.createdAt, 'HH:mm:ss dd-MM-yyyy')}" class="border-2 border-solid border-gray-800 p-2 text-center" />
             <td th:text="${#dates.format(survey.updatedAt, 'HH:mm:ss dd-MM-yyyy')}" class="border-2 border-solid border-gray-800 p-2 text-center" />
           </tr>

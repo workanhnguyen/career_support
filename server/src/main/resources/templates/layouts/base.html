@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+</head>
+<body>
+    <div class="min-h-full">
+        <nav class="bg-gray-800">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="w-20" src="https://res.cloudinary.com/dduhlnft3/image/upload/v1696069111/frontend/logo-header-removebg-preview_dgsyuy.png" alt="Your Company">
+                        </div>
+                        <div class="hidden md:block">
+                            <div class="ml-10 flex items-baseline space-x-4">
+                                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                                <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Trang chủ</a>
+                                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Người dùng</a>
+                                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Khảo sát</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="max-md:hidden flex items-center gap-5">
+                        <img class="w-8 rounded-full" src="https://res.cloudinary.com/dduhlnft3/image/upload/v1696555687/frontend/blank-avatar_pnthgi.jpg" alt="avatar" />
+                        <button class="border-none outline-none px-4 py-2 text-white bg-red-700 rounded-md hover:bg-red-600">Đăng xuất</button>
+                    </div>
+
+                    <div class="-mr-2 flex md:hidden">
+                        <!-- Mobile menu button -->
+                        <button onclick="toggleMenu()" type="button" class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-controls="mobile-menu" aria-expanded="false">
+                            <!-- Menu open: "hidden", Menu closed: "block" -->
+                            <svg name="menu-icon" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                            <!-- Menu open: "block", Menu closed: "hidden" -->
+                            <svg name="menu-icon" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile menu, show/hide based on menu state. -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+                    <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                    <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Trang chủ</a>
+                    <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Người dùng</a>
+                    <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Khảo sát</a>
+                </div>
+                <div class="border-t border-gray-700 py-4">
+                    <div class="flex justify-between items-center px-5">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-10 w-10 rounded-full" src="https://res.cloudinary.com/dduhlnft3/image/upload/v1696555687/frontend/blank-avatar_pnthgi.jpg" alt="">
+                            </div>
+                            <div class="ml-3 flex flex-col gap-2">
+                                <div class="text-base font-medium leading-none text-white">Quản trị viên</div>
+                                <div class="text-sm font-medium leading-none text-gray-400">admin@gmail.com</div>
+                            </div>
+                        </div>
+                        <button class="border-none outline-none px-4 py-2 text-white bg-red-700 rounded-md hover:bg-red-600">Đăng xuất</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section layout:fragment="content"></section>
+    </div>
+</body>
+<script src="./js/index.js"></script>
+</html>

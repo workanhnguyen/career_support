@@ -1,4 +1,4 @@
-package com.nva.server.controllers;
+package com.nva.server.apis;
 
 import com.nva.server.dtos.HollandDTO;
 import com.nva.server.services.HollandService;

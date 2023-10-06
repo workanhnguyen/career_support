@@ -1,4 +1,4 @@
-package com.nva.server.controllers;
+package com.nva.server.apis;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

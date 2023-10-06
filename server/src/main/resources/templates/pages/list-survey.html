@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{../layouts/base}">
+<head>
+  <title>Danh sách bài khảo sát</title>
+</head>
+<body>
+<section layout:fragment="content">
+  <header class="bg-white shadow">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Danh sách bài khảo sát</h1>
+    </div>
+  </header>
+  <main>
+    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="">
+            <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">ID</th>
+            <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">Tựa đề</th>
+            <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">Nội dung</th>
+            <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">Ngày tạo</th>
+            <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">Ngày cập nhật</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="survey: ${surveys}">
+            <td th:text="${survey.id}" class="border-2 border-solid border-gray-800 p-2 text-center" />
+            <td th:text="${survey.title}" class="border-2 border-solid border-gray-800 p-2 text-left" />
+            <td th:text="${survey.description}" class="border-2 border-solid border-gray-800 p-2 text-left" />
+            <td th:text="${survey.createdAt}" class="border-2 border-solid border-gray-800 p-2 text-center" />
+            <td th:text="${survey.updatedAt}" class="border-2 border-solid border-gray-800 p-2 text-center" />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</section>
+</body>
+</html>

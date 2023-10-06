@@ -49,7 +49,7 @@ public class AuthenticationService {
                         .role(Role.ROLE_USER)
                         .locked(false)
                         .enabled(false)
-                        .createdAt(LocalDateTime.now())
+                        .createdAt(new Date())
                         .build();
             } else {
                 user = modelMapper.map(userRepository.findByEmail(request.getEmail()), User.class);

@@ -6,6 +6,8 @@ import com.nva.server.services.SurveyService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,5 +21,10 @@ public class SurveyServiceImpl implements SurveyService {
     @Override
     public List<Survey> findAll() {
         return surveyRepository.findAll();
+    }
+
+    @Override
+    public Page<Survey> findByKeyword(String keyword, Pageable pageable) {
+        return surveyRepository.findByKeyword(keyword, pageable);
     }
 }

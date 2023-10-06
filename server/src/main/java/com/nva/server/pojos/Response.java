@@ -26,9 +26,7 @@ public class Response {
     @ManyToOne(cascade = CascadeType.ALL)
     private Survey survey;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createdAt;
+    private Date createdAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime updatedAt;
+    private Date updatedAt;
 }

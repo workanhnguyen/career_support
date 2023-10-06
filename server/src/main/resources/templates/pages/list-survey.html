@@ -7,8 +7,9 @@
 <body>
 <section layout:fragment="content">
   <header class="bg-white shadow">
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl flex justify-between px-4 py-6 sm:px-6 lg:px-8">
       <h1 class="text-3xl font-bold tracking-tight text-gray-900">Danh sách bài khảo sát</h1>
+      <button class="border-none outline-none px-4 py-2 rounded-md bg-green-700 text-white hover:bg-green-600">&plus; Thêm khảo sát</button>
     </div>
   </header>
   <main>
@@ -28,8 +29,8 @@
             <td th:text="${survey.id}" class="border-2 border-solid border-gray-800 p-2 text-center" />
             <td th:text="${survey.title}" class="border-2 border-solid border-gray-800 p-2 text-left" />
             <td th:text="${survey.description}" class="border-2 border-solid border-gray-800 p-2 text-left" />
-            <td th:text="${survey.createdAt}" class="border-2 border-solid border-gray-800 p-2 text-center" />
-            <td th:text="${survey.updatedAt}" class="border-2 border-solid border-gray-800 p-2 text-center" />
+            <td th:text="${#dates.format(survey.createdAt, 'HH:mm:ss dd-MM-yyyy')}" class="border-2 border-solid border-gray-800 p-2 text-center" />
+            <td th:text="${#dates.format(survey.updatedAt, 'HH:mm:ss dd-MM-yyyy')}" class="border-2 border-solid border-gray-800 p-2 text-center" />
           </tr>
         </tbody>
       </table>

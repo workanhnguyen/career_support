@@ -45,11 +45,9 @@ public class User implements UserDetails, Serializable {
 
     private String avatar;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createdAt;
+    private Date createdAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime updatedAt;
+    private Date updatedAt;
 
     private Boolean locked = false;
     private Boolean enabled = false;

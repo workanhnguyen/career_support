@@ -1,8 +1,12 @@
 package com.nva.server.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nva.server.dtos.QuestionDTO;
+import com.nva.server.pojos.Option;
 import com.nva.server.pojos.Question;
 import com.nva.server.pojos.Survey;
+import com.nva.server.services.OptionService;
 import com.nva.server.services.QuestionService;
 import com.nva.server.services.SurveyService;
 import com.nva.server.utils.DateFormat;
@@ -14,6 +18,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +37,8 @@ public class SurveyController {
     private SurveyService surveyService;
     @Autowired
     private QuestionService questionService;
+    @Autowired
+    private OptionService optionService;
     @Autowired
     private Environment env;
     @GetMapping
@@ -88,13 +95,8 @@ public class SurveyController {
     public String createQuestionForm(@PathVariable("surveyId") Long surveyId, Model model) {
         Optional<Survey> surveyOptional = surveyService.findById(surveyId);
         if (surveyOptional.isPresent()) {
-            List<QuestionDTO> questionList = questionService.findBySurveyId(surveyId);
-            model.addAttribute("questions", questionList);
-
             Question question = Question.builder().survey(surveyOptional.get()).build();
             model.addAttribute("question", question);
-
-            log.warn(question.toString());
 
             return "survey-add-question";
         }
@@ -102,10 +104,28 @@ public class SurveyController {
     }
 
     @PostMapping("/{surveyId}/add-questions")
-    public String addQuestions(@Valid @ModelAttribute("question") Question question) {
-        question = Question.builder()
+    @Transactional
+    public String addQuestions(@Valid @ModelAttribute("question") Question question, BindingResult bindingResult) throws JsonProcessingException {
+        if (bindingResult.hasErrors())
+            return "survey-add-question";
+
+        Question finalQuestion = Question.builder()
+                .id(question.getId())
+                .content(question.getContent())
+                .survey(question.getSurvey())
                 .createdAt(new Date()).build();
 
-        return "survey-add-question";
+        questionService.save(finalQuestion);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<String> stringArrayOptions = objectMapper.readValue(question.getListOptions(), List.class);
+
+        stringArrayOptions.forEach(q ->
+                optionService.save(Option.builder()
+                        .question(finalQuestion)
+                        .createdAt(new Date())
+                        .content(q).build()));
+
+        return "redirect:/surveys/" + question.getSurvey().getId() + "/add-questions";
     }
 }

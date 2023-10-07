@@ -1,5 +1,6 @@
 package com.nva.server.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -37,4 +38,8 @@ public class Question {
     @OneToMany
     @JsonManagedReference
     private Set<Option> options;
+
+    @Transient
+    @JsonIgnore
+    private String listOptions;
 }

@@ -48,4 +48,21 @@ function renumberOptions() {
     optionCounter = options.length + 1;
 }
 
+function onSubmit() {
+    const options = [];
+    const optionDivs = document.querySelectorAll("div[data-name='option']");
+
+    optionDivs.forEach(function(optionDiv) {
+        const input = optionDiv.querySelector("input[type='text']");
+        const optionValue = input.value;
+        if (input.value !== '')
+            options.push(optionValue);
+    });
+
+    const optionsInput = document.querySelector("#question-options");
+        optionsInput.value = JSON.stringify(options);
+
+    console.log(JSON.stringify(options));
+}
+
 onCreateOption();

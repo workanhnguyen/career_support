@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{../layouts/base}">
+<head>
+    <title>Thêm câu hỏi</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <header class="bg-white shadow">
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Thêm câu hỏi</h1>
+        </div>
+    </header>
+    <main>
+        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <form th:action="@{/surveys/{surveyId}/add-questions(surveyId=${question.survey.id})}" th:object="${question}" method="POST" class="mx-auto max-w-xl">
+                <div class="sm:col-span-2">
+                    <label for="question-content" class="block text-sm font-semibold leading-6 text-gray-900">Nội dung câu hỏi</label>
+                    <div class="mt-2.5">
+                        <input type="text" name="content" id="question-content" th:field="*{content}" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-sm text-red-500"></span>
+                    </div>
+                </div>
+
+                <div id="option-zone"></div>
+
+                <div class="sm:col-span-2">
+                    <div class="my-2.5 mx-auto max-w-xl">
+                        <button type="button" id="btn-add-option" class="block w-fit rounded-md bg-green-600 hover:bg-green-700 px-2 py-1 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">&plus; Thêm phương án</button>
+                    </div>
+                </div>
+
+<!--                &lt;!&ndash; Options for the question &ndash;&gt;-->
+<!--                <div th:each="option, optionStat : ${question.options}">-->
+<!--                    <input type="text" th:field="*{options[__${optionStat.index}__]}" />-->
+<!--                </div>-->
+
+                <div class="mt-10">
+                    <button type="submit" class="block w-full rounded-md bg-green-600 hover:bg-green-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Thêm câu hỏi</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="/server/js/surveyAddQuestion.js"></script>
+</section>
+</body>
+</html>

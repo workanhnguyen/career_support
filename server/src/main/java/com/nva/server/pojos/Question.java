@@ -1,6 +1,8 @@
 package com.nva.server.pojos;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "questions")
@@ -21,6 +24,7 @@ public class Question {
     private Long id;
 
     @Lob
+    @NotBlank(message = "Không được bỏ trống")
     private String content;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -29,4 +33,8 @@ public class Question {
     private Date createdAt;
 
     private Date updatedAt;
+
+    @OneToMany
+    @JsonManagedReference
+    private Set<Option> options;
 }

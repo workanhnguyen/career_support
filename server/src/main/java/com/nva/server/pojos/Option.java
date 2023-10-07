@@ -1,5 +1,6 @@
 package com.nva.server.pojos;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,7 @@ public class Option {
     private String content;
 
     @ManyToOne
+    @JsonBackReference
     private Question question;
 
     private Date createdAt;

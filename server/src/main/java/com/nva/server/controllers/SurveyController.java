@@ -1,11 +1,13 @@
 package com.nva.server.controllers;
 
+import com.nva.server.dtos.QuestionDTO;
 import com.nva.server.pojos.Question;
 import com.nva.server.pojos.Survey;
 import com.nva.server.services.QuestionService;
 import com.nva.server.services.SurveyService;
 import com.nva.server.utils.DateFormat;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -24,6 +26,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/surveys")
 @PropertySource("classpath:configs.properties")
+@Slf4j
 public class SurveyController {
     @Autowired
     private SurveyService surveyService;
@@ -54,7 +57,6 @@ public class SurveyController {
                 .title(survey.getTitle().trim())
                 .description(survey.getDescription().trim())
                 .createdAt(new Date())
-                .updatedAt(new Date())
                 .build();
         Survey savedSurvey = surveyService.save(survey);
 
@@ -79,6 +81,31 @@ public class SurveyController {
     public String updateSurvey(@ModelAttribute("survey") Survey survey) {
         survey.setUpdatedAt(new Date());
         surveyService.save(survey);
-        return "redirect:/surveys";
+        return "list-survey";
+    }
+
+    @GetMapping("/{surveyId}/add-questions")
+    public String createQuestionForm(@PathVariable("surveyId") Long surveyId, Model model) {
+        Optional<Survey> surveyOptional = surveyService.findById(surveyId);
+        if (surveyOptional.isPresent()) {
+            List<QuestionDTO> questionList = questionService.findBySurveyId(surveyId);
+            model.addAttribute("questions", questionList);
+
+            Question question = Question.builder().survey(surveyOptional.get()).build();
+            model.addAttribute("question", question);
+
+            log.warn(question.toString());
+
+            return "survey-add-question";
+        }
+        return "error";
+    }
+
+    @PostMapping("/{surveyId}/add-questions")
+    public String addQuestions(@Valid @ModelAttribute("question") Question question) {
+        question = Question.builder()
+                .createdAt(new Date()).build();
+
+        return "survey-add-question";
     }
 }

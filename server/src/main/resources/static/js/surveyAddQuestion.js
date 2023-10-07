@@ -3,6 +3,7 @@ let optionCounter = 1; // Initialize the counter
 function onCreateOption() {
     document.querySelector("#btn-add-option").addEventListener("click", function() {
         const optionDiv = document.createElement("div");
+        optionDiv.setAttribute("data-name", "option");
         const label = document.createElement("label");
 
         const childDiv = document.createElement("div");
@@ -36,7 +37,7 @@ function onCreateOption() {
 
 function renumberOptions() {
     const optionZone = document.querySelector("#option-zone");
-    const options = optionZone.querySelectorAll("div");
+    const options = optionZone.querySelectorAll("div[data-name='option']");
 
     // Renumber the remaining options
     options.forEach(function(option, index) {

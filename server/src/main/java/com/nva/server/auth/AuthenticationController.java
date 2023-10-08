@@ -17,7 +17,7 @@ public class AuthenticationController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody UserRegisterRequest request) {
         int response = authenticationService.register(request);
         switch (response) {
             case -1:

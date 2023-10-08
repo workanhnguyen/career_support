@@ -36,7 +36,7 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final ModelMapper modelMapper;
 
-    public int register(RegisterRequest request) {
+    public int register(UserRegisterRequest request) {
         try {
             var user = new User();
 

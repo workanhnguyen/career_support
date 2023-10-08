@@ -9,12 +9,12 @@
     <header class="bg-white shadow">
         <div class="mx-auto max-w-7xl flex justify-between items-center px-4 py-6 sm:px-6 lg:px-8">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900">Thêm câu hỏi</h1>
-            <a th:href="@{/surveys/{surveyId}(surveyId=${question.survey.id})}" class="w-fit px-3.5 py-2.5 bg-primary text-white rounded-md">Trở lại</a>
+            <a th:href="@{/admin/surveys/{surveyId}(surveyId=${question.survey.id})}" class="w-fit px-3.5 py-2.5 bg-primary text-white rounded-md">Trở lại</a>
         </div>
     </header>
     <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-            <form th:action="@{/surveys/{surveyId}/add-questions(surveyId=${question.survey.id})}" th:object="${question}" method="POST" class="mx-auto max-w-xl" onsubmit="onSubmit()">
+            <form th:action="@{/admin/surveys/{surveyId}/add-questions(surveyId=${question.survey.id})}" th:object="${question}" method="POST" class="mx-auto max-w-xl" onsubmit="onSubmit()">
                 <input type="hidden" th:field="*{survey}">
                 <div class="sm:col-span-2">
                     <label for="question-content" class="block text-sm font-semibold leading-6 text-gray-900">Nội dung câu hỏi</label>

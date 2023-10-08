@@ -38,12 +38,12 @@ public class ApplicationConfig {
         return configuration.getAuthenticationManager();
     }
 
-    @Bean
-    public LocalValidatorFactoryBean validator() {
-        LocalValidatorFactoryBean bean
-                = new LocalValidatorFactoryBean();
-        return bean;
-    }
+//    @Bean
+//    public LocalValidatorFactoryBean validator() {
+//        LocalValidatorFactoryBean bean
+//                = new LocalValidatorFactoryBean();
+//        return bean;
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

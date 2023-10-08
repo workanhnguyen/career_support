@@ -15,9 +15,9 @@
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
             <div class="isolate bg-white px-6 lg:px-8">
                 <div class="my-2.5 mx-auto max-w-xl">
-                    <a th:href="@{/surveys/{surveyId}/add-questions(surveyId=${survey.id})}" class="block w-fit rounded-md bg-green-600 hover:bg-green-700 px-2 py-1 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">&plus; Thêm câu hỏi</a>
+                    <a th:href="@{/admin/surveys/{surveyId}/add-questions(surveyId=${survey.id})}" class="block w-fit rounded-md bg-green-600 hover:bg-green-700 px-2 py-1 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">&plus; Thêm câu hỏi</a>
                 </div>
-                <form th:action="@{/surveys/{surveyId}(surveyId=${survey.id})}" th:object="${survey}" method="POST" class="mx-auto max-w-xl">
+                <form th:action="@{/admin/surveys/{surveyId}(surveyId=${survey.id})}" th:object="${survey}" method="POST" class="mx-auto max-w-xl">
                     <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                         <input type="hidden" name="id" th:field="*{id}" />
                         <div class="sm:col-span-2">
@@ -57,15 +57,14 @@
                     <div th:if="${#lists.size(questions) > 0}" th:each="q: ${questions}" class="mt-2.5 flex flex-col gap-2">
                         <div class="flex gap-2 items-center">
                             <input readonly type="text" name="question" th:value="${q.content}" class="flex-1 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 truncate" />
-                            <div class="w-fit h-full flex items-center gap-1">
+                            <div class="w-fit">
                                 <a class="rounded-md bg-green-600 hover:bg-green-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white cursor-pointer">Xem chi tiết</a>
-                                <a class="rounded-md bg-red-600 hover:bg-red-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white cursor-pointer">Xóa</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-5 w-full flex gap-3">
-                        <a th:href="@{/surveys}" class="block w-full rounded-md bg-gray-400 hover:bg-gray-300 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Trở lại</a>
+                        <a th:href="@{/admin/surveys}" class="block w-full rounded-md bg-gray-400 hover:bg-gray-300 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Trở lại</a>
                         <button type="submit" class="block w-full rounded-md bg-orange-600 hover:bg-orange-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cập nhật</button>
                     </div>
                 </form>

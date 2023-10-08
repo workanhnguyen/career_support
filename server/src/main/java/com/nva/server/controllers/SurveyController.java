@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @Controller
-@RequestMapping("/surveys")
+@RequestMapping("/admin/surveys")
 @PropertySource("classpath:configs.properties")
 @Slf4j
 public class SurveyController {
@@ -67,7 +67,7 @@ public class SurveyController {
                 .build();
         Survey savedSurvey = surveyService.save(survey);
 
-        return "redirect:/surveys/" + savedSurvey.getId();
+        return "redirect:/admin/surveys" + savedSurvey.getId();
     }
 
     @GetMapping("/{surveyId}")
@@ -94,7 +94,7 @@ public class SurveyController {
 
         survey.setUpdatedAt(new Date());
         surveyService.save(survey);
-        return "redirect:/surveys";
+        return "redirect:/admin/surveys";
     }
 
     @GetMapping("/{surveyId}/add-questions")
@@ -137,6 +137,6 @@ public class SurveyController {
                         .createdAt(new Date())
                         .content(q).build()));
 
-        return "redirect:/surveys/" + question.getSurvey().getId() + "/add-questions";
+        return "redirect:/admin/surveys" + question.getSurvey().getId() + "/add-questions";
     }
 }

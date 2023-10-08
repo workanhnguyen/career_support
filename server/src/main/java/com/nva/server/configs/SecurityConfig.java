@@ -46,18 +46,19 @@ public class SecurityConfig {
     @Order(1)
     public SecurityFilterChain apiSecurityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .securityMatcher("/api/**")
+                .securityMatcher(AntPathRequestMatcher.antMatcher("/api/**"))
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/auth/**")).permitAll();
                     auth.requestMatchers("/api/v1/users").hasRole("ADMIN");
                     auth.requestMatchers(HttpMethod.GET, "/api/v1/hollands").permitAll();
-                    auth.requestMatchers(HttpMethod.GET, "/api/v1/surveys").authenticated();
+//                    auth.requestMatchers(HttpMethod.GET, "/api/v1/surveys").authenticated();
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(crsf -> crsf.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/api/**")))
+                .cors(Customizer.withDefaults())
                 .build();
     }
 
@@ -65,14 +66,13 @@ public class SecurityConfig {
     @Order(2)
     public SecurityFilterChain serverSecurityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .securityMatcher(AntPathRequestMatcher.antMatcher("/admin/**"))
+                .securityMatcher(AntPathRequestMatcher.antMatcher("/**"))
                 .authorizeHttpRequests(auth -> {
                     auth.anyRequest().hasRole("ADMIN");
                 })
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/admin/**"))
-                .formLogin().permitAll().defaultSuccessUrl("/admin/").and().build();
+                .csrf(csrf -> csrf.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/**")))
+                .formLogin().defaultSuccessUrl("/admin/").failureUrl("/login?error").and().build();
     }
-
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();

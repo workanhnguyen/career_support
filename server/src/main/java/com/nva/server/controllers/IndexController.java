@@ -23,7 +23,7 @@ public class IndexController {
     @Autowired
     private AuthenticationService authenticationService;
     @GetMapping("/")
-    public String index() {
+    public String redirect() {
         return "index";
     }
 }

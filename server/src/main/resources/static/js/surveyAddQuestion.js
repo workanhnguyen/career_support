@@ -65,4 +65,15 @@ function onSubmit() {
     console.log(JSON.stringify(options));
 }
 
+function onSelectHollandChange() {
+    const selectElement = document.querySelector("#holland-field");
+    const hiddenInputElement = document.querySelector("#selected-holland");
+    hiddenInputElement.value = 1;
+
+    selectElement.addEventListener("change", function() {
+        hiddenInputElement.value = selectElement.value;
+    })
+}
+
 onCreateOption();
+onSelectHollandChange();

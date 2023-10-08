@@ -6,6 +6,7 @@ import com.nva.server.dtos.QuestionDTO;
 import com.nva.server.pojos.Option;
 import com.nva.server.pojos.Question;
 import com.nva.server.pojos.Survey;
+import com.nva.server.services.HollandService;
 import com.nva.server.services.OptionService;
 import com.nva.server.services.QuestionService;
 import com.nva.server.services.SurveyService;
@@ -39,6 +40,8 @@ public class SurveyController {
     private QuestionService questionService;
     @Autowired
     private OptionService optionService;
+    @Autowired
+    private HollandService hollandService;
     @Autowired
     private Environment env;
     @GetMapping
@@ -98,6 +101,8 @@ public class SurveyController {
             Question question = Question.builder().survey(surveyOptional.get()).build();
             model.addAttribute("question", question);
 
+            model.addAttribute("hollandList", hollandService.findAll());
+
             return "survey-add-question";
         }
         return "error";
@@ -105,15 +110,18 @@ public class SurveyController {
 
     @PostMapping("/{surveyId}/add-questions")
     @Transactional
-    public String addQuestions(@Valid @ModelAttribute("question") Question question, BindingResult bindingResult) throws JsonProcessingException {
-        if (bindingResult.hasErrors())
+    public String addQuestions(@Valid @ModelAttribute("question") Question question, BindingResult bindingResult, Model model) throws JsonProcessingException {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("hollandList", hollandService.findAll());
             return "survey-add-question";
+        }
 
         Question finalQuestion = Question.builder()
                 .id(question.getId())
                 .content(question.getContent())
                 .survey(question.getSurvey())
-                .createdAt(new Date()).build();
+                .createdAt(new Date())
+                .holland(question.getHolland()).build();
 
         questionService.save(finalQuestion);
 

@@ -18,9 +18,21 @@
                 <input type="hidden" th:field="*{survey}">
                 <div class="sm:col-span-2">
                     <label for="question-content" class="block text-sm font-semibold leading-6 text-gray-900">Nội dung câu hỏi</label>
-                    <div class="mt-2.5">
+                    <div class="mt-1.5">
                         <input type="text" name="content" id="question-content" th:field="*{content}" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                         <span id="question-alert" th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-sm text-red-500"></span>
+                    </div>
+                </div>
+                <div class="sm:col-span-2 mt-1.5">
+                    <label for="holland-field" class="block text-sm font-semibold leading-6 text-gray-900">Nhóm nghề nghiệp Holland</label>
+                    <div class="mt-1.5">
+                        <select id="holland-field" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <option th:each="hollandItem: ${hollandList}"
+                                    th:value="${hollandItem.id}"
+                                    th:text="${hollandItem.title}"></option>
+                        </select>
+                        <input type="hidden" id="selected-holland" th:field="*{holland}" />
+<!--                        <span id="holland-alert" th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-sm text-red-500"></span>-->
                     </div>
                 </div>
 

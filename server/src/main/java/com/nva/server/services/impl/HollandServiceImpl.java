@@ -18,8 +18,12 @@ public class HollandServiceImpl implements HollandService {
     @Autowired
     private ModelMapper modelMapper;
     @Override
-    public List<HollandDTO> findAll() {
-        List<Holland> hollands = hollandRepository.findAll();
+    public List<Holland> findAll() {
+        return hollandRepository.findAll();
+    }
+
+    @Override
+    public List<HollandDTO> convertToDTO(List<Holland> hollands) {
         List<HollandDTO> hollandDTOs = new ArrayList<>();
 
         hollands.forEach(h -> hollandDTOs.add(modelMapper.map(h, HollandDTO.class)));

@@ -6,5 +6,6 @@ import com.nva.server.pojos.Holland;
 import java.util.List;
 
 public interface HollandService {
-    List<HollandDTO> findAll();
+    List<Holland> findAll();
+    List<HollandDTO> convertToDTO(List<Holland> hollands);
 }

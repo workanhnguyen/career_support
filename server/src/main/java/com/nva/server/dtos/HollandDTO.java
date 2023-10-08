@@ -16,4 +16,6 @@ public class HollandDTO {
     private String description;
     private String suitableCareer;
     private String image;
+    private String strength;
+    private String weakness;
 }

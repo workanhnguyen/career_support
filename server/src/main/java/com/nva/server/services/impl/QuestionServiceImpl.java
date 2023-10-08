@@ -28,8 +28,12 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionDTO> findBySurveyId(Long surveyId) {
-        List<Question> questions = questionRepository.findBySurveyId(surveyId);
+    public List<Question> findBySurveyId(Long surveyId) {
+        return questionRepository.findBySurveyId(surveyId);
+    }
+
+    @Override
+    public List<QuestionDTO> convertToDTO(List<Question> questions) {
         List<QuestionDTO> questionDTOs = new ArrayList<>();
 
         questions.forEach(q -> questionDTOs.add(modelMapper.map(q, QuestionDTO.class)));

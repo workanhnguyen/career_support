@@ -21,6 +21,7 @@ public class SurveyServiceImpl implements SurveyService {
     private SurveyRepository surveyRepository;
 
     @Override
+    @Transactional
     public Optional<Survey> findById(Long surveyId) {
         return surveyRepository.findById(surveyId);
     }
@@ -39,4 +40,9 @@ public class SurveyServiceImpl implements SurveyService {
     public Survey save(Survey survey) {
         return surveyRepository.save(survey);
     }
+
+//    @Override
+//    public Survey findByIdWithQuestions(Long surveyId) {
+//        return surveyRepository.findByIdWithQuestions(surveyId);
+//    }
 }

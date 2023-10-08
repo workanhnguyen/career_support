@@ -1,5 +1,6 @@
 package com.nva.server.pojos;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -29,15 +31,17 @@ public class Question {
     private String content;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "survey_id", referencedColumnName = "id")
+    @JsonBackReference
     private Survey survey;
 
     private Date createdAt;
 
     private Date updatedAt;
 
-    @OneToMany
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private Set<Option> options;
+    private Set<Option> options = new HashSet<>();
 
     @Transient
     @JsonIgnore

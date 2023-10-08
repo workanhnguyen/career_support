@@ -24,10 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("/surveys")
@@ -77,9 +74,10 @@ public class SurveyController {
     public String showSurveyDetail(@PathVariable(name = "surveyId") Long surveyId, Model model) {
         Optional<Survey> surveyOptional = surveyService.findById(surveyId);
         if (surveyOptional.isPresent()) {
-            Survey survey = surveyOptional.get();
-            model.addAttribute("survey", survey);
-            model.addAttribute("questions", new ArrayList<Question>());
+            model.addAttribute("survey", surveyOptional.get());
+
+            List<Question> questions = questionService.findBySurveyId(surveyId);
+            model.addAttribute("questions", questions);
 
             return "survey-detail";
         } else {
@@ -88,7 +86,12 @@ public class SurveyController {
     }
 
     @PostMapping("/{surveyId}")
-    public String updateSurvey(@ModelAttribute("survey") Survey survey) {
+    public String updateSurvey(@Valid @ModelAttribute("survey") Survey survey, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("questions", questionService.findBySurveyId(survey.getId()));
+            return "survey-detail";
+        }
+
         survey.setUpdatedAt(new Date());
         surveyService.save(survey);
         return "redirect:/surveys";

@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface QuestionService {
     void save(Question question);
-    List<QuestionDTO> findBySurveyId(Long surveyId);
+    List<Question> findBySurveyId(Long surveyId);
+    List<QuestionDTO> convertToDTO(List<Question> questions);
 }

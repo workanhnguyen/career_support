@@ -51,6 +51,7 @@ public class SecurityConfig {
                     auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/auth/**")).permitAll();
                     auth.requestMatchers("/api/v1/users").hasRole("ADMIN");
                     auth.requestMatchers(HttpMethod.GET, "/api/v1/hollands").permitAll();
+                    auth.requestMatchers(HttpMethod.GET, "/api/v1/surveys").authenticated();
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -64,12 +65,12 @@ public class SecurityConfig {
     @Order(2)
     public SecurityFilterChain serverSecurityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .securityMatcher("/**")
+                .securityMatcher(AntPathRequestMatcher.antMatcher("/admin/**"))
                 .authorizeHttpRequests(auth -> {
                     auth.anyRequest().hasRole("ADMIN");
                 })
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/**"))
-                .formLogin().permitAll().defaultSuccessUrl("/").and().build();
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/admin/**"))
+                .formLogin().permitAll().defaultSuccessUrl("/admin/").and().build();
     }
 
     @Bean

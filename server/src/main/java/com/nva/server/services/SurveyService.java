@@ -12,4 +12,5 @@ public interface SurveyService {
     List<Survey> findAll();
     Page<Survey> findByKeyword(String keyword, Pageable pageable);
     Survey save(Survey survey);
+//    Survey findByIdWithQuestions(Long surveyId);
 }

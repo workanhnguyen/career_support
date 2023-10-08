@@ -42,4 +42,7 @@ public class Question {
     @Transient
     @JsonIgnore
     private String listOptions;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Holland holland;
 }

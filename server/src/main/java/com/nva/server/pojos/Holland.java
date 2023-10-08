@@ -35,6 +35,12 @@ public class Holland {
 
     private String image;
 
+    @Lob
+    private String strength;
+
+    @Lob
+    private String weakness;
+
     private Date createdAt;
 
     private Date updatedAt;

@@ -1,5 +1,6 @@
 package com.nva.server.configs;
 
+import com.nva.server.enums.Role;
 import com.nva.server.filters.CustomAccessDeniedHandler;
 import com.nva.server.filters.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
@@ -9,14 +10,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -24,11 +29,13 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.security.AccessController;
 import java.util.Arrays;
 import java.util.List;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig {
     @Autowired
     private  JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -36,25 +43,33 @@ public class SecurityConfig {
     private AuthenticationProvider authenticationProvider;
 
     @Bean
-    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .cors(Customizer.withDefaults())
-                .authorizeRequests()
-                .requestMatchers("/api/v1/auth/**").permitAll()
-                .requestMatchers("/api/v1/users").access("isAuthenticated() and hasRole('ROLE_ADMIN')")
-                .requestMatchers(HttpMethod.GET, "/api/v1/hollands").permitAll()
-                .anyRequest().access("isAuthenticated() and hasRole('ROLE_ADMIN')")
-                .and()
-                .httpBasic()
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+    @Order(1)
+    public SecurityFilterChain apiSecurityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .securityMatcher("/api/**")
+                .authorizeHttpRequests(auth -> {
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/auth/**")).permitAll();
+                    auth.requestMatchers("/api/v1/users").hasRole("ADMIN");
+                    auth.requestMatchers(HttpMethod.GET, "/api/v1/hollands").permitAll();
+                    auth.anyRequest().authenticated();
+                })
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler());
+                .csrf(crsf -> crsf.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/api/**")))
+                .build();
+    }
 
-        return http.build();
+    @Bean
+    @Order(2)
+    public SecurityFilterChain serverSecurityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .securityMatcher("/**")
+                .authorizeHttpRequests(auth -> {
+                    auth.anyRequest().hasRole("ADMIN");
+                })
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/**"))
+                .formLogin().permitAll().defaultSuccessUrl("/").and().build();
     }
 
     @Bean
@@ -85,9 +100,4 @@ public class SecurityConfig {
 //            userService.addNewUser(user2);
 //        };
 //    }
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        return http.build();
-    }
 }

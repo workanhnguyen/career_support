@@ -88,7 +88,7 @@ public class SurveyController {
     public String updateSurvey(@ModelAttribute("survey") Survey survey) {
         survey.setUpdatedAt(new Date());
         surveyService.save(survey);
-        return "list-survey";
+        return "redirect:/surveys";
     }
 
     @GetMapping("/{surveyId}/add-questions")

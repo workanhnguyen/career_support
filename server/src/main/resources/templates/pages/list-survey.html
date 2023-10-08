@@ -22,15 +22,19 @@
             <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">Nội dung</th>
             <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">Ngày tạo</th>
             <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">Ngày cập nhật</th>
+            <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">Hành động</th>
           </tr>
         </thead>
         <tbody>
           <tr th:each="survey: ${surveys}">
             <td th:text="${survey.id}" class="border-2 border-solid border-gray-800 p-2 text-center" />
             <td th:text="${survey.title}" class="border-2 border-solid border-gray-800 p-2 text-left" />
-            <td th:text="${survey.description}" class="border-2 border-solid border-gray-800 p-2 text-left break-all" />
+            <td th:text="${survey.description}" class="border-2 border-solid border-gray-800 p-2 text-left break-normal" />
             <td th:text="${#dates.format(survey.createdAt, 'HH:mm:ss dd-MM-yyyy')}" class="border-2 border-solid border-gray-800 p-2 text-center" />
             <td th:text="${#dates.format(survey.updatedAt, 'HH:mm:ss dd-MM-yyyy')}" class="border-2 border-solid border-gray-800 p-2 text-center" />
+            <td class="border-2 w-40 border-solid border-gray-800 p-2 text-center">
+              <a th:href="@{/surveys/{surveyId}(surveyId=${survey.id})}" class="px-2 py-1.5 rounded-md text-white bg-green-700">Xem chi tiết</a>
+            </td>
           </tr>
         </tbody>
       </table>

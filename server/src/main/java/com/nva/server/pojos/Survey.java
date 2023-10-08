@@ -30,6 +30,7 @@ public class Survey {
 
     @Lob
     @NotBlank(message = "Không được bỏ trống")
+    @Column(length = Integer.MAX_VALUE)
     private String description;
 
     private Date createdAt;

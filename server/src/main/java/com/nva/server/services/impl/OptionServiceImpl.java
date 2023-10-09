@@ -6,6 +6,8 @@ import com.nva.server.services.OptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OptionServiceImpl implements OptionService {
     @Autowired
@@ -13,5 +15,10 @@ public class OptionServiceImpl implements OptionService {
     @Override
     public void save(Option option) {
         optionRepository.save(option);
+    }
+
+    @Override
+    public List<Option> findByQuestionId(Long questionId) {
+        return optionRepository.findByQuestionId(questionId);
     }
 }

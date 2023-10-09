@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -39,5 +40,10 @@ public class QuestionServiceImpl implements QuestionService {
         questions.forEach(q -> questionDTOs.add(modelMapper.map(q, QuestionDTO.class)));
 
         return questionDTOs;
+    }
+
+    @Override
+    public Optional<Question> findById(Long questionId) {
+        return questionRepository.findById(questionId);
     }
 }

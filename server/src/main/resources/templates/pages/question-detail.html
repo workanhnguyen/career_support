@@ -15,60 +15,70 @@
     <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
             <form th:action="@{/admin/questions/{questionId}(questionId=${question.id})}" th:object="${question}" method="POST" class="mx-auto max-w-xl" onsubmit="onSubmit()">
-                <input type="hidden" th:field="*{survey}">
-                <input type="hidden" th:field="*{id}">
-                <div class="sm:col-span-2">
-                    <label for="question-content" class="block text-sm font-semibold leading-6 text-gray-900">Nội dung câu hỏi</label>
-                    <div class="mt-1.5">
-                        <input type="text" name="content" id="question-content" th:field="*{content}" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                        <span id="question-alert" th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-sm text-red-500"></span>
+                <div class="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2 max-sm:px-4">
+                    <input type="hidden" th:field="*{survey}">
+                    <input type="hidden" th:field="*{id}">
+                    <div class="sm:col-span-2">
+                        <label for="question-content" class="block text-sm font-semibold leading-6 text-gray-900">Nội dung câu hỏi</label>
+                        <div class="mt-1.5">
+                            <input type="text" name="content" id="question-content" th:field="*{content}" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                            <span id="question-alert" th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-sm text-red-500"></span>
+                        </div>
                     </div>
-                </div>
-                <div class="sm:col-span-2 mt-1.5">
-                    <label for="holland-field" class="block text-sm font-semibold leading-6 text-gray-900">Nhóm nghề nghiệp Holland</label>
-                    <div class="mt-1.5">
-                        <select id="holland-field" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                            <option th:each="hollandItem: ${hollands}"
-                                    th:value="${hollandItem.id}"
-                                    th:text="${hollandItem.title}"
-                                    th:selected="${hollandItem.id == question.holland.id}"
-                            ></option>
-                        </select>
-                        <input type="hidden" id="selected-holland" th:field="*{holland}" />
+                    <div class="sm:col-span-2">
+                        <label for="holland-field" class="block text-sm font-semibold leading-6 text-gray-900">Nhóm nghề nghiệp Holland</label>
+                        <div class="mt-1.5">
+                            <select id="holland-field" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <option th:each="hollandItem: ${hollands}"
+                                        th:value="${hollandItem.id}"
+                                        th:text="${hollandItem.title}"
+                                        th:selected="${hollandItem.id == question.holland.id}"
+                                ></option>
+                            </select>
+                            <input type="hidden" id="selected-holland" th:field="*{holland}" />
+                        </div>
                     </div>
-                </div>
 
-                <div class="mt-2.5" id="option-zone"></div>
-                <!-- Hidden input field for options -->
-                <input id="question-options" type="hidden" name="options" th:field="*{listOptions}" />
-
-                <div class="sm:col-span-2">
-                    <div class="my-2.5 mx-auto max-w-xl">
-                        <button type="button" id="btn-add-option" class="block w-fit rounded-md bg-green-600 hover:bg-green-700 px-2 py-1 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">&plus; Thêm phương án</button>
+                    <div>
+                        <label for="question-created-at" class="block text-sm font-semibold leading-6 text-gray-900">Ngày tạo</label>
+                        <div class="mt-1.5">
+                            <input readonly type="text" name="createdAt" th:field="*{createdAt}" id="question-created-at" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
                     </div>
-                </div>
+                    <div>
+                        <label for="question-updated-at" class="block text-sm font-semibold leading-6 text-gray-900">Ngày cập nhật</label>
+                        <div class="mt-1.5">
+                            <input readonly type="text" name="updatedAt" th:field="*{updatedAt}" id="question-updated-at" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
 
-                <div class="sm:col-span-2 mt-2">
-                    <p class="text-sm font-semibold">Danh sách phương án hiện có</p>
-                    <div th:if="${#lists.size(options) > 0}" th:each="option: ${options}" class="mt-2.5 flex flex-col gap-2">
-                        <div class="flex gap-2 items-center">
-                            <input readonly type="text" name="option" th:value="${option.content}" class="flex-1 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 truncate" />
-                            <div class="w-fit">
-                                <a th:href="@{/admin/options/{optionId}(optionId=${option.id})}" class="rounded-md bg-green-600 hover:bg-green-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white cursor-pointer">Xem chi tiết</a>
+                    <div id="option-zone"></div>
+                    <!-- Hidden input field for options -->
+                    <input id="question-options" type="hidden" name="options" th:field="*{listOptions}" />
+
+                    <div class="sm:col-span-2">
+                        <div class="my-2.5 mx-auto max-w-xl">
+                            <button type="button" id="btn-add-option" class="block w-fit rounded-md bg-green-600 hover:bg-green-700 px-2 py-1 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">&plus; Thêm phương án</button>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2 mt-2">
+                        <p class="text-sm font-semibold">Danh sách phương án hiện có</p>
+                        <div th:if="${#lists.size(options) > 0}" th:each="option: ${options}" class="mt-2.5 flex flex-col gap-2">
+                            <div class="flex gap-2 items-center">
+                                <input readonly type="text" name="option" th:value="${option.content}" class="flex-1 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 truncate" />
+                                <div class="w-fit">
+                                    <a th:href="@{/admin/options/{optionId}(optionId=${option.id})}" class="rounded-md bg-green-600 hover:bg-green-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white cursor-pointer">Xem chi tiết</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!--                &lt;!&ndash; Options for the question &ndash;&gt;-->
-                <!--                <div th:each="option, optionStat : ${question.options}">-->
-                <!--                    <input type="text" th:field="*{options[__${optionStat.index}__]}" />-->
-                <!--                </div>-->
-
-                <div class="mt-5 w-full flex gap-3">
-                    <a th:href="@{/admin/surveys/{surveyId}(surveyId=${question.survey.id})}" class="block w-full rounded-md bg-gray-400 hover:bg-gray-300 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Trở lại</a>
-                    <button type="submit" class="block w-full rounded-md bg-orange-600 hover:bg-orange-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cập nhật</button>
-                    <a th:href="@{/admin/questions/{questionId}/delete(questionId=${question.id})}" class="block w-full rounded-md bg-red-600 hover:bg-red-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Xóa</a>
+                    <div class="sm:col-span-2 mt-5 w-full flex gap-3">
+                        <a th:href="@{/admin/surveys/{surveyId}(surveyId=${question.survey.id})}" class="block w-full rounded-md bg-gray-400 hover:bg-gray-300 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Trở lại</a>
+                        <button type="submit" class="block w-full rounded-md bg-orange-600 hover:bg-orange-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cập nhật</button>
+                        <a th:href="@{/admin/questions/{questionId}/delete(questionId=${question.id})}" class="block w-full rounded-md bg-red-600 hover:bg-red-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Xóa</a>
+                    </div>
                 </div>
             </form>
         </div>

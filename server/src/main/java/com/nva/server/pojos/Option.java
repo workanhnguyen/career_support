@@ -26,9 +26,9 @@ public class Option {
     @NotNull
     private String content;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "question_id", referencedColumnName = "id")
-    @JsonBackReference
+    @ManyToOne
+//    @JoinColumn(name = "question_id", referencedColumnName = "id")
+//    @JsonBackReference
     private Question question;
 
     private Date createdAt;

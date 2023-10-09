@@ -30,23 +30,22 @@ public class Question {
     @NotBlank(message = "Không được bỏ trống")
     private String content;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "survey_id", referencedColumnName = "id")
-    @JsonBackReference
+    @ManyToOne
     private Survey survey;
 
     private Date createdAt;
 
     private Date updatedAt;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private Set<Option> options = new HashSet<>();
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JsonManagedReference
+//    private Set<Option> options = new HashSet<>();
 
     @Transient
     @JsonIgnore
     private String listOptions;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Holland holland;
 }

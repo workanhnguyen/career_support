@@ -12,4 +12,5 @@ public interface QuestionService {
     List<Question> findBySurveyId(Long surveyId);
     List<QuestionDTO> convertToDTO(List<Question> questions);
     Optional<Question> findById(Long questionId);
+    void deleteById(Long questionId);
 }

@@ -20,10 +20,10 @@ public class Response {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Survey survey;
 
     private Date createdAt;

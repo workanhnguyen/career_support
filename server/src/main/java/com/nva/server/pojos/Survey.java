@@ -41,8 +41,8 @@ public class Survey {
 
     private Date updatedAt;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private Set<Question> questions = new HashSet<>();
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JsonManagedReference
+//    private Set<Question> questions = new HashSet<>();
 }

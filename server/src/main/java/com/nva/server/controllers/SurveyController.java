@@ -67,7 +67,7 @@ public class SurveyController {
                 .build();
         Survey savedSurvey = surveyService.save(survey);
 
-        return "redirect:/admin/surveys" + savedSurvey.getId();
+        return "redirect:/admin/surveys/" + savedSurvey.getId();
     }
 
     @GetMapping("/{surveyId}")
@@ -94,6 +94,18 @@ public class SurveyController {
 
         survey.setUpdatedAt(new Date());
         surveyService.save(survey);
+        return "redirect:/admin/surveys";
+    }
+
+    @GetMapping("/{surveyId}/delete")
+    public String confirmDeleteSurvey(@PathVariable("surveyId") Long surveyId, Model model) {
+        model.addAttribute("surveyId", surveyId);
+        return "delete-survey-confirmation";
+    }
+
+    @PostMapping("/{surveyId}/delete")
+    public String deleteSurvey(@PathVariable("surveyId") Long surveyId) {
+        surveyService.deleteById(surveyId);
         return "redirect:/admin/surveys";
     }
 
@@ -137,6 +149,6 @@ public class SurveyController {
                         .createdAt(new Date())
                         .content(q).build()));
 
-        return "redirect:/admin/surveys" + question.getSurvey().getId() + "/add-questions";
+        return "redirect:/admin/surveys/" + question.getSurvey().getId() + "/add-questions";
     }
 }

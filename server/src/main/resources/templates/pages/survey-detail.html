@@ -66,11 +66,13 @@
                     <div class="mt-5 w-full flex gap-3">
                         <a th:href="@{/admin/surveys}" class="block w-full rounded-md bg-gray-400 hover:bg-gray-300 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Trở lại</a>
                         <button type="submit" class="block w-full rounded-md bg-orange-600 hover:bg-orange-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cập nhật</button>
+                        <a th:href="@{/admin/surveys/{surveyId}/delete(surveyId=${survey.id})}" class="block w-full rounded-md bg-red-600 hover:bg-red-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Xóa</a>
                     </div>
                 </form>
             </div>
         </div>
     </main>
+    <script src="/server/js/surveyDetail.js"></script>
 </section>
 </body>
 </html>

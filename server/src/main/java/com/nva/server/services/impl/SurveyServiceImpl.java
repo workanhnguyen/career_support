@@ -41,6 +41,11 @@ public class SurveyServiceImpl implements SurveyService {
         return surveyRepository.save(survey);
     }
 
+    @Override
+    public void deleteById(Long surveyId) {
+        surveyRepository.deleteById(surveyId);
+    }
+
 //    @Override
 //    public Survey findByIdWithQuestions(Long surveyId) {
 //        return surveyRepository.findByIdWithQuestions(surveyId);

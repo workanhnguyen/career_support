@@ -71,7 +71,7 @@ public class SecurityConfig {
                     auth.anyRequest().hasRole("ADMIN");
                 })
                 .csrf(csrf -> csrf.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/**")))
-                .formLogin().defaultSuccessUrl("/admin/").failureUrl("/login?error").and().build();
+                .formLogin().defaultSuccessUrl("/admin/", true).failureUrl("/login?error").and().build();
     }
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

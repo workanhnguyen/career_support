@@ -39,13 +39,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<User> findById(Long userId) {
+        return userRepository.findById(userId);
+    }
+
+    @Override
+    public <T> T convertToDTO(User user, Class<T> dtoClass) {
+        if (dtoClass.isAssignableFrom(UserForAdminDTO.class)) {
+            return (T) modelMapper.map(user, UserForAdminDTO.class);
+        } else if (dtoClass.isAssignableFrom(UserForClientDTO.class)) {
+            return (T) modelMapper.map(user, UserForClientDTO.class);
+        }
+
+        return (T) user;
+    }
+
+    @Override
     public List<User> findAll() {
         return userRepository.findAll();
-//        List<User> users = userRepository.findAll();
-//        List<UserForAdminDTO> userForAdminDTOs = new ArrayList<>();
-//
-//        users.forEach(u -> userForAdminDTOs.add(modelMapper.map(u, UserForAdminDTO.class)));
-//        return userForAdminDTOs;
     }
 
     @Override

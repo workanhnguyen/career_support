@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{../layouts/base}">
+<head>
+    <title>Chi tiết người dùng</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <header class="bg-white shadow">
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Chi tiết người dùng</h1>
+        </div>
+    </header>
+    <main>
+        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <div class="isolate bg-white px-6 lg:px-8">
+                <form th:action="@{/admin/users/{userId}(userId=${user.id})}" th:object="${user}" method="POST" class="mx-auto max-w-xl" enctype="multipart/form-data">
+                    <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                        <input type="hidden" name="id" th:field="*{id}" />
+                        <input type="hidden" name="password" th:field="*{password}" />
+                        <input type="hidden" name="avatar" th:field="*{avatar}" />
+                        <input type="hidden" name="locked" th:field="*{locked}" />
+                        <input type="hidden" name="enabled" th:field="*{enabled}" />
+                        <input type="hidden" name="role" th:field="*{role}" />
+
+                        <div class="col-span-2 w-full flex justify-center cursor-pointer">
+                            <div class="w-20 h-20 rounded-full overflow-hidden">
+                                <img class="w-full" th:src="${user.avatar}" alt="avatar" />
+                            </div>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="user-email" class="block text-sm font-semibold leading-6 text-gray-900">Email</label>
+                            <div class="mt-2.5">
+                                <input readonly type="text" name="firstName" id="user-email" th:field="*{email}" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-sm text-red-500"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="user-last-name" class="block text-sm font-semibold leading-6 text-gray-900">Họ và tên đệm</label>
+                            <div class="mt-2.5">
+                                <input type="text" name="lastName" id="user-last-name" th:field="*{lastName}" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-sm text-red-500"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="user-first-name" class="block text-sm font-semibold leading-6 text-gray-900">Tên</label>
+                            <div class="mt-2.5">
+                                <input type="text" name="firstName" id="user-first-name" th:field="*{firstName}" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-sm text-red-500"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="user-created-at" class="block text-sm font-semibold leading-6 text-gray-900">Ngày tạo</label>
+                            <div class="mt-2.5">
+                                <input readonly type="text" name="createdAt" th:value="${#dates.format(user.createdAt, 'yyyy-MM-dd HH:mm:ss')}" id="user-created-at" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="user-updated-at" class="block text-sm font-semibold leading-6 text-gray-900">Ngày cập nhật</label>
+                            <div class="mt-2.5">
+                                <input readonly type="text" name="updatedAt" th:value="${#dates.format(user.updatedAt, 'yyyy-MM-dd HH:mm:ss')}" id="user-updated-at" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <label for="user-avatar-file" class="block text-sm font-semibold leading-6 text-gray-900">Cập nhật ảnh đại diện</label>
+                            <div class="mt-2.5">
+                                <input type="file" name="avatarFile" th:field="*{avatarFile}" accept="image/png, image/jpg" id="user-avatar-file" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 w-full flex gap-3">
+                        <a th:href="@{/admin/users}" class="block w-full rounded-md bg-gray-400 hover:bg-gray-300 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Trở lại</a>
+                        <button type="submit" class="block w-full rounded-md bg-orange-600 hover:bg-orange-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cập nhật</button>
+                        <a th:href="@{/admin/users/{userId}/delete(userId=${user.id})}" class="block w-full rounded-md bg-red-600 hover:bg-red-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Xóa</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="/server/js/surveyDetail.js"></script>
+</section>
+</body>
+</html>

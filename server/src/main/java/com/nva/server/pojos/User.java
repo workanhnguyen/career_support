@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nva.server.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,14 +31,17 @@ public class User implements UserDetails, Serializable {
     private Long id;
 
     @NotNull
+    @NotBlank(message = "Không được bỏ trống")
     private String firstName;
 
     @NotNull
+    @NotBlank(message = "Không được bỏ trống")
     private String lastName;
 
     @Column(unique = true)
     @Email
     @NotNull
+    @NotBlank(message = "Không được bỏ trống")
     private String email;
 
     @NotNull
@@ -44,8 +49,10 @@ public class User implements UserDetails, Serializable {
 
     private String avatar;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdAt;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
 
     private Boolean locked = false;

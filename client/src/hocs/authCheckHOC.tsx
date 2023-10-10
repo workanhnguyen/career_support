@@ -7,7 +7,6 @@ import { RootState } from "../interfaces/RootState";
 const authCheckHOC = (WrappedComponent: React.ComponentType) => {
   return () => {
     const jwtToken: string = useSelector((state: RootState) => state.auth.jwtToken);
-    console.log(jwtToken);
 
     if (jwtToken !== "") {
       return <AlreadyLogin />;

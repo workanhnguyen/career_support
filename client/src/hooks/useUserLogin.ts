@@ -26,8 +26,7 @@ function useUserLogin() {
       }
 
     } catch (error: any) {
-      if (error?.response?.status === 403)
-        setLoginErrorMessage("Email hoặc mật khẩu không chính xác");
+      setLoginErrorMessage("Email hoặc mật khẩu không chính xác");
     } finally {
       setIsLogging(false);
       setTimeout(() => setLoginErrorMessage(""), 2000);

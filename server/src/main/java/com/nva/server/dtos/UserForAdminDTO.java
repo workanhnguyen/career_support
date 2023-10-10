@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,4 +18,6 @@ public class UserForAdminDTO {
     private String avatar;
     private Role role;
     private boolean isActive;
+    private Date createdAt;
+    private Date updatedAt;
 }

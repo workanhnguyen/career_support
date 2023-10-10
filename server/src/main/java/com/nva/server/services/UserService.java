@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface UserService {
     UserForClientDTO findByEmail(String email);
-    List<UserForAdminDTO> getUsers();
+    List<User> findAll();
+    List<UserForAdminDTO> convertToAdminDTO(List<User> users);
+    List<UserForClientDTO> convertToClientDTO(List<User> users);
     void addNewUser(User user);
 }

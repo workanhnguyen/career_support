@@ -24,7 +24,7 @@ public class ApiUserController {
     private UserService userService;
     @GetMapping
     public List<UserForAdminDTO> getUsers() {
-        return userService.getUsers();
+        return userService.convertToAdminDTO(userService.findAll());
     }
     @GetMapping("/current-user")
     public ResponseEntity<UserForClientDTO> getCurrentUser() {

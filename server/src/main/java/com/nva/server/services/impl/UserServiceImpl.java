@@ -39,11 +39,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserForAdminDTO> getUsers() {
-        List<User> users = userRepository.findAll();
-        List<UserForAdminDTO> userForAdminDTOs = new ArrayList<>();
+    public List<User> findAll() {
+        return userRepository.findAll();
+//        List<User> users = userRepository.findAll();
+//        List<UserForAdminDTO> userForAdminDTOs = new ArrayList<>();
+//
+//        users.forEach(u -> userForAdminDTOs.add(modelMapper.map(u, UserForAdminDTO.class)));
+//        return userForAdminDTOs;
+    }
 
-        users.forEach(u -> userForAdminDTOs.add(modelMapper.map(u, UserForAdminDTO.class)));
+    @Override
+    public List<UserForClientDTO> convertToClientDTO(List<User> list) {
+        List<UserForClientDTO> userForClientDTOs = new ArrayList<>();
+        list.forEach(item -> userForClientDTOs.add(modelMapper.map(item, UserForClientDTO.class)));
+        return userForClientDTOs;
+    }
+
+    @Override
+    public List<UserForAdminDTO> convertToAdminDTO(List<User> list) {
+        List<UserForAdminDTO> userForAdminDTOs = new ArrayList<>();
+        list.forEach(item -> userForAdminDTOs.add(modelMapper.map(item, UserForAdminDTO.class)));
         return userForAdminDTOs;
     }
 

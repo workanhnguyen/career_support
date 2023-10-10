@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{../layouts/base}">
 <head>
     <title>Danh sách người dùng</title>
@@ -7,13 +7,36 @@
 <body>
 <section layout:fragment="content">
     <header class="bg-white shadow">
-        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl flex justify-between px-4 py-6 sm:px-6 lg:px-8">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900">Danh sách người dùng</h1>
         </div>
     </header>
     <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-            hihihi
+            <table class="w-full border-collapse">
+                <thead>
+                <tr class="">
+                    <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">ID</th>
+                    <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">Họ và tên đệm</th>
+                    <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">Tên</th>
+                    <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">Email</th>
+                    <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">Ngày tạo</th>
+                    <th class="border-2 border-solid border-gray-800 p-2 text-center text-white bg-primary">Hành động</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user: ${users}">
+                    <td th:text="${user.id}" class="border-2 border-solid border-gray-800 p-2 text-center" />
+                    <td th:text="${user.lastName}" class="border-2 border-solid border-gray-800 p-2 text-left" />
+                    <td th:text="${user.firstName}" class="border-2 border-solid border-gray-800 p-2 text-left break-normal" />
+                    <td th:text="${#dates.format(user.createdAt, 'HH:mm:ss dd-MM-yyyy')}" class="border-2 border-solid border-gray-800 p-2 text-center" />
+                    <td th:text="${#dates.format(user.updatedAt, 'HH:mm:ss dd-MM-yyyy')}" class="border-2 border-solid border-gray-800 p-2 text-center" />
+                    <td class="border-2 w-40 border-solid border-gray-800 p-2 text-center">
+                        <a th:href="@{/admin/users/{userId}(userId=${user.id})}" class="px-2 py-1.5 rounded-md text-white bg-green-700">Xem chi tiết</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </main>
 </section>

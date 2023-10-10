@@ -1,10 +1,12 @@
 package com.nva.server.services.impl;
 
+import com.nva.server.dtos.SurveyDTO;
 import com.nva.server.pojos.Survey;
 import com.nva.server.repositories.SurveyRepository;
 import com.nva.server.services.SurveyService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,11 +22,21 @@ import java.util.Optional;
 public class SurveyServiceImpl implements SurveyService {
     @Autowired
     private SurveyRepository surveyRepository;
-
+    @Autowired
+    private ModelMapper modelMapper;
     @Override
     @Transactional
     public Optional<Survey> findById(Long surveyId) {
         return surveyRepository.findById(surveyId);
+    }
+
+    @Override
+    public <T> T convertToDTO(Survey survey, Class<T> dtoClass) {
+        if (dtoClass.isAssignableFrom(SurveyDTO.class)) {
+            return (T) modelMapper.map(survey, SurveyDTO.class);
+        }
+
+        return (T) survey;
     }
 
     @Override

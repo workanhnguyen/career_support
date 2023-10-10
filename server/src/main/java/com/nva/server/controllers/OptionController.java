@@ -1,7 +1,6 @@
 package com.nva.server.controllers;
 
 import com.nva.server.pojos.Option;
-import com.nva.server.pojos.Question;
 import com.nva.server.services.OptionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

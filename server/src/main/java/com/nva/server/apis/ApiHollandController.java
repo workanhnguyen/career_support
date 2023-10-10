@@ -1,7 +1,6 @@
 package com.nva.server.apis;
 
 import com.nva.server.dtos.HollandDTO;
-import com.nva.server.pojos.Holland;
 import com.nva.server.services.HollandService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

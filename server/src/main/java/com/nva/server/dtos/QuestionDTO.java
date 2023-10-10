@@ -1,8 +1,5 @@
 package com.nva.server.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nva.server.pojos.Survey;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

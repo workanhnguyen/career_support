@@ -2,7 +2,6 @@ package com.nva.server.services;
 
 import com.nva.server.dtos.QuestionDTO;
 import com.nva.server.pojos.Question;
-import com.nva.server.pojos.Survey;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,5 @@
 package com.nva.server.dtos;
 
-import jakarta.persistence.Lob;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

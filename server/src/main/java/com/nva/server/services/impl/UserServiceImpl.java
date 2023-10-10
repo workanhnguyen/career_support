@@ -7,7 +7,6 @@ import com.nva.server.repositories.UserRepository;
 import com.nva.server.services.ConfirmationTokenService;
 import com.nva.server.services.UserService;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

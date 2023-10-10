@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -65,30 +66,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-//        Specification<User> spec = (root, query, criteriaBuilder) -> {
-//            List<Predicate> predicates = new ArrayList<>();
-//            predicates.add(criteriaBuilder.notLike(
-//                    criteriaBuilder.lower(root.get("email")),
-//                    "%" + "admin@gmail.com".toLowerCase() + "%"
-//            ));
-//            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
-//        };
-
         return userRepository.findAllByEmailNotLike("admin@gmail.com", Sort.by(Sort.Order.desc("createdAt")));
     }
 
     @Override
     public List<UserForClientDTO> convertToClientDTO(List<User> list) {
-        List<UserForClientDTO> userForClientDTOs = new ArrayList<>();
-        list.forEach(item -> userForClientDTOs.add(modelMapper.map(item, UserForClientDTO.class)));
-        return userForClientDTOs;
+        return list.stream()
+                .map(item -> modelMapper.map(item, UserForClientDTO.class))
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<UserForAdminDTO> convertToAdminDTO(List<User> list) {
-        List<UserForAdminDTO> userForAdminDTOs = new ArrayList<>();
-        list.forEach(item -> userForAdminDTOs.add(modelMapper.map(item, UserForAdminDTO.class)));
-        return userForAdminDTOs;
+        return list.stream()
+                .map(item -> modelMapper.map(item, UserForAdminDTO.class))
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -94,7 +94,7 @@ public class UserController {
 
         if (userOptional.isPresent()) {
             User finalUser = userOptional.get();
-            finalUser.setEnabled(false);
+            finalUser.setEnabled(true);
 
             userService.updateUser(finalUser);
             return "redirect:/admin/users/" + userId;

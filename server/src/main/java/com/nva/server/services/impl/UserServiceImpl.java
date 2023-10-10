@@ -8,10 +8,13 @@ import com.nva.server.pojos.User;
 import com.nva.server.repositories.UserRepository;
 import com.nva.server.services.ConfirmationTokenService;
 import com.nva.server.services.UserService;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -62,7 +65,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-        return userRepository.findAll();
+//        Specification<User> spec = (root, query, criteriaBuilder) -> {
+//            List<Predicate> predicates = new ArrayList<>();
+//            predicates.add(criteriaBuilder.notLike(
+//                    criteriaBuilder.lower(root.get("email")),
+//                    "%" + "admin@gmail.com".toLowerCase() + "%"
+//            ));
+//            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+//        };
+
+        return userRepository.findAllByEmailNotLike("admin@gmail.com", Sort.by(Sort.Order.desc("createdAt")));
     }
 
     @Override

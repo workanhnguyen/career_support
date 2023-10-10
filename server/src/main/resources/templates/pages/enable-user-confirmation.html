@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{../layouts/base}">
+<head>
+    <title>Kích hoạt tài khoản</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <header class="bg-white shadow">
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Kích hoạt tài khoản</h1>
+        </div>
+    </header>
+    <main>
+        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <div class="isolate bg-white px-6 py-4 lg:px-8">
+                <form th:action="@{/admin/users/{userId}/enable(userId=${user.id})}" method="POST" class="mx-auto max-w-xl">
+                    <input type="hidden" name="userId" th:value="${user.id}">
+                    <div class="w-full flex justify-center">
+                        <p class="text-center">
+                            <span>Bạn có muốn kích hoạt tài khoản</span>
+                            <span class="font-bold" th:text="${user.email}"></span>
+                            <span>này không?</span>
+                        </p>
+                    </div>
+                    <div class="mt-10 flex gap-2">
+                        <a th:href="@{/admin/users/{userId}(userId=${user.id})}" class="block w-full rounded-md bg-gray-400 hover:bg-gray-300 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Trở lại</a>
+                        <button type="submit" class="block w-full rounded-md bg-green-600 hover:bg-green-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Kích hoạt tài khoản</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</section>
+</body>
+<script src="/server/js/surveyDetail.js"></script>
+</html>

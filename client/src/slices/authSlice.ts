@@ -4,8 +4,8 @@ import { Cookies } from "react-cookie";
 const cookies = new Cookies();
 
 export const authState = {
-    jwtToken: '',
-    currentUser: {}
+    jwtToken: cookies.get('jwt_token') || '',
+    currentUser: cookies.get('current_user') || {}
 }
 
 export const authSlice = createSlice({

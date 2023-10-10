@@ -6,3 +6,4 @@ export { default as ItemHolland } from './ItemHolland';
 export { default as Title } from './Title';
 export { default as Footer } from './Footer';
 export { default as LoadingOverlay } from './LoadingOverlay';
+export { default as AlreadyLogin } from './AlreadyLogin';

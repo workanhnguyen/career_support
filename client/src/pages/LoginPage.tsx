@@ -22,6 +22,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import useUserLogin from "../hooks/useUserLogin";
 import { LoadingOverlay } from "../components";
+import { authCheckHOC } from '../hocs';
 
 const defaultTheme = createTheme();
 
@@ -147,7 +148,7 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default authCheckHOC(LoginPage);
 
 function Copyright(props: any) {
   return (

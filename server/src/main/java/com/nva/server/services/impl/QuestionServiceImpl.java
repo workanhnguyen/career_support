@@ -38,7 +38,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public <T> List<T> convertToDTO(List<Question> questions, Class<T> dtoClass) {
         if (dtoClass.isAssignableFrom(QuestionForClientDTO.class)) {
-            return (List<T>) questions.stream().map(question -> modelMapper.map(question, dtoClass)).toList();
+            return questions.stream().map(question -> modelMapper.map(question, dtoClass)).toList();
         }
         return (List<T>) questions;
     }

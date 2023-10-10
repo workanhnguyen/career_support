@@ -32,7 +32,7 @@ public class OptionServiceImpl implements OptionService {
     @Override
     public <T> List<T> convertToDTO(List<Option> options, Class<T> dtoClass) {
         if (dtoClass.isAssignableFrom(OptionForClientDTO.class)) {
-            return (List<T>) options.stream().map(option -> modelMapper.map(option, dtoClass)).toList();
+            return options.stream().map(option -> modelMapper.map(option, dtoClass)).toList();
         }
         return (List<T>) options;
     }

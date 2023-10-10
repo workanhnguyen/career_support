@@ -1,5 +1,7 @@
 package com.nva.server.services.impl;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.nva.server.dtos.UserForAdminDTO;
 import com.nva.server.dtos.UserForClientDTO;
 import com.nva.server.pojos.User;
@@ -13,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -29,6 +33,8 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder passwordEncoder;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private Cloudinary cloudinary;
 
     @Override
     public UserForClientDTO findByEmail(String email) {
@@ -81,5 +87,23 @@ public class UserServiceImpl implements UserService {
             throw new IllegalStateException("Email taken");
 
         userRepository.save(user);
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        if (user.getAvatarFile() != null && !user.getAvatarFile().isEmpty()) {
+            try {
+                Map response = this.cloudinary.uploader().upload(user.getAvatarFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                user.setAvatar(response.get("secure_url").toString());
+
+                userRepository.save(user);
+                return true;
+            } catch (IOException e) {
+                log.error(e.getMessage());
+                return false;
+            }
+        }
+        userRepository.save(user);
+        return true;
     }
 }

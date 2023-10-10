@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -32,7 +33,6 @@ public class UserController {
 
         if (userOptional.isPresent()) {
             model.addAttribute("user", userOptional.get());
-            log.error(userOptional.get().toString());
             return "user-detail";
         }
         return "error";
@@ -41,13 +41,12 @@ public class UserController {
     @PostMapping("/{userId}")
     @Transactional
     public String update(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            log.error(user.toString());
+        if (bindingResult.hasErrors())
             return "user-detail";
-        }
 
-        log.error(user.toString());
-
-        return "redirect:/admin/users";
+        user.setUpdatedAt(new Date());
+        if (userService.updateUser(user))
+            return "redirect:/admin/users";
+        return "error";
     }
 }

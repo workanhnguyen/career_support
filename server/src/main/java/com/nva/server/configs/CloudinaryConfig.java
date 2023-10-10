@@ -3,6 +3,7 @@ package com.nva.server.configs;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -12,7 +13,8 @@ import org.springframework.core.env.Environment;
 @RequiredArgsConstructor
 @PropertySource("classpath:cloudinary.properties")
 public class CloudinaryConfig {
-    private final Environment env;
+    @Autowired
+    private Environment env;
     @Bean
     public Cloudinary cloudinary() {
         Cloudinary cloudinary

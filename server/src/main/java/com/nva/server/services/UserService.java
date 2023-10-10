@@ -15,4 +15,5 @@ public interface UserService {
     List<UserForAdminDTO> convertToAdminDTO(List<User> users);
     List<UserForClientDTO> convertToClientDTO(List<User> users);
     void addNewUser(User user);
+    boolean updateUser(User user);
 }

@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { Cookies } from "react-cookie";
+import { AuthState } from "../interfaces/AuthState";
 
 const cookies = new Cookies();
 
-export const authState = {
+export const authState: AuthState = {
     jwtToken: cookies.get('jwt_token') || '',
     currentUser: cookies.get('current_user') || {}
 }

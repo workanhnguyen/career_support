@@ -27,4 +27,9 @@ public class OptionServiceImpl implements OptionService {
     public Optional<Option> findById(Long optionId) {
         return optionRepository.findById(optionId);
     }
+
+    @Override
+    public void deleteById(Long optionId) {
+        optionRepository.deleteById(optionId);
+    }
 }

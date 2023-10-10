@@ -64,6 +64,9 @@
 
                     <div class="sm:col-span-2 mt-2">
                         <p class="text-sm font-semibold">Danh sách phương án hiện có</p>
+                        <div class="mt-2.5 w-full flex justify-center" th:if="${#lists.size(options) == 0}">
+                            <p class="text-gray-500">Chưa có phương án</p>
+                        </div>
                         <div th:if="${#lists.size(options) > 0}" th:each="option: ${options}" class="mt-2.5 flex flex-col gap-2">
                             <div class="flex gap-2 items-center">
                                 <input readonly type="text" name="option" th:value="${option.content}" class="flex-1 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 truncate" />

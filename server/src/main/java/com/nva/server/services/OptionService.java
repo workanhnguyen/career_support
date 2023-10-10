@@ -9,4 +9,5 @@ public interface OptionService {
     void save(Option option);
     List<Option> findByQuestionId(Long questionId);
     Optional<Option> findById(Long optionId);
+    void deleteById(Long optionId);
 }

@@ -28,6 +28,7 @@ public class Question {
 
     @Lob
     @NotBlank(message = "Không được bỏ trống")
+    @Column(length = Integer.MAX_VALUE)
     private String content;
 
     @ManyToOne

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{../layouts/base}">
+<head>
+    <title>Chi tiết phương án</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <header class="bg-white shadow">
+        <div class="mx-auto max-w-7xl flex justify-between items-center px-4 py-6 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Chi tiết phương án</h1>
+            <a th:href="@{/admin/questions/{questionId}(questionId=${option.question.id})}" class="w-fit px-3.5 py-2.5 bg-primary text-white rounded-md">Trở lại</a>
+        </div>
+    </header>
+    <main>
+        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <form th:action="@{/admin/options/{optionId}(optionId=${option.id})}" th:object="${option}" method="POST" class="mx-auto max-w-xl">
+                <div class="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2 max-sm:px-4">
+                    <input type="hidden" th:field="*{question}">
+                    <input type="hidden" th:field="*{id}">
+                    <div class="sm:col-span-2">
+                        <label for="question-content" class="block text-sm font-semibold leading-6 text-gray-900">Nội dung câu hỏi</label>
+                        <div class="mt-1.5">
+                            <input type="text" name="content" id="question-content" th:field="*{content}" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                            <span id="question-alert" th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-sm text-red-500"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="option-created-at" class="block text-sm font-semibold leading-6 text-gray-900">Ngày tạo</label>
+                        <div class="mt-1.5">
+                            <input readonly type="text" name="createdAt" th:field="*{createdAt}" id="option-created-at" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="option-updated-at" class="block text-sm font-semibold leading-6 text-gray-900">Ngày cập nhật</label>
+                        <div class="mt-1.5">
+                            <input readonly type="text" name="updatedAt" th:field="*{updatedAt}" id="option-updated-at" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2 mt-5 w-full flex gap-3">
+                        <a th:href="@{/admin/questions/{questionId}(questionId=${option.question.id})}" class="block w-full rounded-md bg-gray-400 hover:bg-gray-300 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Trở lại</a>
+                        <button type="submit" class="block w-full rounded-md bg-orange-600 hover:bg-orange-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cập nhật</button>
+                        <a th:href="@{/admin/options/{optionId}/delete(optionId=${option.id})}" class="block w-full rounded-md bg-red-600 hover:bg-red-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Xóa</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="/server/js/questionDetail.js"></script>
+</section>
+</body>
+</html>

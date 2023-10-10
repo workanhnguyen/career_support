@@ -28,9 +28,11 @@ public class Holland {
     private String title;
 
     @Lob
+    @Column(length = Integer.MAX_VALUE)
     private String description;
 
     @Lob
+    @Column(length = Integer.MAX_VALUE)
     private String suitableCareer;
 
     private String image;

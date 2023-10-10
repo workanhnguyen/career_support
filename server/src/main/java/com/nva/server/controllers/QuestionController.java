@@ -101,8 +101,6 @@ public class QuestionController {
 
     @PostMapping("/{questionId}/delete")
     public String deleteQuestion(@ModelAttribute("question") Question question) {
-
-        log.warn(question.toString());
         questionService.deleteById(question.getId());
         return "redirect:/admin/surveys/" + question.getSurvey().getId();
     }

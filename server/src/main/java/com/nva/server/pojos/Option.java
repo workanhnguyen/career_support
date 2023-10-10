@@ -2,6 +2,7 @@ package com.nva.server.pojos;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,11 +25,11 @@ public class Option {
 
     @Lob
     @NotNull
+    @NotBlank(message = "Không được bỏ trống")
+    @Column(length = Integer.MAX_VALUE)
     private String content;
 
     @ManyToOne
-//    @JoinColumn(name = "question_id", referencedColumnName = "id")
-//    @JsonBackReference
     private Question question;
 
     private Date createdAt;

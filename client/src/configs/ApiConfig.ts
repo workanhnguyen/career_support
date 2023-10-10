@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import Cookies from 'universal-cookie'
 
-export const SERVER_CONTEXT: string = "http://localhost:8080/server";
+export const SERVER_CONTEXT: string = "http://localhost:8085/server";
 
 const cookies = new Cookies();
 

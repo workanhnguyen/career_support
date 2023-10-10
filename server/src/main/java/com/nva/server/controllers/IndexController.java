@@ -12,7 +12,12 @@ public class IndexController {
     @Autowired
     private AuthenticationService authenticationService;
     @GetMapping("/")
-    public String redirect() {
+    public String index() {
         return "index";
+    }
+
+    @GetMapping("/error")
+    public String error() {
+        return "error";
     }
 }

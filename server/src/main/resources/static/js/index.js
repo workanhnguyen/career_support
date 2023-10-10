@@ -15,3 +15,7 @@ function toggleMenu() {
         menuDropDownDOM.style.display = 'block';
     }
 }
+
+function onBackPress() {
+    window.history.back();
+}

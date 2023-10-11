@@ -16,8 +16,6 @@ const SurveyStarterPage: React.FC = () => {
   const {} = useInitResponse();
 
   const survey = useSelector((state: RootState) => state.survey.currentSurvey);
-  const response = useSelector((state: RootState) => state.response);
-  console.log(response);
   
   return (
     <main className="w-full flex justify-center">

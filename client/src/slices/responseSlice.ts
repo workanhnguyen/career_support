@@ -21,24 +21,21 @@ export const responseSlice = createSlice({
   name: "response",
   initialState: responseState,
   reducers: {
-    initResponse: (state, action) => {
-      return {...action.payload};
+    initResponse: (_, action) => {
+      return { ...action.payload };
     },
     toggleCheck: (state, action) => {
-      // Create a new state object with updated data
       return {
         ...state,
         questions: state.questions.map((question) => {
           if (question.id === action.payload.questionId) {
             const updatedOptions = question.options.map((option) => {
               if (option.id === action.payload.optionId) {
-                // Create a new option object with the 'checked' property updated
                 return { ...option, checked: !option.checked };
               }
               return option;
             });
     
-            // Create a new question object with the updated options
             return { ...question, options: updatedOptions };
           }
           return question;

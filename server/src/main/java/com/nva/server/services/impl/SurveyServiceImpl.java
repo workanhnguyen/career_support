@@ -55,8 +55,7 @@ public class SurveyServiceImpl implements SurveyService {
 
         if (surveyOptional.isPresent()) {
             SurveyDTO surveyDTO = modelMapper.map(surveyOptional.get(), SurveyDTO.class);
-            List<Question> questions = questionService.findBySurveyId(surveyId);
-            surveyDTO.setQuestions(questions.stream().map(
+            surveyDTO.setQuestions(questionService.findBySurveyId(surveyId).stream().map(
                     question -> questionService.findQuestionByIdFullOptions(question.getId())
             ).collect(Collectors.toSet()));
             return surveyDTO;

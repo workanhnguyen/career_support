@@ -11,3 +11,4 @@ export { default as MainContent } from './MainContent';
 export { default as SurveyList } from './SurveyList';
 export { default as SurveyItem } from './SurveyItem';
 export { default as SurveySkeleton } from './SurveySkeleton';
+export { default as QuestionData } from './QuestionData';

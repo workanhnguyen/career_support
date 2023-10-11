@@ -1,8 +1,10 @@
 package com.nva.server.services.impl;
 
 import com.nva.server.dtos.SurveyDTO;
+import com.nva.server.pojos.Question;
 import com.nva.server.pojos.Survey;
 import com.nva.server.repositories.SurveyRepository;
+import com.nva.server.services.QuestionService;
 import com.nva.server.services.SurveyService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +26,8 @@ public class SurveyServiceImpl implements SurveyService {
     @Autowired
     private SurveyRepository surveyRepository;
     @Autowired
+    private QuestionService questionService;
+    @Autowired
     private ModelMapper modelMapper;
     @Override
     @Transactional
@@ -43,6 +47,22 @@ public class SurveyServiceImpl implements SurveyService {
     @Override
     public <T> List<T> convertListToDTO(List<Survey> surveys, Class<T> dtoClass) {
         return surveys.stream().map(survey -> modelMapper.map(survey, dtoClass)).collect(Collectors.toList());
+    }
+
+    @Override
+    public SurveyDTO findSurveyByIdFullQuestions(Long surveyId) {
+        Optional<Survey> surveyOptional = surveyRepository.findById(surveyId);
+
+        if (surveyOptional.isPresent()) {
+            SurveyDTO surveyDTO = modelMapper.map(surveyOptional.get(), SurveyDTO.class);
+            List<Question> questions = questionService.findBySurveyId(surveyId);
+            surveyDTO.setQuestions(questions.stream().map(
+                    question -> questionService.findQuestionByIdFullOptions(question.getId())
+            ).collect(Collectors.toSet()));
+            return surveyDTO;
+        }
+
+        return null;
     }
 
     @Override

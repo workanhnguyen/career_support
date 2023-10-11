@@ -37,6 +37,9 @@ public class Survey {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
 
+    private String author;
+    private String image;
+
 //    @JsonIgnore
 //    @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL, orphanRemoval = true)
 //    @JsonManagedReference

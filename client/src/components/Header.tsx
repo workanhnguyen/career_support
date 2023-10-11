@@ -23,11 +23,12 @@ const Header: React.FC = () => {
   return (
     <Box>
       <header className="w-full h-16 flex justify-between items-center">
+        <Link to='/'>
         <img
           className="w-24"
           src="https://res.cloudinary.com/dduhlnft3/image/upload/v1696069111/frontend/logo-header-removebg-preview_dgsyuy.png"
           alt="logo-scoss"
-        />
+        /></Link>
         {!currentUser.email ? (
           <Link to="/login">
             <Button variant="contained" disableElevation size="large">

@@ -1,10 +1,13 @@
 package com.nva.server.dtos;
 
 
+import com.nva.server.pojos.Option;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -13,4 +16,5 @@ import lombok.NoArgsConstructor;
 public class QuestionForClientDTO {
     private Long id;
     private String content;
+    private Set<OptionForClientDTO> options;
 }

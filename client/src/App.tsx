@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { HomePage, LandingPage, LoginPage, RegisterPage } from './pages'
+import { HomePage, LandingPage, LoginPage, MakeSurveyPage, RegisterPage, SurveyStarterPage } from './pages'
 
 const App: React.FC = () => {
   return (
@@ -11,6 +11,8 @@ const App: React.FC = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/home' element={<HomePage />} />
+        <Route path='/surveys/:surveyId' element={<SurveyStarterPage />} />
+        <Route path='/surveys/:surveyId/quiz' element={<MakeSurveyPage />} />
       </Routes>
     </BrowserRouter>
   )

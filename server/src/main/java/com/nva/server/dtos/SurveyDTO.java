@@ -21,5 +21,7 @@ public class SurveyDTO {
     private Long id;
     private String title;
     private String description;
-//    private Set<Question> questions = new HashSet<>();
+    private String author;
+    private String image;
+    private Set<QuestionForClientDTO> questions;
 }

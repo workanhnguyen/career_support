@@ -1,8 +1,8 @@
-import { Container } from '@mui/material'
 import React from 'react'
+import { Container } from '@mui/material'
 import { Footer, Header, MainContent } from '../components'
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <>
       <Container>

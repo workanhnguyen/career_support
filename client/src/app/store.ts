@@ -1,12 +1,30 @@
-import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "../slices/authSlice";
-import surveySlice from "../slices/surveySlice";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import authReducer from "../slices/authSlice";
+import surveyReducer from "../slices/surveySlice";
 
-const rootReducer = {
-    auth: authSlice,
-    survey: surveySlice
-}
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["survey"],
+};
+
+const rootReducer = combineReducers({
+  auth: authReducer,
+  survey: surveyReducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-    reducer: rootReducer,
-})
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+export const persistor = persistStore(store);

@@ -31,10 +31,10 @@ public class ApiSurveyController {
 
     @GetMapping("/{surveyId}")
     public ResponseEntity<SurveyDTO> getSurveyById(@PathVariable("surveyId") Long surveyId) {
-        Optional<Survey> surveyOptional = surveyService.findById(surveyId);
-
-        if (surveyOptional.isPresent()) {
-            return new ResponseEntity<>(surveyService.convertToDTO(surveyOptional.get(), SurveyDTO.class), HttpStatus.OK);
+//        Optional<Survey> surveyOptional = surveyService.findById(surveyId);
+        SurveyDTO surveyDTO = surveyService.findSurveyByIdFullQuestions(surveyId);
+        if (surveyDTO != null) {
+            return new ResponseEntity<>(surveyDTO, HttpStatus.OK);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }

@@ -3,16 +3,18 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import storage from "redux-persist/lib/storage";
 import authReducer from "../slices/authSlice";
 import surveyReducer from "../slices/surveySlice";
+import responseReducer from '../slices/responseSlice';
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["survey"],
+  whitelist: ["survey", "response"],
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
   survey: surveyReducer,
+  response: responseReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

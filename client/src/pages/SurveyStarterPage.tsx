@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 
 import { Button, Container } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
 
 import { Header } from "../components";
 import useSurveyById from "../hooks/useSurveyById";
-import { Survey } from '../interfaces/Survey';
+import { useInitResponse } from "../hooks";
+import { useSelector } from "react-redux";
+import { RootState } from "../interfaces/RootState";
 
 const SurveyStarterPage: React.FC = () => {
   const { surveyId } = useParams();
-  const { survey } = useSurveyById(Number(surveyId));
-  // const survey = useSelector((state: RootState) => state.survey.currentSurvey);
-  // const [survey, setSurvey] = useState<Survey | undefined>(undefined);
+  
+  const {} = useSurveyById(Number(surveyId));
+  const {} = useInitResponse();
 
-  // useEffect(() => {
-  //   surveyId &&
-  //     setSurvey(
-  //       surveys.find((survey: Survey) => survey.id === parseInt(surveyId))
-  //     );
-  // }, [surveyId]);
-  useEffect(() => {
-
-  }, [surveyId])
+  const survey = useSelector((state: RootState) => state.survey.currentSurvey);
+  const response = useSelector((state: RootState) => state.response);
+  console.log(response);
   
   return (
     <main className="w-full flex justify-center">

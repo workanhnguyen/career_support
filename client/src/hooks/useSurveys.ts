@@ -15,8 +15,6 @@ function useSurveys() {
 
       try {
         let response = await getAllSurveys();
-        console.log(response.data)
-
         response.status === 200 && dispatch(saveSurveys(response.data));
       } catch (error) {
         console.log(error);

@@ -21,7 +21,7 @@ const MakeSurveyPage: React.FC = () => {
     (state: RootState) => state.survey.currentSurvey
   );
   const [survey, setSurvey] = useState<Survey | undefined>(undefined);
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [response, setResponse] = useState<Response[]>([])
   const [questionIndex, setQuestionIndex] = useState<number>(0);
   //   const {} = useOptionsByQuestionId(Number(surveyId), Number(survey?.questions[questionIndex]?.id));
 
@@ -68,7 +68,7 @@ const MakeSurveyPage: React.FC = () => {
   console.log(currentSurvey.questions.length);
 
   return (
-    <main className="w-full flex flex-col">
+    <main className="w-full flex flex-col mb-5">
       <Container>
         <Header />
         <Container maxWidth="md">

@@ -7,3 +7,7 @@ export { default as Title } from './Title';
 export { default as Footer } from './Footer';
 export { default as LoadingOverlay } from './LoadingOverlay';
 export { default as AlreadyLogin } from './AlreadyLogin';
+export { default as MainContent } from './MainContent';
+export { default as SurveyList } from './SurveyList';
+export { default as SurveyItem } from './SurveyItem';
+export { default as SurveySkeleton } from './SurveySkeleton';

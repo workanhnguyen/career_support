@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -37,6 +38,11 @@ public class SurveyServiceImpl implements SurveyService {
         }
 
         return (T) survey;
+    }
+
+    @Override
+    public <T> List<T> convertListToDTO(List<Survey> surveys, Class<T> dtoClass) {
+        return surveys.stream().map(survey -> modelMapper.map(survey, dtoClass)).collect(Collectors.toList());
     }
 
     @Override

@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface SurveyService {
     Optional<Survey> findById(Long surveyId);
     <T> T convertToDTO(Survey survey, Class<T> dtoClass);
+    <T> List<T> convertListToDTO(List<Survey> surveys, Class<T> dtoClass);
     List<Survey> findAll();
     Page<Survey> findByKeyword(String keyword, Pageable pageable);
     Survey save(Survey survey);

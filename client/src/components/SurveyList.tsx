@@ -3,10 +3,13 @@ import React from "react";
 import { SurveyItem, SurveySkeleton, Title } from "../components";
 import { useSurveys } from "../hooks";
 import { Grid } from "@mui/material";
+import { useSelector } from "react-redux";
+import { RootState } from "../interfaces/RootState";
 
 const SurveyList: React.FC = () => {
-  const { surveys, isSurveyLoading } = useSurveys();
-  console.log(surveys);
+  const { isSurveyLoading } = useSurveys();
+  const surveys = useSelector((state: RootState) => state.survey.surveys);
+  
   return (
     <div>
       <Title text="Danh sách bài khảo sát" />

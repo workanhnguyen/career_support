@@ -25,8 +25,8 @@ public class ApiSurveyController {
     @Autowired
     private QuestionService questionService;
     @GetMapping
-    public ResponseEntity<List<Survey>> getSurveys() {
-        return new ResponseEntity<>(surveyService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<SurveyDTO>> getSurveys() {
+        return new ResponseEntity<>(surveyService.convertListToDTO(surveyService.findAll(), SurveyDTO.class), HttpStatus.OK);
     }
 
     @GetMapping("/{surveyId}")

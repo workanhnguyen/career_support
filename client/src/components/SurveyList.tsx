@@ -9,7 +9,7 @@ import { RootState } from "../interfaces/RootState";
 const SurveyList: React.FC = () => {
   const { isSurveyLoading } = useSurveys();
   const surveys = useSelector((state: RootState) => state.survey.surveys);
-  
+
   return (
     <div>
       <Title text="Danh sách bài khảo sát" />

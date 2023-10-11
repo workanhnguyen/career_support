@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SurveyState } from "../interfaces/SurveyState";
+import { Survey } from '../interfaces/Survey';
 
 const surveyState: SurveyState = {
     surveys: []
@@ -10,7 +11,10 @@ export const surveySlice = createSlice({
   initialState: surveyState,
   reducers: {
     saveSurveys: (state, action) => {
-      state.surveys = action.payload;
+        const tempArray: Survey[] = action.payload;
+        tempArray.forEach((survey: Survey) => {
+            state.surveys.push({...survey, questions: []})
+        })
     },
     saveQuestionsOfSurvey: (state, action) => {
         const existingSurvey = state.surveys.find(survey => survey.id === action.payload.surveyId);

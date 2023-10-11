@@ -5,9 +5,11 @@ import { saveCurrentUser, saveJwtToken } from "../slices/authSlice";
 import { getCurrentUser } from "../apis/UserApi";
 import { login } from "../apis/AuthApi";
 import { UserLoginForm } from "../interfaces/UserLoginForm";
+import { useNavigate } from "react-router-dom";
 
 function useUserLogin() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [isLogging, setIsLogging] = useState<boolean>(false);
   const [loginErrorMessage, setLoginErrorMessage] = useState<string>("");
@@ -23,6 +25,7 @@ function useUserLogin() {
 
         let currentUserResponse = await getCurrentUser();
         currentUserResponse.status === 200 && dispatch(saveCurrentUser(currentUserResponse.data))
+        navigate("/home", { replace: true });
       }
 
     } catch (error: any) {

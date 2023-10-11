@@ -1,5 +1,8 @@
 import React from "react";
 import { Button, Paper } from "@mui/material";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../interfaces/RootState";
 
 const paperStyle: object = {
   position: "relative",
@@ -14,6 +17,8 @@ const paperStyle: object = {
 };
 
 const MainIntro: React.FC = () => {
+  const jwtToken = useSelector((state: RootState) => state.auth.jwtToken);
+
   return (
     <Paper elevation={1} sx={paperStyle}>
       <div className="absolute z-0 top-0 bottom-0 right-0 left-0 rounded-sm"></div>
@@ -26,15 +31,17 @@ const MainIntro: React.FC = () => {
           Làm bài khảo sát trắc nghiệm nghề nghiệp của tiến sĩ tâm lý học người
           Mỹ - John L.Holland để tìm ra ngành nghề phù hợp với bản thân.
         </p>
-        <Button
-          variant="contained"
-          disableElevation
-          sx={{
-            width: "fit-content",
-          }}
-        >
-          Làm khảo sát ngay!
-        </Button>
+        <Link to={jwtToken === '' ? '/login' : '/home'}>
+          <Button
+            variant="contained"
+            disableElevation
+            sx={{
+              width: "fit-content",
+            }}
+          >
+            Làm khảo sát ngay!
+          </Button>
+        </Link>
       </div>
     </Paper>
   );

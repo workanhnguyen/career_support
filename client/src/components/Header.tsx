@@ -28,7 +28,7 @@ const Header: React.FC = () => {
           src="https://res.cloudinary.com/dduhlnft3/image/upload/v1696069111/frontend/logo-header-removebg-preview_dgsyuy.png"
           alt="logo-scoss"
         />
-        {!currentUser ? (
+        {!currentUser.email ? (
           <Link to="/login">
             <Button variant="contained" disableElevation size="large">
               Đăng nhập

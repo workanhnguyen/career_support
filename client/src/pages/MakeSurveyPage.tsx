@@ -24,9 +24,11 @@ const MakeSurveyPage: React.FC = () => {
   const [survey, setSurvey] = useState<Survey | undefined>(undefined);
   const [response, setResponse] = useState<Response[]>([])
   const [questionIndex, setQuestionIndex] = useState<number>(0);
+  const [isAllowToSwitchQuestion, setIsAllowToSwitchQuestion] = useState<boolean>(false);
 
   const [isOpenConfirmationDialog, setIsOpenConfirmationDialog] = useState<boolean>(false);
 
+  console.log(isAllowToSwitchQuestion);
   return (
     <>
       <main className="w-full flex flex-col mb-5">
@@ -35,16 +37,19 @@ const MakeSurveyPage: React.FC = () => {
           <Container maxWidth="md">
             <section className="w-full mt-10">
               <QuestionData
+                isAllowToSwitchQuestion={isAllowToSwitchQuestion}
+                onCheckAllowSwitchQuestion={setIsAllowToSwitchQuestion}
                 questionIndex={questionIndex}
                 question={currentSurvey?.questions[questionIndex]}
               />
             </section>
-            <section className="w-full flex justify-between mt-6">
+            <section className={`w-full flex ${questionIndex === 0 ? 'justify-end' : 'justify-between'} mt-6`}>
               {questionIndex > 0 && (
                 <Button
                   onClick={() => setQuestionIndex((prev) => prev - 1)}
                   variant="contained"
                   disableElevation
+                  disabled={!isAllowToSwitchQuestion}
                   startIcon={<ArrowBackIosIcon />}
                 >
                   Câu trước
@@ -55,6 +60,7 @@ const MakeSurveyPage: React.FC = () => {
                   onClick={() => setQuestionIndex((prev) => prev + 1)}
                   variant="contained"
                   disableElevation
+                  disabled={!isAllowToSwitchQuestion}
                   endIcon={<ArrowForwardIosIcon />}
                 >
                   Câu tiếp theo

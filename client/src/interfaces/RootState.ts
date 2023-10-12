@@ -1,4 +1,5 @@
 import { AuthState } from "./AuthState";
+import { Response } from "./Response";
 import { Survey } from "./Survey";
 import { SurveyState } from "./SurveyState";
 

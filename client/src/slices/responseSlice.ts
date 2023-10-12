@@ -24,7 +24,7 @@ export const responseSlice = createSlice({
     initResponse: (_, action) => {
       return { ...action.payload };
     },
-    toggleCheck: (state, action) => {
+    toggleCheckOptionResponse: (state, action) => {
       return {
         ...state,
         questions: state.questions.map((question) => {
@@ -45,5 +45,5 @@ export const responseSlice = createSlice({
   },
 });
 
-export const { toggleCheck, initResponse } = responseSlice.actions;
+export const { toggleCheckOptionResponse, initResponse } = responseSlice.actions;
 export default responseSlice.reducer;

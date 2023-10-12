@@ -9,6 +9,7 @@ const Header: React.FC = () => {
   const currentUser: User = useSelector(
     (state: RootState) => state.auth.currentUser
   );
+  const response = useSelector((state: RootState) => state.response);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

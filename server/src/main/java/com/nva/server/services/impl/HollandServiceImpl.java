@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HollandServiceImpl implements HollandService {
@@ -28,5 +29,10 @@ public class HollandServiceImpl implements HollandService {
 
         hollands.forEach(h -> hollandDTOs.add(modelMapper.map(h, HollandDTO.class)));
         return hollandDTOs;
+    }
+
+    @Override
+    public Optional<Holland> findById(Long hollandId) {
+        return hollandRepository.findById(hollandId);
     }
 }

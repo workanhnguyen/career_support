@@ -8,6 +8,7 @@ import DoneAllIcon from "@mui/icons-material/DoneAll";
 
 import { Header, QuestionData } from "../components";
 import { RootState } from "../interfaces/RootState";
+import { saveAndCalculateHollandResult } from "../apis/ResponseApi";
 
 const MakeSurveyPage: React.FC = () => {
   const currentSurvey = useSelector(
@@ -18,8 +19,27 @@ const MakeSurveyPage: React.FC = () => {
   const [isAllowToSwitchQuestion, setIsAllowToSwitchQuestion] =
     useState<boolean>(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const results = {
+      userId: response.userId,
+      surveyId: response.surveyId,
+      questions: response.questions.map(question => {
+        const selectedOptionIds = question.options
+          .filter(option => option.checked === true)
+          .map(option => option.id);
+  
+        return { id: question.id, options: selectedOptionIds };
+      })
+    };
+
+    try {
+      let res = await saveAndCalculateHollandResult(results);
+      console.log(res.data);
+    } catch (error) {
+
+    }
   };
 
   return (

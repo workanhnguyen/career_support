@@ -4,3 +4,4 @@ export { default as LandingPage } from './LandingPage';
 export { default as HomePage } from './HomePage';
 export { default as SurveyStarterPage } from './SurveyStarterPage';
 export { default as MakeSurveyPage } from './MakeSurveyPage';
+export { default as HollandResultPage } from './HollandResultPage';

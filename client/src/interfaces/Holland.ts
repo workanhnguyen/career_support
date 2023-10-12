@@ -4,5 +4,7 @@ export interface Holland {
     title: string,
     description: string,
     suitableCareer: string,
-    image: string
+    image: string;
+    strength: string;
+    weakness: string;
 }

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { HollandResult } from "../interfaces/HollandResult";
 import { PieChart } from "../charts";
+import { Container } from "@mui/material";
+import { Header } from "../components";
 
 type ChartType = {
   labels: string[];
@@ -26,7 +28,7 @@ const HollandResultPage: React.FC = () => {
 
   useEffect(() => {
     if (result.length > 0) {
-      const labels = result.map((data) => data.holland.title);
+      const labels = result.map((data) => data.holland.title.substring(0, data.holland.title.indexOf(" - ")));
       const percentages = result.map(
         (data) => Math.round(data.percentage * 100) / 100
       );
@@ -36,7 +38,7 @@ const HollandResultPage: React.FC = () => {
         datasets: [
           {
             data: percentages,
-            backgroundColor: [], // Set your colors here
+            backgroundColor: ["#fc4103", "#8606c2", "#06c219", "#fcc203", "#00ccff", "#067dc2"], // Set your colors here
           },
         ],
       });
@@ -44,7 +46,15 @@ const HollandResultPage: React.FC = () => {
   }, [result]);
   console.log(data);
 
-  return <div className="w-96">{<PieChart chartData={data} />}</div>;
+  return (
+    <Container>
+      <Header />
+      <div className="w-full p-8 flex flex-col items-center">
+        {<PieChart chartData={data} />}
+        hi
+      </div>
+    </Container>
+  );
 };
 
 export default HollandResultPage;

@@ -13,23 +13,30 @@ const MakeSurveyPage: React.FC = () => {
   const currentSurvey = useSelector(
     (state: RootState) => state.survey.currentSurvey
   );
+  const response = useSelector((state: RootState) => state.response);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
   const [isAllowToSwitchQuestion, setIsAllowToSwitchQuestion] =
     useState<boolean>(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
 
   return (
     <main className="w-full flex flex-col mb-5">
       <Container>
         <Header />
         <Container maxWidth="md">
-          <Box component="form" className="w-full mt-10">
+          <section className="w-full mt-10">
             <QuestionData
               onCheckAllowSwitchQuestion={setIsAllowToSwitchQuestion}
               questionIndex={questionIndex}
               question={currentSurvey?.questions[questionIndex]}
             />
-          </Box>
-          <section
+          </section>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
             className={`w-full flex ${
               questionIndex === 0 ? "justify-end" : "justify-between"
             } mt-6`}
@@ -68,7 +75,7 @@ const MakeSurveyPage: React.FC = () => {
                 Hoàn thành...
               </Button>
             )}
-          </section>
+          </Box>
         </Container>
       </Container>
     </main>

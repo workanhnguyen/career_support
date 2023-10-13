@@ -35,6 +35,7 @@ public class SecurityConfig {
                     auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/auth/**")).permitAll();
                     auth.requestMatchers("/api/v1/users").hasRole("ADMIN");
                     auth.requestMatchers(HttpMethod.GET, "/api/v1/hollands").permitAll();
+                    auth.requestMatchers("/api/v1/stats/**").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

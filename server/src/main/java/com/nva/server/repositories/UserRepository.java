@@ -8,12 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAll();
+    List<User> findByCreatedAtBetween(Date startDate, Date endDate);
     @Query("SELECT u FROM User u WHERE LOWER(u.email) NOT LIKE LOWER(concat('%', :email, '%'))")
     List<User> findAllByEmailNotLike(String email, Sort sort);
     Optional<User> findByEmail(String email);

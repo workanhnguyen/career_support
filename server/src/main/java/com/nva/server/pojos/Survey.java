@@ -1,7 +1,6 @@
 package com.nva.server.pojos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nva.server.annotations.NotEmptyMultipartFile;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -47,7 +46,7 @@ public class Survey {
 
     @Transient
     @JsonIgnore
-    @NotEmptyMultipartFile(message = "Vui lòng chọn một ảnh")
+//    @NotEmptyMultipartFile(message = "Vui lòng chọn một ảnh")
     private MultipartFile imageFile;
 
 //    @JsonIgnore

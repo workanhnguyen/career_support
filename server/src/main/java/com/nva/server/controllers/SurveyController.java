@@ -61,12 +61,17 @@ public class SurveyController {
         if (bindingResult.hasErrors())
             return "add-survey";
 
+        if (survey.getImageFile().isEmpty() || survey.getImageFile() == null) {
+            survey.setImage("https://res.cloudinary.com/dduhlnft3/image/upload/v1696908579/vi9xzhoeivk7wstsnyll.png");
+        }
+
         survey = Survey.builder()
                 .title(survey.getTitle().trim())
                 .description(survey.getDescription().trim())
                 .createdAt(new Date())
                 .author(survey.getAuthor().trim())
                 .imageFile(survey.getImageFile())
+                .image(survey.getImage())
                 .build();
         Survey savedSurvey = surveyService.save(survey);
 
@@ -96,8 +101,9 @@ public class SurveyController {
         }
 
         survey.setUpdatedAt(new Date());
-        surveyService.save(survey);
-        return "redirect:/admin/surveys";
+        if (surveyService.save(survey) != null)
+            return "redirect:/admin/surveys";
+        return "error";
     }
 
     @GetMapping("/{surveyId}/delete")

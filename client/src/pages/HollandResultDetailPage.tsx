@@ -59,7 +59,7 @@ const HollandResultDetailPage: React.FC = () => {
   }, [surveyDetail]);
   console.log(surveyDetail);
   return (
-    <Container>
+    <Container className="mb-5">
       <Header />
       {isSurveyDetailLoading ? (
         <CircularProgress />

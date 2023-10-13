@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,31 @@ public class StatisticServiceImpl implements StatisticService {
     }
 
     @Override
+    public List<StatisticDTO> statsUserByMonthsOfYear(Map<String, String> params) {
+        List<StatisticDTO> statisticDTOs = new ArrayList<>();
+
+        for (Month month: Month.values()) {
+            LocalDate firstDayOfMonth = LocalDate.of(Integer.parseInt(params.get("year")), month, 1);
+            LocalDate lastDayOfMonth = firstDayOfMonth.withDayOfMonth(firstDayOfMonth.lengthOfMonth());
+
+            Date startDate = Date.valueOf(firstDayOfMonth);
+            Date endDate = Date.valueOf(lastDayOfMonth);
+
+            List<User> users = userRepository.findByCreatedAtBetween(startDate, endDate);
+            int userCount = users.size();
+
+            StatisticDTO statisticDTO = StatisticDTO.builder()
+                    .title(String.valueOf(month))
+                    .value(String.valueOf(userCount))
+                    .build();
+
+            statisticDTOs.add(statisticDTO);
+        }
+
+        return statisticDTOs;
+    }
+
+    @Override
     public List<StatisticDTO> statsHollandSurveyByYearPeriod(Map<String, String> params) {
         List<StatisticDTO> statisticDTOs = new ArrayList<>();
 
@@ -61,6 +87,31 @@ public class StatisticServiceImpl implements StatisticService {
                     .value(String.valueOf(responses.size())).build();
             statisticDTOs.add(stats);
         }
+        return statisticDTOs;
+    }
+
+    @Override
+    public List<StatisticDTO> statsHollandSurveyByMonthsOfYear(Map<String, String> params) {
+        List<StatisticDTO> statisticDTOs = new ArrayList<>();
+
+        for (Month month: Month.values()) {
+            LocalDate firstDayOfMonth = LocalDate.of(Integer.parseInt(params.get("year")), month, 1);
+            LocalDate lastDayOfMonth = firstDayOfMonth.withDayOfMonth(firstDayOfMonth.lengthOfMonth());
+
+            Date startDate = Date.valueOf(firstDayOfMonth);
+            Date endDate = Date.valueOf(lastDayOfMonth);
+
+            List<Response> responses = responseRepository.findByCreatedAtBetween(startDate, endDate);
+            int userCount = responses.size();
+
+            StatisticDTO statisticDTO = StatisticDTO.builder()
+                    .title(String.valueOf(month))
+                    .value(String.valueOf(userCount))
+                    .build();
+
+            statisticDTOs.add(statisticDTO);
+        }
+
         return statisticDTOs;
     }
 }

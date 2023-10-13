@@ -69,13 +69,10 @@ function changeStatsFilter () {
 
 function statistic(jwtToken) {
     const filterDOM = document.getElementById("stats-filter");
-    console.log(2);
 
     if (filterDOM.value === 'year') {
         const fromYearDOM = document.getElementById("yearFrom");
         const toYearDOM = document.getElementById("yearTo");
-
-        console.log(1);
 
         let barColors = ["red", "green", "blue", "orange", "brown"];
 
@@ -138,6 +135,68 @@ function statistic(jwtToken) {
                 }
             })
         });
+    } else if (filterDOM.value === 'month') {
+        const yearForMonth = document.getElementById("wholeYear");
+
+        let barColors = ["red", "green", "blue", "orange", "brown", "red", "green", "blue", "orange", "brown", "red", "green"];
+
+        fetch(`/server/api/v1/stats/month/users?year=${yearForMonth.value}`, {
+            method: "get",
+            headers: {
+                "Authorization": jwtToken,
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                let userChartTitle = [];
+                let userChartValue = [];
+
+                for (var i = 0; i < data.length; i++) {
+                    userChartTitle[i] = data[i].title;
+                    userChartValue[i] = data[i].value;
+                }
+                new Chart("userChart", {
+                    type: "bar", data: {
+                        labels: userChartTitle, datasets: [{
+                            backgroundColor: barColors, data: userChartValue
+                        }]
+                    }, options: {
+                        legend: {display: false}, title: {
+                            display: true,
+                            text: `Số lượng người dùng đăng ký trong năm ${yearForMonth.value}`
+                        }
+                    }
+                });
+            })
+
+        fetch(`/server/api/v1/stats/month/surveys/holland?year=${yearForMonth.value}`, {
+            method: "get", headers: {
+                "Authorization": jwtToken, "Content-Type": "application/json"
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                let hollandSurveyChartTitle = [];
+                let hollandSurveyChartValue = [];
+
+                for (var i = 0; i < data.length; i++) {
+                    hollandSurveyChartTitle[i] = data[i].title;
+                    hollandSurveyChartValue[i] = data[i].value;
+                }
+                new Chart("hollandSurveyResponseChart", {
+                    type: "bar", data: {
+                        labels: hollandSurveyChartTitle, datasets: [{
+                            backgroundColor: barColors, data: hollandSurveyChartValue
+                        }]
+                    }, options: {
+                        legend: {display: false}, title: {
+                            display: true,
+                            text: `Số lượng thực hiện khảo sát Holland trong năm ${yearForMonth.value}`
+                        }
+                    }
+                });
+            })
     }
 }
 

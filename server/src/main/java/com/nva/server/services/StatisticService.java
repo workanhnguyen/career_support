@@ -7,5 +7,7 @@ import java.util.Map;
 
 public interface StatisticService {
     List<StatisticDTO> statsUserByYearPeriod(Map<String, String> params);
+    List<StatisticDTO> statsUserByMonthsOfYear(Map<String, String> params);
     List<StatisticDTO> statsHollandSurveyByYearPeriod(Map<String, String> params);
+    List<StatisticDTO> statsHollandSurveyByMonthsOfYear(Map<String, String> params);
 }

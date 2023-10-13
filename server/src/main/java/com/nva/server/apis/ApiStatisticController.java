@@ -25,8 +25,18 @@ public class ApiStatisticController {
         return new ResponseEntity<>(statisticService.statsUserByYearPeriod(params), HttpStatus.OK);
     }
 
+    @GetMapping("/month/users")
+    public ResponseEntity<List<StatisticDTO>> statsUsersByMonthsOfYear(@RequestParam Map<String, String> params) {
+        return new ResponseEntity<>(statisticService.statsUserByMonthsOfYear(params), HttpStatus.OK);
+    }
+
     @GetMapping("/year/surveys/holland")
-    public ResponseEntity<List<StatisticDTO>> statsHollandSurveyByYearPeriod(@RequestParam Map<String, String> params) {
+    public ResponseEntity<List<StatisticDTO>> statsHollandSurveysByYearPeriod(@RequestParam Map<String, String> params) {
         return new ResponseEntity<>(statisticService.statsHollandSurveyByYearPeriod(params), HttpStatus.OK);
+    }
+
+    @GetMapping("/month/surveys/holland")
+    public ResponseEntity<List<StatisticDTO>> statsHollandSurveysByMonthsOfYear(@RequestParam Map<String, String> params) {
+        return new ResponseEntity<>(statisticService.statsHollandSurveyByMonthsOfYear(params), HttpStatus.OK);
     }
 }

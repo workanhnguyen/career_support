@@ -11,16 +11,13 @@
     </style>
 </head>
 <body>
-    <p th:text=${name}></p>
-    <p> Chúng tôi gửi thông tin truy cập hệ thống SCOSS của bạn. </p>
-    <p th:text>Vui lòng nhấn vào link bên dưới để kích hoạt tài khoản.</p>
-    <blockquote style="margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px">
-        <p style="margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c">
-            <a th:href="${activateLink}">Kích hoạt ngay</a>
-        </p>
+    <p>Xin chào <span style="font-weight: bold;" th:text=${name}></span>,</p>
+    <p> Chúng tôi gửi bạn liên kết để kích hoạt tài khoản bạn vừa đăng ký trên hệ thống <span style="font-weight: bold;">SCOSS - Hỗ trợ hướng nghiệp</span> của chúng tôi. </p>
+    <p>Vui lòng nhấn vào nút bên dưới để kích hoạt tài khoản.</p>
+    <blockquote style="display: flex; align-items: center; margin: 0 0 20px 0; border-left:10px solid #b1b4b6; padding: 0 0 0.1px 15px; font-size:20px;">
+        <a style="text-decoration:none;padding: 8px 16px; background-color: #4285F4; color: white; border-radius: 8px" th:href="${activateLink}">Kích hoạt ngay</a>
     </blockquote>
-
-    <p>Lưu ý: Vui lòng kích hoạt tài khoản trong vòng 15 phút.</p>
+    <p style="color: red"><span style="text-decoration: underline">Lưu ý:</span> Vui lòng kích hoạt tài khoản trong vòng 15 phút.</p>
     <p>Đây là email tự động vui lòng không trả lời.</p>
 </body>
 </html>

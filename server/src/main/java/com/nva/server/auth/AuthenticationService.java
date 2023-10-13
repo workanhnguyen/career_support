@@ -55,6 +55,7 @@ public class AuthenticationService {
                         .role(Role.ROLE_USER)
                         .locked(false)
                         .enabled(false)
+                        .avatar("https://res.cloudinary.com/dduhlnft3/image/upload/v1696555687/frontend/blank-avatar_pnthgi.jpg")
                         .createdAt(new Date())
                         .build();
             } else {

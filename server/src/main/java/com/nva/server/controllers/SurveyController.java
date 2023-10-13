@@ -62,7 +62,7 @@ public class SurveyController {
             return "add-survey";
 
         if (survey.getImageFile().isEmpty() || survey.getImageFile() == null) {
-            survey.setImage("https://res.cloudinary.com/dduhlnft3/image/upload/v1696908579/vi9xzhoeivk7wstsnyll.png");
+            survey.setImage("https://res.cloudinary.com/dduhlnft3/image/upload/v1696555687/frontend/blank-avatar_pnthgi.jpg");
         }
 
         survey = Survey.builder()

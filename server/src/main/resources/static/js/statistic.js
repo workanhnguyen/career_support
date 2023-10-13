@@ -197,6 +197,65 @@ function statistic(jwtToken) {
                     }
                 });
             })
+    } else if (filterDOM.value === 'quater') {
+        const yearForQuaterDOM = document.getElementById("yearForQuater");
+
+        let barColors = ["red", "green", "blue", "orange", "brown", "red", "green", "blue", "orange", "brown", "red", "green"];
+
+        fetch(`/server/api/v1/stats/quater/users?year=${yearForQuaterDOM.value}`, {
+            method: "get", headers: {
+                "Authorization": jwtToken, "Content-Type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            let userChartTitle = [];
+            let userChartValue = [];
+
+            for (var i = 0; i < data.length; i++) {
+                userChartTitle[i] = data[i].title;
+                userChartValue[i] = data[i].value
+            }
+            new Chart("userChart", {
+                type: "bar", data: {
+                    labels: userChartTitle, datasets: [{
+                        backgroundColor: barColors, data: userChartValue
+                    }]
+                }, options: {
+                    legend: {display: false}, title: {
+                        display: true,
+                        text: `Số lượng người dùng đăng ký theo quý trong năm ${yearForQuater.value}`
+                    }
+                }
+            });
+        })
+        fetch(`/server/api/v1/stats/quater/surveys/holland?year=${yearForQuaterDOM.value}`, {
+            method: "get", headers: {
+                "Authorization": jwtToken, "Content-Type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            let hollandSurveyChartTitles = [];
+            let hollandSurveyChartValues = [];
+
+            for (var i = 0; i < data.length; i++) {
+                hollandSurveyChartTitles[i] = data[i].title;
+                hollandSurveyChartValues[i] = data[i].value
+            }
+            new Chart("hollandSurveyResponseChart", {
+                type: "bar", data: {
+                    labels: hollandSurveyChartTitles, datasets: [{
+                        backgroundColor: barColors, data: hollandSurveyChartValues
+                    }]
+                }, options: {
+                    legend: {display: false}, title: {
+                        display: true,
+                        text: `Số lượng thực hiện khảo sát Holland theo quý trong năm ${yearForQuaterDOM.value}`
+                    }
+                }
+            });
+        })
     }
 }
 

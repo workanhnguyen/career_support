@@ -70,6 +70,27 @@ public class StatisticServiceImpl implements StatisticService {
     }
 
     @Override
+    public List<StatisticDTO> statsUserByQuatersOfYear(Map<String, String> params) {
+        List<StatisticDTO> statisticDTOs = new ArrayList<>();
+
+        for (int quater = 1; quater <= 4; quater++) {
+            LocalDate startOfQuater = LocalDate.of(Integer.parseInt(params.get("year")), (quater - 1) * 3 + 1, 1);
+            LocalDate endOfQuater = startOfQuater.plusMonths(3).minusDays(1);
+
+            Date startDate = Date.valueOf(startOfQuater);
+            Date endDate = Date.valueOf(endOfQuater);
+
+            List<User> users = userRepository.findByCreatedAtBetween(startDate, endDate);
+            int userCount = users.size();
+
+            StatisticDTO statisticDTO = StatisticDTO.builder().title("Q" + quater).value(String.valueOf(userCount)).build();
+            statisticDTOs.add(statisticDTO);
+        }
+
+        return statisticDTOs;
+    }
+
+    @Override
     public List<StatisticDTO> statsHollandSurveyByYearPeriod(Map<String, String> params) {
         List<StatisticDTO> statisticDTOs = new ArrayList<>();
 
@@ -102,13 +123,34 @@ public class StatisticServiceImpl implements StatisticService {
             Date endDate = Date.valueOf(lastDayOfMonth);
 
             List<Response> responses = responseRepository.findByCreatedAtBetween(startDate, endDate);
-            int userCount = responses.size();
+            int responseCount = responses.size();
 
             StatisticDTO statisticDTO = StatisticDTO.builder()
                     .title(String.valueOf(month))
-                    .value(String.valueOf(userCount))
+                    .value(String.valueOf(responseCount))
                     .build();
 
+            statisticDTOs.add(statisticDTO);
+        }
+
+        return statisticDTOs;
+    }
+
+    @Override
+    public List<StatisticDTO> statsHollandSurveyByQuatersOfYear(Map<String, String> params) {
+        List<StatisticDTO> statisticDTOs = new ArrayList<>();
+
+        for (int quater = 1; quater <= 4; quater++) {
+            LocalDate startOfQuater = LocalDate.of(Integer.parseInt(params.get("year")), (quater - 1) * 3 + 1, 1);
+            LocalDate endOfQuater = startOfQuater.plusMonths(3).minusDays(1);
+
+            Date startDate = Date.valueOf(startOfQuater);
+            Date endDate = Date.valueOf(endOfQuater);
+
+            List<Response> responses = responseRepository.findByCreatedAtBetween(startDate, endDate);
+            int responseCount = responses.size();
+
+            StatisticDTO statisticDTO = StatisticDTO.builder().title("Q" + quater).value(String.valueOf(responseCount)).build();
             statisticDTOs.add(statisticDTO);
         }
 

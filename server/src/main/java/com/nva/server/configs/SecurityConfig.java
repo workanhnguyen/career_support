@@ -1,5 +1,6 @@
 package com.nva.server.configs;
 
+import com.nva.server.filters.CustomAccessDeniedHandler;
 import com.nva.server.filters.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -35,12 +36,13 @@ public class SecurityConfig {
                     auth.requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/auth/**")).permitAll();
                     auth.requestMatchers("/api/v1/users").hasRole("ADMIN");
                     auth.requestMatchers(HttpMethod.GET, "/api/v1/hollands").permitAll();
-                    auth.requestMatchers("/api/v1/stats/**").permitAll();
+                    auth.requestMatchers("/api/v1/stats/**").hasRole("ADMIN");
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler()).and()
                 .csrf(crsf -> crsf.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/api/**")))
                 .cors(Customizer.withDefaults())
                 .build();
@@ -55,7 +57,8 @@ public class SecurityConfig {
                     auth.anyRequest().hasRole("ADMIN");
                 })
                 .csrf(csrf -> csrf.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/**")))
-                .formLogin().defaultSuccessUrl("/admin/", true).failureUrl("/login?error").and().build();
+                .formLogin().defaultSuccessUrl("/admin/", true).failureUrl("/login?error").and()
+                .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler()).and().build();
     }
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

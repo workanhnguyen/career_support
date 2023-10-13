@@ -37,6 +37,7 @@ public class SecurityConfig {
                     auth.requestMatchers("/api/v1/users").hasRole("ADMIN");
                     auth.requestMatchers(HttpMethod.GET, "/api/v1/hollands").permitAll();
                     auth.requestMatchers("/api/v1/stats/**").hasRole("ADMIN");
+                    auth.requestMatchers(HttpMethod.POST, "/api/v1/auth/logout").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -58,6 +59,7 @@ public class SecurityConfig {
                 })
                 .csrf(csrf -> csrf.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/**")))
                 .formLogin().defaultSuccessUrl("/admin/", true).failureUrl("/login?error").and()
+                .logout().permitAll().and()
                 .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler()).and().build();
     }
     @Bean

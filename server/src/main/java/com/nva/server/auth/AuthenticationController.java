@@ -1,10 +1,14 @@
 package com.nva.server.auth;
 
 import com.nva.server.services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -39,5 +43,15 @@ public class AuthenticationController {
     @GetMapping("/confirm")
     public String confirm(@RequestParam(name = "token") String token) {
         return authenticationService.confirmToken(token);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Boolean> logout(HttpServletRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            new SecurityContextLogoutHandler().logout(request, null, authentication);
+        }
+
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }

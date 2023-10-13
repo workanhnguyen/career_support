@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Avatar, Box, Button, Divider, Menu, MenuItem } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { User } from "../interfaces/User";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../interfaces/RootState";
+import { persistor } from "../app/store";
+import { logout } from "../apis/AuthApi";
+import { Cookies } from "react-cookie";
+import { clearAuthInfo } from "../slices/authSlice";
 
 const Header: React.FC = () => {
-  const currentUser: User = useSelector(
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const currentUser: User | null = useSelector(
     (state: RootState) => state.auth.currentUser
   );
-  const response = useSelector((state: RootState) => state.response);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -21,16 +28,30 @@ const Header: React.FC = () => {
     setAnchorEl(null);
   };
 
+  const handleLogout = async () => {
+    try {
+      let res = await logout();
+      if (res.status === 200) {
+        setAnchorEl(null);
+        dispatch(clearAuthInfo(null));
+        persistor.purge();
+
+        navigate('/', { replace: true });
+      }
+    } catch (error) {}
+  };
+
   return (
     <Box>
       <header className="w-full h-16 flex justify-between items-center">
-        <Link to='/'>
-        <img
-          className="w-24"
-          src="https://res.cloudinary.com/dduhlnft3/image/upload/v1696069111/frontend/logo-header-removebg-preview_dgsyuy.png"
-          alt="logo-scoss"
-        /></Link>
-        {!currentUser.email ? (
+        <Link to="/">
+          <img
+            className="w-24"
+            src="https://res.cloudinary.com/dduhlnft3/image/upload/v1696069111/frontend/logo-header-removebg-preview_dgsyuy.png"
+            alt="logo-scoss"
+          />
+        </Link>
+        {!currentUser?.email ? (
           <Link to="/login">
             <Button variant="contained" disableElevation size="large">
               Đăng nhập
@@ -40,9 +61,9 @@ const Header: React.FC = () => {
           <section className="flex items-center gap-2">
             <div className="max-sm:hidden text-right">
               <p className="font-semibold">
-                {currentUser.lastName} {currentUser.firstName}
+                {currentUser?.lastName} {currentUser?.firstName}
               </p>
-              <p className="text-gray-600">{currentUser.email}</p>
+              <p className="text-gray-600">{currentUser?.email}</p>
             </div>
             <button
               id="user-choice"
@@ -69,8 +90,12 @@ const Header: React.FC = () => {
                 "aria-labelledby": "user-choice",
               }}
             >
-              <MenuItem onClick={handleClose}><Link to='/profile'>Trang cá nhân</Link></MenuItem>
-              <MenuItem onClick={handleClose} sx={{ color: 'red'}}>Đăng xuất</MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link to="/profile">Trang cá nhân</Link>
+              </MenuItem>
+              <MenuItem onClick={handleLogout} sx={{ color: "red" }}>
+                Đăng xuất
+              </MenuItem>
             </Menu>
           </section>
         )}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import {
@@ -17,7 +17,7 @@ import { RootState } from "./interfaces/RootState";
 
 const App: React.FC = () => {
   const jwtToken = useSelector((state: RootState) => state.auth.jwtToken);
-  console.log(jwtToken === "");
+
   return (
     <BrowserRouter>
       <Routes>

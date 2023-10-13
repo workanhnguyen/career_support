@@ -20,9 +20,15 @@ export const authSlice = createSlice({
         saveCurrentUser: (state, action) => {
             cookies.set('current_user', action.payload);
             state.currentUser = action.payload;
+        },
+        clearAuthInfo: (state, _) => {
+            cookies.remove('jwt_token');
+            cookies.remove('current_user');
+            state.jwtToken = '';
+            state.currentUser = null;
         }
     }
 });
 
-export const { saveJwtToken, saveCurrentUser } = authSlice.actions;
+export const { saveJwtToken, saveCurrentUser, clearAuthInfo } = authSlice.actions;
 export default authSlice.reducer;

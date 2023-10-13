@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import { HollandResult } from "../interfaces/HollandResult";
-import { PieChart } from "../charts";
+import { BarChart } from "../charts";
 import { Button, Container } from "@mui/material";
 import { Header } from "../components";
 import { getAllHollands } from "../apis/HollandApi";
 import { Holland } from "../interfaces/Holland";
-import { Link } from "react-router-dom";
 
 type ChartType = {
   labels: string[];
@@ -73,7 +74,7 @@ const HollandResultPage: React.FC = () => {
     <Container>
       <Header />
       <div className="w-full p-8 flex flex-col">
-        {<PieChart chartData={data} />}
+        {<BarChart chartData={data} />}
         <section className="mt-5">
           <table className="w-full border-collapse">
             <thead>
@@ -94,7 +95,8 @@ const HollandResultPage: React.FC = () => {
                       {holland.description}
                     </p>
                     <p className="text-justify">
-                      <span className="font-bold">Ngành nghề phù hợp:</span>&nbsp;
+                      <span className="font-bold">Ngành nghề phù hợp:</span>
+                      &nbsp;
                       {holland.suitableCareer}
                     </p>
                     <p className="text-justify">
@@ -111,7 +113,11 @@ const HollandResultPage: React.FC = () => {
             </tbody>
           </table>
         </section>
-        <Link to='/home' className="mt-5"><Button variant="contained" color="warning" disableElevation>Trở lại</Button></Link>
+        <Link to="/home" className="mt-5">
+          <Button variant="contained" color="warning" disableElevation>
+            Trở lại
+          </Button>
+        </Link>
       </div>
     </Container>
   );

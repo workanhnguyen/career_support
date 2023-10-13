@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import {
   HollandResultDetailPage,
@@ -12,7 +13,6 @@ import {
   RegisterPage,
   SurveyStarterPage,
 } from "./pages";
-import { useSelector } from "react-redux";
 import { RootState } from "./interfaces/RootState";
 
 const App: React.FC = () => {
@@ -45,7 +45,7 @@ const App: React.FC = () => {
         )}
 
         {/* Redirect if path is not existed */}
-        <Route path="*" element={<Navigate to='/login' />} />
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>
   );

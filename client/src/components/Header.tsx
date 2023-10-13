@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
-import { Avatar, Box, Button, Divider, Menu, MenuItem } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
-import { User } from "../interfaces/User";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
+import { Avatar, Box, Button, Divider, Menu, MenuItem } from "@mui/material";
+
+import { User } from "../interfaces/User";
 import { RootState } from "../interfaces/RootState";
 import { persistor } from "../app/store";
 import { logout } from "../apis/AuthApi";
-import { Cookies } from "react-cookie";
 import { clearAuthInfo } from "../slices/authSlice";
 
 const Header: React.FC = () => {

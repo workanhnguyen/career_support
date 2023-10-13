@@ -6,7 +6,6 @@ import com.nva.server.pojos.User;
 import com.nva.server.repositories.ResponseRepository;
 import com.nva.server.repositories.UserRepository;
 import com.nva.server.services.StatisticService;
-import com.nva.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

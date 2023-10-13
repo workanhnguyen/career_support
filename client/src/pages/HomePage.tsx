@@ -1,6 +1,8 @@
-import React from 'react'
-import { Container } from '@mui/material'
-import { Footer, Header, MainContent } from '../components'
+import React from "react";
+
+import { Container } from "@mui/material";
+
+import { Footer, Header, MainContent } from "../components";
 
 const HomePage: React.FC = () => {
   return (
@@ -13,7 +15,7 @@ const HomePage: React.FC = () => {
       </Container>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

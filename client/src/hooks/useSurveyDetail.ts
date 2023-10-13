@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
 import { HollandResult } from "../interfaces/HollandResult";
 import { getHollandResultDetail } from "../apis/ResponseApi";
 

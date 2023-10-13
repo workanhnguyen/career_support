@@ -1,9 +1,7 @@
 package com.nva.server.services.impl;
 
 import com.nva.server.dtos.OptionForClientDTO;
-import com.nva.server.dtos.QuestionForClientDTO;
 import com.nva.server.pojos.Option;
-import com.nva.server.pojos.Question;
 import com.nva.server.repositories.OptionRepository;
 import com.nva.server.services.OptionService;
 import org.modelmapper.ModelMapper;

@@ -1,7 +1,9 @@
 import React from "react";
-import { Survey } from "../interfaces/Survey";
-import { Button, Paper } from "@mui/material";
 import { Link } from "react-router-dom";
+
+import { Button, Paper } from "@mui/material";
+
+import { Survey } from "../interfaces/Survey";
 
 type SurveyItemProps = {
   survey: Survey;
@@ -9,7 +11,10 @@ type SurveyItemProps = {
 
 const SurveyItem: React.FC<SurveyItemProps> = ({ survey }) => {
   return (
-    <Paper className="h-fit flex flex-col justify-start p-4 gap-3" elevation={3}>
+    <Paper
+      className="h-fit flex flex-col justify-start p-4 gap-3"
+      elevation={3}
+    >
       <p className="text-md font-semibold">{survey.title}</p>
       <p className="text-base text-gray-400">{survey.author}</p>
       <Link to={`/surveys/${survey.id}`}>

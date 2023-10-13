@@ -11,12 +11,12 @@ import { RootState } from "../interfaces/RootState";
 
 const SurveyStarterPage: React.FC = () => {
   const { surveyId } = useParams();
-  
+
   const {} = useSurveyById(Number(surveyId));
   const {} = useInitResponse();
 
   const survey = useSelector((state: RootState) => state.survey.currentSurvey);
-  
+
   return (
     <main className="w-full flex justify-center">
       <Container maxWidth="md">
@@ -30,13 +30,13 @@ const SurveyStarterPage: React.FC = () => {
             <div className="w-full flex flex-col gap-4">
               <p className="text-justify">{survey?.description}</p>
               <Link to={`/surveys/${surveyId}/quiz`}>
-              <Button
-                variant="contained"
-                disableElevation
-                className="max-sm:w-full w-fit"
-              >
-                Thực hiện khảo sát
-              </Button>
+                <Button
+                  variant="contained"
+                  disableElevation
+                  className="max-sm:w-full w-fit"
+                >
+                  Thực hiện khảo sát
+                </Button>
               </Link>
             </div>
           </div>

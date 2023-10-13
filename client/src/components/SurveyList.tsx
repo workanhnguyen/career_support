@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
+
+import { Grid } from "@mui/material";
 
 import { SurveyItem, SurveySkeleton, Title } from "../components";
 import { useSurveys } from "../hooks";
-import { Grid } from "@mui/material";
-import { useSelector } from "react-redux";
 import { RootState } from "../interfaces/RootState";
 
 const SurveyList: React.FC = () => {
   const { isSurveysLoading } = useSurveys();
-  
+
   const surveys = useSelector((state: RootState) => state.survey.surveys);
   return (
     <div>

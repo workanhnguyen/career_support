@@ -1,7 +1,6 @@
 package com.nva.server.repositories;
 
 import com.nva.server.pojos.Response;
-import com.nva.server.pojos.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

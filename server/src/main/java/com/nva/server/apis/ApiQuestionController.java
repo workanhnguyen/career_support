@@ -1,9 +1,7 @@
 package com.nva.server.apis;
 
 import com.nva.server.dtos.OptionForClientDTO;
-import com.nva.server.dtos.QuestionForClientDTO;
 import com.nva.server.pojos.Question;
-import com.nva.server.pojos.Survey;
 import com.nva.server.services.OptionService;
 import com.nva.server.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;

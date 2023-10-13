@@ -3,7 +3,6 @@ package com.nva.server.services.impl;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.nva.server.dtos.SurveyDTO;
-import com.nva.server.pojos.Question;
 import com.nva.server.pojos.Survey;
 import com.nva.server.repositories.SurveyRepository;
 import com.nva.server.services.QuestionService;

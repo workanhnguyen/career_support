@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
 import { SurveyHistory } from "../interfaces/SurveyHistory";
 import { getAllSurveyHistories } from "../apis/ResponseApi";
 

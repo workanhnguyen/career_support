@@ -20,7 +20,7 @@ import { UserRegisterForm } from "../interfaces/UserRegisterForm";
 import { useUserRegistration } from "../hooks";
 import { Alert, Snackbar } from "@mui/material";
 import { LoadingOverlay } from "../components";
-import authCheckHOC from '../hocs/authCheckHOC';
+import authCheckHOC from "../hocs/authCheckHOC";
 
 const defaultTheme = createTheme();
 

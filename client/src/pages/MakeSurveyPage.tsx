@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { Backdrop, Box, Button, CircularProgress, Container } from "@mui/material";
+import {
+  Backdrop,
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+} from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
@@ -9,7 +16,6 @@ import DoneAllIcon from "@mui/icons-material/DoneAll";
 import { Header, QuestionData } from "../components";
 import { RootState } from "../interfaces/RootState";
 import { saveAndCalculateHollandResult } from "../apis/ResponseApi";
-import { useNavigate } from "react-router-dom";
 
 const MakeSurveyPage: React.FC = () => {
   const navigate = useNavigate();
@@ -28,22 +34,21 @@ const MakeSurveyPage: React.FC = () => {
     const results = {
       userId: response.userId,
       surveyId: response.surveyId,
-      questions: response.questions.map(question => {
+      questions: response.questions.map((question) => {
         const selectedOptionIds = question.options
-          .filter(option => option.checked === true)
-          .map(option => option.id);
-  
+          .filter((option) => option.checked === true)
+          .map((option) => option.id);
+
         return { id: question.id, options: selectedOptionIds };
-      })
+      }),
     };
 
     try {
       setIsSendingResponse(true);
       let res = await saveAndCalculateHollandResult(results);
       localStorage.setItem("holland_result", JSON.stringify(res.data));
-      navigate("/surveys/result", { replace: true })
+      navigate("/surveys/result", { replace: true });
     } catch (error) {
-
     } finally {
       setIsSendingResponse(false);
     }

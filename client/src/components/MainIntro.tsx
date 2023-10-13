@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Paper } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 import { RootState } from "../interfaces/RootState";
 
 const paperStyle: object = {
@@ -31,7 +32,7 @@ const MainIntro: React.FC = () => {
           Làm bài khảo sát trắc nghiệm nghề nghiệp của tiến sĩ tâm lý học người
           Mỹ - John L.Holland để tìm ra ngành nghề phù hợp với bản thân.
         </p>
-        <Link to={jwtToken === '' ? '/login' : '/home'}>
+        <Link to={jwtToken === "" ? "/login" : "/home"}>
           <Button
             variant="contained"
             disableElevation

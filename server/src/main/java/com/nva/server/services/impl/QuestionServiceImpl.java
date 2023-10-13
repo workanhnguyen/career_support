@@ -1,7 +1,6 @@
 package com.nva.server.services.impl;
 
 import com.nva.server.dtos.OptionForClientDTO;
-import com.nva.server.dtos.QuestionDTO;
 import com.nva.server.dtos.QuestionForClientDTO;
 import com.nva.server.pojos.Question;
 import com.nva.server.repositories.QuestionRepository;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

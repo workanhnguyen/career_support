@@ -1,5 +1,5 @@
 import React from "react";
-import { Bar, Line, Pie } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -38,8 +38,8 @@ export const options = {
   },
 };
 
-const PieChart: React.FC<PieChartProps> = ({ chartData }) => {
+const BarChart: React.FC<PieChartProps> = ({ chartData }) => {
   return <Bar data={chartData} options={options} />;
 };
 
-export default PieChart;
+export default BarChart;

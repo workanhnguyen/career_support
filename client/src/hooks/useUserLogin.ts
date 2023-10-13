@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { saveCurrentUser, saveJwtToken } from "../slices/authSlice";
 import { getCurrentUser } from "../apis/UserApi";
 import { login } from "../apis/AuthApi";
 import { UserLoginForm } from "../interfaces/UserLoginForm";
-import { useNavigate } from "react-router-dom";
 
 function useUserLogin() {
   const dispatch = useDispatch();
@@ -24,10 +24,10 @@ function useUserLogin() {
         dispatch(saveJwtToken(jwtTokenResponse.data.token));
 
         let currentUserResponse = await getCurrentUser();
-        currentUserResponse.status === 200 && dispatch(saveCurrentUser(currentUserResponse.data))
+        currentUserResponse.status === 200 &&
+          dispatch(saveCurrentUser(currentUserResponse.data));
         navigate("/home", { replace: true });
       }
-
     } catch (error: any) {
       setLoginErrorMessage("Email hoặc mật khẩu không chính xác");
     } finally {

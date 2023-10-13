@@ -1,11 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 const AlreadyLogin: React.FC = () => {
   const navigate = useNavigate();
+
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center gap-4">
       <CheckCircleIcon sx={{ fontSize: "120px" }} color="success" />

@@ -5,7 +5,6 @@ import com.nva.server.dtos.ResponseSurveyHollandFromClientDTO;
 import com.nva.server.dtos.ResultHollandResponseDTO;
 import com.nva.server.dtos.UserForClientDTO;
 import com.nva.server.pojos.Response;
-import com.nva.server.pojos.User;
 import com.nva.server.services.HollandService;
 import com.nva.server.services.ResponseService;
 import com.nva.server.services.UserService;
@@ -18,7 +17,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

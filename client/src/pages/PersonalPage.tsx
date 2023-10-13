@@ -1,5 +1,5 @@
 import { Avatar, Button, CircularProgress, Container, Paper } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import moment from "moment";
 import "moment/locale/vi";
 import { Footer, Header, Title } from "../components";
@@ -23,16 +23,16 @@ const PersonalPage: React.FC = () => {
               <div className="absolute max-sm:top-24 top-44 w-full flex justify-center">
                 <Avatar
                   sx={{ width: "120px", height: "120px" }}
-                  src={currentUser.avatar}
+                  src={currentUser?.avatar}
                   className="ring-4 ring-gray-200"
                 />
               </div>
             </div>
             <div className="w-full flex flex-col items-center mt-20 gap-1">
               <p className="text-2xl font-semibold">
-                {currentUser.lastName} {currentUser.firstName}
+                {currentUser?.lastName} {currentUser?.firstName}
               </p>
-              <p className="text-gray-600">{currentUser.email}</p>
+              <p className="text-gray-600">{currentUser?.email}</p>
             </div>
           </div>
     

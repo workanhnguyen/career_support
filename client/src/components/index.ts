@@ -12,4 +12,3 @@ export { default as SurveyList } from './SurveyList';
 export { default as SurveyItem } from './SurveyItem';
 export { default as SurveySkeleton } from './SurveySkeleton';
 export { default as QuestionData } from './QuestionData';
-export { default as ConfirmationDialog } from './ConfirmationDialog';

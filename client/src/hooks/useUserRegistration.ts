@@ -1,32 +1,34 @@
-import { useState } from 'react';
-import { UserRegisterForm } from '../interfaces/UserRegisterForm';
-import { register } from '../apis/AuthApi';
+import { useState } from "react";
+
+import { UserRegisterForm } from "../interfaces/UserRegisterForm";
+import { register } from "../apis/AuthApi";
 
 function useUserRegistration() {
   const [isRegistering, setIsRegistering] = useState<boolean>(false);
-  const [registrationMessage, setRegistrationMessage] = useState<string | unknown>('');
+  const [registrationMessage, setRegistrationMessage] = useState<
+    string | unknown
+  >("");
   const [registrationType, setRegistrationType] = useState<boolean>(false);
 
-
   const registerUser = async (userData: UserRegisterForm) => {
-    
-
     try {
       setIsRegistering(true);
-      setRegistrationMessage('');
+      setRegistrationMessage("");
 
-      await register(userData); 
+      await register(userData);
       setRegistrationType(true);
-      setRegistrationMessage("Đăng ký thành công! Vui lòng kiểm tra email để kích hoạt tài khoản!");
+      setRegistrationMessage(
+        "Đăng ký thành công! Vui lòng kiểm tra email để kích hoạt tài khoản!"
+      );
     } catch (error: any) {
       setRegistrationType(false);
-      switch(error.response.status) {
+      switch (error.response.status) {
         case 406:
           setRegistrationMessage("Email đã được sử dụng");
       }
     } finally {
       setIsRegistering(false);
-      setTimeout(() => setRegistrationMessage(''), 2000);
+      setTimeout(() => setRegistrationMessage(""), 2000);
     }
   };
 
@@ -34,7 +36,7 @@ function useUserRegistration() {
     isRegistering,
     registrationMessage,
     registerUser,
-    registrationType
+    registrationType,
   };
 }
 

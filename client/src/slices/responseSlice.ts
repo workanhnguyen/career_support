@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { Response } from "../interfaces/Response";
 
 export const responseState: Response = {
@@ -35,15 +36,16 @@ export const responseSlice = createSlice({
               }
               return option;
             });
-    
+
             return { ...question, options: updatedOptions };
           }
           return question;
         }),
       };
-    }
+    },
   },
 });
 
-export const { toggleCheckOptionResponse, initResponse } = responseSlice.actions;
+export const { toggleCheckOptionResponse, initResponse } =
+  responseSlice.actions;
 export default responseSlice.reducer;

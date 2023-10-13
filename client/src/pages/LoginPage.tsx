@@ -22,7 +22,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import useUserLogin from "../hooks/useUserLogin";
 import { LoadingOverlay } from "../components";
-import { authCheckHOC } from '../hocs';
+import { authCheckHOC } from "../hocs";
 
 const defaultTheme = createTheme();
 
@@ -158,7 +158,7 @@ function Copyright(props: any) {
       align="center"
       {...props}
     >
-      {"Copyright © " }
+      {"Copyright © "}
       {new Date().getFullYear()}
       {"."}
     </Typography>

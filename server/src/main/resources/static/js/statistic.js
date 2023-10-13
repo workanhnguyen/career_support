@@ -143,7 +143,7 @@ function statistic(jwtToken) {
         fetch(`/server/api/v1/stats/month/users?year=${yearForMonth.value}`, {
             method: "get",
             headers: {
-                "Authorization": jwtToken,
+                "Authorization": "Bearer " + jwtToken,
                 "Content-Type": "application/json"
             }
         })
@@ -172,7 +172,7 @@ function statistic(jwtToken) {
 
         fetch(`/server/api/v1/stats/month/surveys/holland?year=${yearForMonth.value}`, {
             method: "get", headers: {
-                "Authorization": jwtToken, "Content-Type": "application/json"
+                "Authorization": "Bearer " + jwtToken, "Content-Type": "application/json"
             }
         })
             .then(res => res.json())
@@ -204,7 +204,7 @@ function statistic(jwtToken) {
 
         fetch(`/server/api/v1/stats/quater/users?year=${yearForQuaterDOM.value}`, {
             method: "get", headers: {
-                "Authorization": jwtToken, "Content-Type": "application/json"
+                "Authorization": "Bearer " + jwtToken, "Content-Type": "application/json"
             }
         })
         .then(response => response.json())
@@ -231,7 +231,7 @@ function statistic(jwtToken) {
         })
         fetch(`/server/api/v1/stats/quater/surveys/holland?year=${yearForQuaterDOM.value}`, {
             method: "get", headers: {
-                "Authorization": jwtToken, "Content-Type": "application/json"
+                "Authorization": "Bearer " + jwtToken, "Content-Type": "application/json"
             }
         })
         .then(response => response.json())

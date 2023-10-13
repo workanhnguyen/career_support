@@ -1,9 +1,11 @@
-import { Button, CircularProgress, Container } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+
+import { Button, CircularProgress, Container } from "@mui/material";
+
 import { Header } from "../components";
 import useSurveyDetail from "../hooks/useSurveyDetail";
-import { PieChart } from "../charts";
+import { BarChart } from "../charts";
 import { HollandResult } from "../interfaces/HollandResult";
 
 type ChartType = {
@@ -65,7 +67,7 @@ const HollandResultDetailPage: React.FC = () => {
         <CircularProgress />
       ) : (
         <div className="mt-10">
-          <PieChart chartData={data} />
+          <BarChart chartData={data} />
           <section className="mt-5">
             <table className="w-full border-collapse mb-5">
               <thead>

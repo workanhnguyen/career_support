@@ -1,6 +1,5 @@
 package com.nva.server.services;
 
-import com.nva.server.dtos.QuestionDTO;
 import com.nva.server.dtos.QuestionForClientDTO;
 import com.nva.server.pojos.Question;
 

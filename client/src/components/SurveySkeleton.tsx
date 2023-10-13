@@ -1,5 +1,6 @@
-import { Paper, Skeleton } from "@mui/material";
 import React from "react";
+
+import { Paper, Skeleton } from "@mui/material";
 
 const SurveySkeleton: React.FC = () => {
   return (

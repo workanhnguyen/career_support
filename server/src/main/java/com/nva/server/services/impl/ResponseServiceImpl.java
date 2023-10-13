@@ -1,20 +1,16 @@
 package com.nva.server.services.impl;
 
+import com.nva.server.dtos.QuestionResponseDTO;
 import com.nva.server.dtos.ResponseSurveyHollandFromClientDTO;
 import com.nva.server.dtos.ResultHollandResponseDTO;
-import com.nva.server.pojos.Holland;
-import com.nva.server.pojos.Option;
-import com.nva.server.pojos.Question;
-import com.nva.server.services.HollandService;
-import com.nva.server.services.OptionService;
-import com.nva.server.services.QuestionService;
-import com.nva.server.services.ResponseService;
+import com.nva.server.pojos.*;
+import com.nva.server.repositories.ResponseRepository;
+import com.nva.server.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ResponseServiceImpl implements ResponseService {
@@ -24,8 +20,42 @@ public class ResponseServiceImpl implements ResponseService {
     private QuestionService questionService;
     @Autowired
     private OptionService optionService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private SurveyService surveyService;
+    @Autowired
+    private ResponseRepository responseRepository;
+    @Autowired
+    private ResponseDetailService responseDetailService;
     @Override
+    @Transactional
     public List<ResultHollandResponseDTO> calculateAndSaveHollandResult(ResponseSurveyHollandFromClientDTO response) {
+
+        // Save the response
+        Response savedResponse = Response.builder()
+                        .user(userService.findById(response.getUserId()).get())
+                        .survey(surveyService.findById(response.getSurveyId()).get())
+                        .createdAt(new Date()).build();
+        savedResponse = responseRepository.save(savedResponse);
+
+        // Save the response details
+        Response finalSavedResponse = savedResponse;
+        Set<QuestionResponseDTO> questionResponseDTOs = response.getQuestions();
+
+        for (QuestionResponseDTO questionResponseDTO : questionResponseDTOs) {
+            Set<Integer> optionIds = questionResponseDTO.getOptions();
+
+            for (Integer optionId : optionIds) {
+                ResponseDetail responseDetail = ResponseDetail.builder()
+                        .response(finalSavedResponse)
+                        .question(questionService.findById(questionResponseDTO.getId()).get())
+                        .selectedOption(optionService.findById(Long.parseLong(String.valueOf(optionId))).get())
+                        .build();
+                responseDetailService.save(responseDetail);
+            }
+        }
+
         List<ResultHollandResponseDTO> resultHollands = new ArrayList<>();
 
         response.getQuestions().forEach(question -> {

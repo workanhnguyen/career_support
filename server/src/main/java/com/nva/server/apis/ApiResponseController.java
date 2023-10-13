@@ -37,6 +37,16 @@ public class ApiResponseController {
         return new ResponseEntity<>(responseService.calculateAndSaveHollandResult(response), HttpStatus.OK);
     }
 
+    @GetMapping("/holland/detail")
+    public ResponseEntity<List<ResultHollandResponseDTO>> getSurveyHollandResultDetail(@RequestParam("responseId") Long responseId) {
+        Optional<Response> responseOptional = responseService.findById(responseId);
+
+        if (responseOptional.isPresent()) {
+            return new ResponseEntity<>(responseService.getHollandResultDetails(responseId), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
     @GetMapping("/by-current-user")
     public ResponseEntity<List<ResponseForClientDTO>> findByCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

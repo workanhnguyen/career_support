@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../interfaces/RootState";
 import { useSurveyHistories } from "../hooks";
 import { SurveyHistory } from "../interfaces/SurveyHistory";
+import { Link } from "react-router-dom";
 
 moment.locale("vi");
 
@@ -49,7 +50,7 @@ const PersonalPage: React.FC = () => {
                         <p className="truncate font-semibold">{survey.surveyTitle}</p>
                         <p className="">{moment(survey.createdAt).fromNow()}</p>
                     </div>
-                    <Button className="w-48" variant="contained" disableElevation>Chi tiết</Button>
+                    <Link to={`/surveys/result/${survey.id}`}><Button className="w-48" variant="contained" disableElevation>Chi tiết</Button></Link>
                   </Paper>
                 ))}
               </div>

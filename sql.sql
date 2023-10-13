@@ -158,7 +158,7 @@ CREATE TABLE `response_details` (
   CONSTRAINT `FK3fk1i31c11y3i0frbsssjflq6` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FKl4u78k4t848p6idchojyguf7b` FOREIGN KEY (`response_id`) REFERENCES `responses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FKrqg5wah4bdui1upyqx3rd9f6j` FOREIGN KEY (`selected_option_id`) REFERENCES `options` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,6 +167,7 @@ CREATE TABLE `response_details` (
 
 LOCK TABLES `response_details` WRITE;
 /*!40000 ALTER TABLE `response_details` DISABLE KEYS */;
+INSERT INTO `response_details` VALUES (9,NULL,16,5,55),(10,NULL,13,5,26),(11,NULL,14,5,37),(12,NULL,17,5,69),(13,NULL,11,5,24),(14,NULL,15,5,49),(15,NULL,13,6,29),(16,NULL,13,6,30),(17,NULL,17,6,65),(18,NULL,17,6,66),(19,NULL,11,6,19),(20,NULL,11,6,21),(21,NULL,15,6,48),(22,NULL,15,6,45),(23,NULL,16,6,57),(24,NULL,16,6,58),(25,NULL,14,6,34),(26,NULL,14,6,42);
 /*!40000 ALTER TABLE `response_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +189,7 @@ CREATE TABLE `responses` (
   KEY `FKqf8rt9h0wd5pmaxouhxqsoeuq` (`user_id`),
   CONSTRAINT `FKemug20qu5fygiy69wj7sel8hc` FOREIGN KEY (`survey_id`) REFERENCES `surveys` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FKqf8rt9h0wd5pmaxouhxqsoeuq` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,6 +198,7 @@ CREATE TABLE `responses` (
 
 LOCK TABLES `responses` WRITE;
 /*!40000 ALTER TABLE `responses` DISABLE KEYS */;
+INSERT INTO `responses` VALUES (5,'2023-10-13 02:31:44',5,32,NULL),(6,'2023-10-13 02:55:00',5,32,NULL);
 /*!40000 ALTER TABLE `responses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,4 +274,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-13  8:57:46
+-- Dump completed on 2023-10-13  9:55:42

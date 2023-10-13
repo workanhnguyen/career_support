@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { HollandResult } from "../interfaces/HollandResult";
 import { PieChart } from "../charts";
-import { Container } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import { Header } from "../components";
 import { getAllHollands } from "../apis/HollandApi";
 import { Holland } from "../interfaces/Holland";
+import { Link } from "react-router-dom";
 
 type ChartType = {
   labels: string[];
@@ -15,7 +16,7 @@ type ChartType = {
 };
 
 const HollandResultPage: React.FC = () => {
-  const [result, setResult] = useState<HollandResult[]>(
+  const [result, _] = useState<HollandResult[]>(
     JSON.parse(localStorage.getItem("holland_result")!) || []
   );
   const [hollands, setHollands] = useState<Holland[]>([]);
@@ -61,13 +62,12 @@ const HollandResultPage: React.FC = () => {
               "#fcc203",
               "#00ccff",
               "#067dc2",
-            ], // Set your colors here
+            ],
           },
         ],
       });
     }
   }, [result]);
-  console.log(data);
 
   return (
     <Container>
@@ -111,6 +111,7 @@ const HollandResultPage: React.FC = () => {
             </tbody>
           </table>
         </section>
+        <Link to='/home' className="mt-5"><Button variant="contained" color="warning" disableElevation>Trở lại</Button></Link>
       </div>
     </Container>
   );

@@ -1,11 +1,13 @@
 package com.nva.server.services.impl;
 
 import com.nva.server.dtos.QuestionResponseDTO;
+import com.nva.server.dtos.ResponseForClientDTO;
 import com.nva.server.dtos.ResponseSurveyHollandFromClientDTO;
 import com.nva.server.dtos.ResultHollandResponseDTO;
 import com.nva.server.pojos.*;
 import com.nva.server.repositories.ResponseRepository;
 import com.nva.server.services.*;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +30,8 @@ public class ResponseServiceImpl implements ResponseService {
     private ResponseRepository responseRepository;
     @Autowired
     private ResponseDetailService responseDetailService;
+    @Autowired
+    private ModelMapper modelMapper;
     @Override
     @Transactional
     public List<ResultHollandResponseDTO> calculateAndSaveHollandResult(ResponseSurveyHollandFromClientDTO response) {
@@ -79,5 +83,19 @@ public class ResponseServiceImpl implements ResponseService {
         });
 
         return resultHollands;
+    }
+
+    @Override
+    public List<ResponseForClientDTO> findByUserId(Long userId) {
+        List<Response> responses = responseRepository.findByUserId(userId);
+        List<ResponseForClientDTO> responseForClientDTOs = new ArrayList<>();
+
+        responses.forEach(response -> {
+            ResponseForClientDTO responseForClientDTO = modelMapper.map(response, ResponseForClientDTO.class);
+            responseForClientDTO.setSurveyTitle(response.getSurvey().getTitle());
+            responseForClientDTOs.add(responseForClientDTO);
+        });
+
+        return responseForClientDTOs;
     }
 }

@@ -93,7 +93,7 @@ CREATE TABLE `options` (
   PRIMARY KEY (`id`),
   KEY `FK5bmv46so2y5igt9o9n9w4fh6y` (`question_id`),
   CONSTRAINT `FK5bmv46so2y5igt9o9n9w4fh6y` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +125,7 @@ CREATE TABLE `questions` (
   KEY `FK_question_holland_idx` (`holland_id`),
   CONSTRAINT `FK_question_holland` FOREIGN KEY (`holland_id`) REFERENCES `hollands` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FKnf38uiy78c0g0tmo68btk3y0p` FOREIGN KEY (`survey_id`) REFERENCES `surveys` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,7 +218,7 @@ CREATE TABLE `surveys` (
   `author` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,7 +227,7 @@ CREATE TABLE `surveys` (
 
 LOCK TABLES `surveys` WRITE;
 /*!40000 ALTER TABLE `surveys` DISABLE KEYS */;
-INSERT INTO `surveys` VALUES (5,'2023-10-08 08:20:14','Trắc nghiệm Holland chính là cơ sở để bạn đối chiếu sở thích, năng lực tự nhiên của mình với yêu cầu của các nhóm ngành nghề. Từ đó bạn có thể định hướng nghề nghiệp theo nhóm ngành phù hợp nhất. Hãy thả lỏng tâm trí và thực hiện khảo sát một cách thoải mái nhất. Bắt đầu ngay nào!','Trắc Nghiệm Định Hướng Nghề Nghiệp Holland Code Test (RIASEC)','2023-10-11 07:55:44','John L.Holland','https://res.cloudinary.com/dduhlnft3/image/upload/v1697010930/backend/Untitled_design_fjjtx8.png');
+INSERT INTO `surveys` VALUES (5,'2023-10-08 08:20:14','Trắc nghiệm Holland chính là cơ sở để bạn đối chiếu sở thích, năng lực tự nhiên của mình với yêu cầu của các nhóm ngành nghề. Từ đó bạn có thể định hướng nghề nghiệp theo nhóm ngành phù hợp nhất. Hãy thả lỏng tâm trí và thực hiện khảo sát một cách thoải mái nhất. Bắt đầu ngay nào!','Trắc Nghiệm Định Hướng Nghề Nghiệp Holland Code Test (RIASEC)','2023-10-13 09:23:16','John L.Holland','https://res.cloudinary.com/dduhlnft3/image/upload/v1697010930/backend/Untitled_design_fjjtx8.png');
 /*!40000 ALTER TABLE `surveys` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,7 +261,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (5,'https://res.cloudinary.com/dduhlnft3/image/upload/v1696908579/vi9xzhoeivk7wstsnyll.png','admin@gmail.com','viên','Quản trị','$2a$10$tZhElB4CQ7.A6GkJ9Xhple1Naak4ATawisFaoh7SBYk8gmoPld9UG','ROLE_ADMIN','2023-10-01 08:04:34',_binary '',_binary '\0','2023-10-10 04:19:24'),(6,'https://res.cloudinary.com/dduhlnft3/image/upload/v1696555687/frontend/blank-avatar_pnthgi.jpg','anh@gmail.com','Anh','Nguyen Van','$2a$10$BkaUNE08KXE.Oweqo2lal.OyBUuPVxfpWdSQO7hMVKRQZlZAKaVQy','ROLE_USER','2023-10-01 08:04:34',_binary '',_binary '\0','2023-10-10 04:19:24'),(32,'https://res.cloudinary.com/dduhlnft3/image/upload/v1696555687/frontend/blank-avatar_pnthgi.jpg','anhnguyen.per@gmail.com','Anh','Nguyễn Vân','$2a$10$Ex0DIKwKyDjVdOTbmtzcc.JY766RRGaxHn17fsXiIxZUGkauB9r1O','ROLE_USER','2023-10-01 08:04:34',_binary '',_binary '\0','2023-10-10 04:17:44');
+INSERT INTO `users` VALUES (5,'https://res.cloudinary.com/dduhlnft3/image/upload/v1696908579/vi9xzhoeivk7wstsnyll.png','admin@gmail.com','viên','Quản trị','$2a$10$tZhElB4CQ7.A6GkJ9Xhple1Naak4ATawisFaoh7SBYk8gmoPld9UG','ROLE_ADMIN','2023-10-01 08:04:34',_binary '',_binary '\0','2023-10-10 04:19:24'),(6,'https://res.cloudinary.com/dduhlnft3/image/upload/v1696555687/frontend/blank-avatar_pnthgi.jpg','anh@gmail.com','Anh','Nguyen Van','$2a$10$BkaUNE08KXE.Oweqo2lal.OyBUuPVxfpWdSQO7hMVKRQZlZAKaVQy','ROLE_USER','2023-10-01 08:04:34',_binary '',_binary '\0','2023-10-13 09:10:58'),(32,'https://res.cloudinary.com/dduhlnft3/image/upload/v1696555687/frontend/blank-avatar_pnthgi.jpg','anhnguyen.per@gmail.com','Anh','Nguyễn Vân','$2a$10$Ex0DIKwKyDjVdOTbmtzcc.JY766RRGaxHn17fsXiIxZUGkauB9r1O','ROLE_USER','2023-10-01 08:04:34',_binary '',_binary '\0','2023-10-10 04:17:44');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -274,4 +274,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-13 15:33:44
+-- Dump completed on 2023-10-13 23:08:38

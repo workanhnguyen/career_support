@@ -12,6 +12,9 @@ import com.nva.server.utils.Const;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,6 +30,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@PropertySource("classpath:configs.properties")
 public class AuthenticationService {
     private final UserRepository userRepository;
     private final ConfirmationTokenService confirmationTokenService;
@@ -35,6 +39,8 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final ModelMapper modelMapper;
+    @Autowired
+    private Environment env;
 
     public int register(UserRegisterRequest request) {
         try {
@@ -66,7 +72,7 @@ public class AuthenticationService {
                 confirmationTokenService.saveConfirmationToken(confirmationToken);
 
                 // TODO: Send email
-                String activateLink = "http://localhost:8080/server/api/v1/auth/confirm?token=" + token;
+                String activateLink = env.getProperty("SERVER_CONTEXT_PATH") + "/server/api/v1/auth/confirm?token=" + token;
 
                 DataMailDTO dataMail = new DataMailDTO();
 

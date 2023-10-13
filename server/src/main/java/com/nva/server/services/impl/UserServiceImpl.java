@@ -86,6 +86,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addNewUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setAvatar("https://res.cloudinary.com/dduhlnft3/image/upload/v1696555687/frontend/blank-avatar_pnthgi.jpg");
 
         if (userRepository.findByEmail(user.getEmail()).isPresent())
             throw new IllegalStateException("Email taken");

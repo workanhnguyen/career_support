@@ -69,7 +69,7 @@ const Header: React.FC = () => {
                 "aria-labelledby": "user-choice",
               }}
             >
-              <MenuItem onClick={handleClose}>Trang cá nhân</MenuItem>
+              <MenuItem onClick={handleClose}><Link to='/profile'>Trang cá nhân</Link></MenuItem>
               <MenuItem onClick={handleClose} sx={{ color: 'red'}}>Đăng xuất</MenuItem>
             </Menu>
           </section>

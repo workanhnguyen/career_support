@@ -42,8 +42,7 @@ public class ApiResponseController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         UserForClientDTO currentUser = userService.findByEmail(userDetails.getUsername());
-
-//        responseService.findByUserId(currentUser.getId());
+        
         return new ResponseEntity<>(responseService.findByUserId(currentUser.getId()), HttpStatus.OK);
     }
 }

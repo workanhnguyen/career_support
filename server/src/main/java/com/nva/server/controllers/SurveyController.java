@@ -56,6 +56,7 @@ public class SurveyController {
     }
 
     @PostMapping("/add-new")
+    @Transactional
     public String createSurvey(@Valid @ModelAttribute("survey") Survey survey, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "add-survey";
@@ -64,6 +65,8 @@ public class SurveyController {
                 .title(survey.getTitle().trim())
                 .description(survey.getDescription().trim())
                 .createdAt(new Date())
+                .author(survey.getAuthor().trim())
+                .imageFile(survey.getImageFile())
                 .build();
         Survey savedSurvey = surveyService.save(survey);
 

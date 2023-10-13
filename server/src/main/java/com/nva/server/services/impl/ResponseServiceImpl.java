@@ -108,8 +108,6 @@ public class ResponseServiceImpl implements ResponseService {
                 questions.add(Map.of("questionId", responseDetail.getQuestion().getId(), "optionId", responseDetail.getSelectedOption().getId()));
             });
 
-            log.warn(String.valueOf(responseDetails.size()));
-
             Map<Long, QuestionResponseDTO> resultMap = new HashMap<>();
             for (Map<String, Object> entry: questions) {
                 Long questionId = (Long) entry.get("questionId");
@@ -126,7 +124,6 @@ public class ResponseServiceImpl implements ResponseService {
                 questionResponseDTO.getOptions().add(Integer.parseInt(String.valueOf(optionId)));
             }
             Set<QuestionResponseDTO> formattedResult = new HashSet<>(resultMap.values());
-            log.error(formattedResult.toString());
             responseSurveyHollandFromClientDTO.setQuestions(formattedResult);
 
             return calculateHollandResult(responseSurveyHollandFromClientDTO);

@@ -1,5 +1,7 @@
 package com.nva.server.services.impl;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.nva.server.dtos.SurveyDTO;
 import com.nva.server.pojos.Question;
 import com.nva.server.pojos.Survey;
@@ -15,7 +17,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -29,6 +33,8 @@ public class SurveyServiceImpl implements SurveyService {
     private QuestionService questionService;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private Cloudinary cloudinary;
     @Override
     @Transactional
     public Optional<Survey> findById(Long surveyId) {
@@ -76,6 +82,17 @@ public class SurveyServiceImpl implements SurveyService {
 
     @Override
     public Survey save(Survey survey) {
+        if (survey.getImageFile() != null && !survey.getImageFile().isEmpty()) {
+            try {
+                Map response = this.cloudinary.uploader().upload(survey.getImageFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                survey.setImage(response.get("secure_url").toString());
+
+                return surveyRepository.save(survey);
+            } catch (IOException e) {
+                log.error(e.getMessage());
+                return new Survey();
+            }
+        }
         return surveyRepository.save(survey);
     }
 

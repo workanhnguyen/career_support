@@ -32,3 +32,4 @@ Bước 6: Với thư mục `server` đã mở với **IntelliJ IDEA Community**
 spring.datasource.username=<Tên đăng nhập MySQL>
 spring.datasource.password=<Mật khẩu đăng nhập MySQL>
 ```
+Sau khi chỉnh sửa, mở tập tin `ServerApplication.java` và chạy tập tin này. Ứng dụng Java sẽ được chạy trên `http://localhost:8085/server`.

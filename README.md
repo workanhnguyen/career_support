@@ -41,8 +41,17 @@ yarn dev
 Ứng dụng sẽ chạy trên `http://localhost:5173`.
 
 ## Hướng dẫn sử dụng
-Người dùng đăng nhập bằng tài khoản sẵn có hoặc đăng ký tài khoản mới. **Lưu ý: Khi đăng ký, hệ thống sẽ gửi một email xác nhận tài khoản theo email đã đăng ký trên hệ thống, để xác nhận được tài khoản, vui lòng mở Gmail trên cùng một máy tính.**. Hoặc có thể sử dụng tài khoản thử nghiệm sau:
+Người dùng truy cập vào `http://localhost:5173` và đăng nhập bằng tài khoản sẵn có hoặc đăng ký tài khoản mới. 
+* **Lưu ý: Khi đăng ký, hệ thống sẽ gửi một email xác nhận tài khoản theo email đã đăng ký trên hệ thống, để xác nhận được tài khoản, vui lòng mở Gmail trên cùng một máy tính.**.
+* Hoặc có thể sử dụng tài khoản thử nghiệm sau:
 ```
 Tên tài khoản: test
 Mật khẩu: 12345aA@
+```
+* Khi đăng nhập thành công, người dùng có thể sử dụng các chức năng của hệ thống.
+
+Đối với quản trị viên, truy cập vào `http://localhost:8085/server` và sử dụng tài khoản sau để đăng nhập với vai trò admin:
+```
+Tên tài khoản: admin@gmail.com
+Mật khẩu: 1234
 ```

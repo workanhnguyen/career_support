@@ -8,7 +8,6 @@ Trong thời đại ngày nay, có rất nhiều ngành nghề ở nhiều lĩnh
 * Đăng nhập/đăng ký.
 * Làm bài khảo sát Holland.
 * Xem lại lịch sử, kết quả khảo sát đã thực hiện.
-
 ### Chức năng phía quản trị viên
 * CRUD người dùng.
 * CRUD khảo sát.

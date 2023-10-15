@@ -9,9 +9,10 @@ Bước 1: Yêu cầu môi trường cài đặt (vui lòng bỏ qua nếu đã 
 * **Cài đặt MySQL Community Server:** tải và cài đặt MySQL Community Server [tại đây](https://dev.mysql.com/get/Downloads/MySQL-8.1/mysql-8.1.0-winx64.msi). Sau đó mở tập tin cài đặt đã tải và làm theo hướng dẫn.
 * **Cài đặt MySQL Workbench:** tải và cài đặt MySQL Workbench [tại đây](https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-8.0.34-winx64.msi). Sau đó mở tập tin cài đặt đã tải và làm theo hướng dẫn.
 * **Cài đặt Visual Studio Code:** vào [trang chủ của Visual Studio Code](https://code.visualstudio.com/download) và tải phiên bản phù hợp với máy tính.
-* **Cài đặt IntelliJ IDEA Commnunity:** vào [trang chủ của JetBrains](https://www.jetbrains.com/idea/download/?section=windows) và tải phiên bản IntelliJ IDEA Commnunity.
+* **Cài đặt IntelliJ IDEA Community:** vào [trang chủ của JetBrains](https://www.jetbrains.com/idea/download/?section=windows) và tải phiên bản IntelliJ IDEA Commnunity.
   
 Bước 2: Mở `command line` hoặc `git bash` và gõ lệnh sau để tải mã nguồn đồ án về máy tính.
 ```
-git clone  https://github.com/workanhnguyen/major_project
+git clone https://github.com/workanhnguyen/major_project
 ```
+Bước 3: Mở thư mục `client` bằng **Visual Studio Code** và mở thư mục `server` bằng **IntelliJ IDEA Community**.

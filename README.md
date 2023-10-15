@@ -2,3 +2,6 @@
 Trong thời đại ngày nay, có rất nhiều ngành nghề ở nhiều lĩnh vực khác nhau, như các lĩnh vực về kinh tế, kỹ thuật, công nghệ thông tin,… Tuy vậy, cũng có đa số mọi người, đặc biệt là các bạn học sinh đang học ở các trường trung học phổ thông vẫn còn mơ hồ trong việc chọn ngành nghề phù hợp với bản thân trong tương lai hoặc chưa xác định rõ được bản thân đam mê những gì để có thể theo đuổi.
 
 Để đáp ứng các yêu cầu trên, đề tài **"Phát triển hệ thống hướng nghiệp cho học sinh"** được đề xuất. Mục tiêu của đề tài này là xây dựng một hệ thống cho phép làm bài khảo sát, đánh giá mức độ phù hợp với các nhóm ngành nghề trên cơ sở lý thuyết “Bộ câu hỏi trắc nghiệm nghề nghiệp” của tiến sĩ tâm lý học người Mỹ - John L.Holland. Từ kết quả khảo sát có được, sẽ đưa ra thang điểm đánh giá mức độ phù hợp với từng nhóm lĩnh vực và các gợi ý về ngành nghề phù hợp.
+## Hướng dẫn cài đặt
+Bước 1: Cài đặt môi trường.
+* **Cài đặt môi trường NodeJS:** vào [trang chủ của NodeJS](https://nodejs.org) và tải về phiên bản `18.18.2 LTS` (tính đến ngày 15/10/2023).

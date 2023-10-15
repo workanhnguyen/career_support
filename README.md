@@ -27,3 +27,8 @@ Sau khi thực thi thành công lệnh trên, thực thi tiếp lệnh sau để
 ```
 yarn install
 ```
+Bước 6: Với thư mục `server` đã mở với **IntelliJ IDEA Community**, mở tập tin `application.properties` và sửa lại các lệnh sau:
+```
+spring.datasource.username=<Tên đăng nhập MySQL>
+spring.datasource.password=<Mật khẩu đăng nhập MySQL>
+```

@@ -16,4 +16,14 @@ Bước 2: Mở `command line` hoặc `git bash` và gõ lệnh sau để tải 
 git clone https://github.com/workanhnguyen/major_project
 ```
 Bước 3: Mở thư mục `client` bằng **Visual Studio Code** và mở thư mục `server` bằng **IntelliJ IDEA Community**.
+
 Bước 4: Mở **MySQL Workbench** và tạo mới một schema đặt tên là `major_project_db`. Sau đó nhập dữ liệu từ tập tin `major_project_db.sql`.
+
+Bước 5: Với thư mục `client` đã mở với **Visual Studio Code**, mở terminal và thực thi lần lượt các lệnh sau:
+```
+npm install yarn
+```
+Sau khi thực thi thành công lệnh trên, thực thi tiếp lệnh sau để cài đặt tất cả các package cần thiết cho ứng dụng `ReactJS`:
+```
+yarn install
+```

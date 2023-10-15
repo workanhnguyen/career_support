@@ -74,3 +74,10 @@ Tên tài khoản: admin@gmail.com
 Mật khẩu: 1234
 ```
 * Sau khi đăng nhập thành công, quản trị viên có thể sử dụng các chức năng quản trị.
+
+## Thông tin nhà phát triển
+* Họ và tên: Nguyễn Vân Anh
+* MSSV: 2051012004
+* Trường Đại học Mở thành phố Hồ Chí Minh.
+
+@ 2023

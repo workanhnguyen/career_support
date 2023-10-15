@@ -39,3 +39,10 @@ Cuối cùng thực thi lệnh sau để chạy ứng dụng:
 yarn dev
 ```
 Ứng dụng sẽ chạy trên `http://localhost:5173`.
+
+## Hướng dẫn sử dụng
+Người dùng đăng nhập bằng tài khoản sẵn có hoặc đăng ký tài khoản mới. **Lưu ý: Khi đăng ký, hệ thống sẽ gửi một email xác nhận tài khoản theo email đã đăng ký trên hệ thống, để xác nhận được tài khoản, vui lòng mở Gmail trên cùng một máy tính.**. Hoặc có thể sử dụng tài khoản thử nghiệm sau:
+```
+Tên tài khoản: test
+Mật khẩu: 12345aA@
+```

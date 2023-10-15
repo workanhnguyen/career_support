@@ -15,6 +15,11 @@ Trong thời đại ngày nay, có rất nhiều ngành nghề ở nhiều lĩnh
 * CRUD phương án.
 * Thống kê số lượng người dùng, số lượt làm khảo sát.
 
+## Công nghệ sử dụng
+* Phía frontend: `TypeScript` `ReactJs` `Redux` `Tailwind CSS` `Material UI`
+* Phía backend: `Java Spring Boot`
+* Phía cơ sở dữ liệu: `MySQL`
+
 ## Hướng dẫn cài đặt
 #### Bước 1: Yêu cầu môi trường cài đặt (vui lòng bỏ qua nếu đã đáp ứng các môi trường bên dưới).
 * **Cài đặt môi trường NodeJS:** vào [trang chủ của NodeJS](https://nodejs.org) và tải về phiên bản `18.18.2 LTS` (tính đến ngày 15/10/2023). Sau đó mở tập tin cài đặt đã tải và làm theo hướng dẫn.

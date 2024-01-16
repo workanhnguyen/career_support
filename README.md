@@ -31,7 +31,7 @@ Trong thời đại ngày nay, có rất nhiều ngành nghề ở nhiều lĩnh
   
 #### Bước 2: Mở `command line` hoặc `git bash` và gõ lệnh sau để tải mã nguồn đồ án về máy tính.
 ```
-git clone https://github.com/workanhnguyen/major_project
+git clone https://github.com/workanhnguyen/career_support
 ```
 #### Bước 3: Mở thư mục `client` bằng **Visual Studio Code** và mở thư mục `server` bằng **IntelliJ IDEA Community**.
 
